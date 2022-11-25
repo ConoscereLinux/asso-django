@@ -47,4 +47,4 @@ migrate:
 	$(django) migrate
 
 serve:
-	$(python) -m bureaucrapy memberships
+	$(django) runserver
