@@ -5,6 +5,9 @@ python=$(VENV)/bin/python3
 pip=$(VENV)/bin/pip3
 django=$(python) manage.py
 
+HOST=127.0.0.1
+PORT=8000
+
 # Utility scripts to prettify echo outputs
 bold := '\033[1m'
 sgr0 := '\033[0m'
@@ -47,4 +50,4 @@ migrate:
 	$(django) migrate
 
 serve:
-	$(django) runserver
+	$(django) runserver $(HOST):$(PORT)
