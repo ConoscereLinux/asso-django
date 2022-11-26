@@ -44,7 +44,10 @@ bootstrap-django:
 	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
 	
 
-.PHONY: migrate serve
+.PHONY: import migrate serve
+
+import:
+	$(django) runscript load_data
 
 migrate:
 	$(django) migrate
