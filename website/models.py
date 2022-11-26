@@ -18,3 +18,13 @@ class Member(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class Membership(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    year = models.SmallIntegerField()
+    card = models.SmallIntegerField(unique_for_year="payment_date")
+    payment_date = models.DateField(null=True)
+
+    def __str__(self):
+        return f"{self.year} n° {self.card}"
