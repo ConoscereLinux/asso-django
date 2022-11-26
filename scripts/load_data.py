@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+from loguru import logger
+
 from website.models import Member
 
 DATA_PATH = Path("data")
@@ -11,10 +13,11 @@ def run():
         data = json.load(fp)
 
     for member in data.get("members"):
+        logger.debug(f"Importing member {member.get('cf')}")
         Member(
             id=member.get("oid"),
             name=member.get("name"),
             surname=member.get("surname"),
             cf=member.get("cf"),
-            email=member.get("email")[0]
+            email=member.get("email")[0],
         ).save()
