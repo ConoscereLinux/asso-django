@@ -54,4 +54,4 @@ migrate:
 	$(django) migrate
 
 serve:
-	$(django) runserver $(HOST):$(PORT)
+	DEBUG=True $(django) runserver $(HOST):$(PORT)
