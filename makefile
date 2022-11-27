@@ -26,7 +26,7 @@ clean:
 .PHONY: venv
 venv: clean
 	@echo -e $(bold)Create virtualenv$(sgr0)
-	/usr/bin/python3 -m venv $(VENV)
+	python3 -m venv $(VENV)
 	$(pip) install --upgrade pip
 
 
