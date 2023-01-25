@@ -23,17 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key())
+SECRET_KEY = config("SECRET_KEY", default = get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-TEMPLATE_DEBUG = DEBUG = config("DEBUG", default=False, cast=bool)
+TEMPLATE_DEBUG = DEBUG = config("DEBUG", default = False, cast = bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "academy.apps.AcademyConfig",
+    "accountant.apps.AccountantConfig",
+    "common.apps.CommonConfig",
+    "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -120,9 +124,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+# Used for collecting static files
+STATICFILES_DIRS = [Path(BASE_DIR, "static"),]
+
+# Base for the URL of static and media resources
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# Path to the real resources in the system
+STATIC_ROOT = config("STATIC_ROOT", default = "")
+MEDIA_ROOT = config('MEDIA_ROOT', default = "")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
