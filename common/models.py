@@ -81,6 +81,7 @@ class EditInfo(models.Model):
         verbose_name = _("Last edit User"),
         help_text = _("The User edited the object last time"))
     
+    # TODO: add some management for the user, from the request in the views
     """
     def save(self, *args, **kwargs):
         print()
@@ -95,6 +96,8 @@ class EditInfo(models.Model):
     
     class Meta:
         abstract = True
+        
+        ordering = ["-creation_date"]
 
 
 class TrashBin(models.Model):

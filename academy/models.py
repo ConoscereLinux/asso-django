@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Project Import
 from common import models as cm
+from accountant import models as accm
 
 
 
@@ -61,6 +62,14 @@ class Event(cm.Base, cm.EditInfo, cm.TrashBin):
         default = 0.0,
         verbose_name = _("Price"),
         help_text = _("The price to pay in order to attend the Event"))
+    
+    trainers = models.ManyToManyField(
+        'Trainer',
+        on_delete = models.CASCADE,
+        related_name = "trainer_events",
+        verbose_name = _("Trainers"),
+        help_text = _("The Trainers that present the Event"))
+
 
 class Session(cm.Base, cm.EditInfo, cm.TrashBin):
     """I an Event it is divided in more session, it could be managed here.
@@ -81,10 +90,6 @@ class Session(cm.Base, cm.EditInfo, cm.TrashBin):
                       " in visualization and determine when hide related Event"))
 
 
-class Presence(cm.EditInfo):
-    pass
-
-
 class Enrollment(cm.EditInfo):
     """Indicate that one User want to attend at an Event.
     """
@@ -103,8 +108,43 @@ class Enrollment(cm.EditInfo):
         verbose_name = _("Attendant"),
         help_text = _("The Attendant of witch the Enrollment is referred to"))
     
+    transaction = models.OneToOneField(
+        accm.Transaction,
+        on_delete = models.CASCADE,
+        related_name = "transaction_enrollment",
+        verbose_name = _("Event"),
+        help_text = _("The Event of witch the Enrollment is referred to"))
+    
 
-class Trainer(cm.EditInfo, cm.TrashBin):
-    pass
+class Presence(cm.EditInfo):
+    """Indicate the effective presence of an attendant in a particular session.
+    """
+
+    event = models.ForeignKey(
+        'Event',
+        on_delete = models.CASCADE,
+        related_name = "event_presences",
+        verbose_name = _("Event"),
+        help_text = _("The Event of witch the Presence is registered"))
+
+    enrolment = models.ForeignKey(
+        'Enrollment',
+        on_delete = models.CASCADE,
+        related_name = "enrollment_presences",
+        verbose_name = _("Enrollment"),
+        help_text = _("The Enrollment of witch the Presence is registered"))
+
+
+class Trainer(cm.Base, cm.EditInfo, cm.TrashBin):
+    """Represents someone that can present an Event
+    """
+    
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.SET_NULL,
+        related_name = "trainer",
+        verbose_name = _("User"),
+        help_text = _("The User the Trainer use for Login"))
+    
 
 
