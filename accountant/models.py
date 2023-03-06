@@ -7,159 +7,168 @@ The Accountant realm, here is all the money part.
 
 # Site-package Import
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 # Project Import
 from common import models as cm
 from common import util as u
 
 
-
 class Account(cm.Base, cm.EditInfo, cm.TrashBin):
     """This represents one of the transaction account of the association or for
     other players.
     """
+
     pass
 
 
 class AnalyticTag(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Indicate the type of transaction and is used for analysis
-    """
-    
+    """Indicate the type of transaction and is used for analysis"""
+
     father = models.ForeignKey(
-        'AnalyticTag',
-        on_delete = models.CASCADE,
-        related_name = "analytic_tag_sons",
-        verbose_name = _("Father"),
-        help_text = _("The Father of this AnalyticTag"))
-    
+        "AnalyticTag",
+        on_delete=models.CASCADE,
+        related_name="analytic_tag_sons",
+        verbose_name=_("Father"),
+        help_text=_("The Father of this AnalyticTag"),
+    )
 
 
 class InvoiceDirection(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Indicate if the Invoice is for sale or for buy
-    """
+    """Indicate if the Invoice is for sale or for buy"""
+
     pass
 
 
 class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represent the Invoice of both type (buy or sell)
-    """
-    
+    """Represent the Invoice for both type (buy or sell)"""
+
     # TODO: manage of sender and recipient
-    
+
     direction = models.ForeignKey(
-        'InvoiceDirection',
-        on_delete = models.CASCADE,
-        related_name = "invoice_direction_invoices",
-        verbose_name = _("Direction"),
-        help_text = _("Indicate the direction of the Invoice"))
-    
+        "InvoiceDirection",
+        on_delete=models.CASCADE,
+        related_name="invoice_direction_invoices",
+        verbose_name=_("Direction"),
+        help_text=_("Indicate the direction of the Invoice"),
+    )
+
     invoice_number = models.IntegerField(
-        default = 0,
-        verbose_name = _("Invoice Number"),
-        help_text = _("The unique number of the Invoice"))
-    
+        default=0,
+        verbose_name=_("Invoice Number"),
+        help_text=_("The unique number of the Invoice"),
+    )
+
     year = models.IntegerField(
-        default = u.current_year,
-        verbose_name = _("Invoice Number"),
-        help_text = _("The unique number of the Invoice"))
-    
+        default=u.current_year,
+        verbose_name=_("Invoice Number"),
+        help_text=_("The unique number of the Invoice"),
+    )
+
     printed = models.BooleanField(
-        default = False,
-        verbose_name = _("Printed"),
-        help_text = _("Indicate if the Invoice was printed"))
-    
+        default=False,
+        verbose_name=_("Printed"),
+        help_text=_("Indicate if the Invoice was printed"),
+    )
+
     sent = models.BooleanField(
-        default = False,
-        verbose_name = _("Sent"),
-        help_text = _("Indicate if the Invoice was sent"))
-    
+        default=False,
+        verbose_name=_("Sent"),
+        help_text=_("Indicate if the Invoice was sent"),
+    )
+
 
 class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represent the Invoice of both type (buy or sell)
-    """
-    
+    """Represent the Invoice for both type (buy or sell)"""
+
     invoice = models.ForeignKey(
-        'Invoice',
-        on_delete = models.CASCADE,
-        related_name = "invoice_rows",
-        verbose_name = _("Invoice"),
-        help_text = _("Indicate the Invoice of ownership"))
-    
+        "Invoice",
+        on_delete=models.CASCADE,
+        related_name="invoice_rows",
+        verbose_name=_("Invoice"),
+        help_text=_("Indicate the Invoice of ownership"),
+    )
+
     row_number = models.IntegerField(
-        default = 1,
-        verbose_name = _("Row Number"),
-        help_text = _("The Number of the row in the Invoice"))
-    
+        default=1,
+        verbose_name=_("Row Number"),
+        help_text=_("The Number of the row in the Invoice"),
+    )
+
     unit_price = models.DecimalField(
-        default = 0.0,
-        verbose_name = _("Unit Price"),
-        help_text = _("The price of the single unit"))
-    
+        default=0.0,
+        verbose_name=_("Unit Price"),
+        help_text=_("The price of the single unit"),
+    )
+
     quantity = models.DecimalField(
-        default = 0.0,
-        verbose_name = _("Quantity"),
-        help_text = _("How many items in the current row"))
-    
+        default=0.0,
+        verbose_name=_("Quantity"),
+        help_text=_("How many items in the current row"),
+    )
+
     transaction = models.OneToOneField(
-        'Transaction',
-        on_delete = models.CASCADE,
-        related_name = "transaction_invoice_rows",
-        verbose_name = _("Transaction"),
-        help_text = _("Indicate the Transaction of the row"))
-    
+        "Transaction",
+        on_delete=models.CASCADE,
+        related_name="transaction_invoice_rows",
+        verbose_name=_("Transaction"),
+        help_text=_("Indicate the Transaction of the row"),
+    )
+
 
 class Purchase(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represents the purchase of something.
-    """
+    """Represents the purchase of something."""
 
     transaction = models.OneToOneField(
-        'Transaction',
-        on_delete = models.CASCADE,
-        related_name = "transaction_purcase",
-        verbose_name = _("Transaction"),
-        help_text = _("Indicate the Transaction of the Purchase"))
-    
+        "Transaction",
+        on_delete=models.CASCADE,
+        related_name="transaction_purcase",
+        verbose_name=_("Transaction"),
+        help_text=_("Indicate the Transaction of the Purchase"),
+    )
+
 
 class LiberalOffer(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represents the offer of something.
-    """
+    """Represents the offer of something."""
 
     transaction = models.OneToOneField(
-        'Transaction',
-        on_delete = models.CASCADE,
-        related_name = "transaction_liberal_offer",
-        verbose_name = _("Transaction"),
-        help_text = _("Indicate the Transaction of the LiberalOffer"))
-    
+        "Transaction",
+        on_delete=models.CASCADE,
+        related_name="transaction_liberal_offer",
+        verbose_name=_("Transaction"),
+        help_text=_("Indicate the Transaction of the LiberalOffer"),
+    )
+
 
 class Transaction(cm.EditInfo, cm.TrashBin):
-    """Indicate a single transaction between Accounts
-    """
+    """Indicate a single transaction between Accounts"""
 
     value = models.DecimalField(
-        default = 0.0,
-        verbose_name = _("Value"),
-        help_text = _("The Value of the Transaction"))
-    
+        default=0.0,
+        verbose_name=_("Value"),
+        help_text=_("The Value of the Transaction"),
+    )
+
     analytic_tag = models.ForeignKey(
-        'AnalyticTag',
-        on_delete = models.CASCADE,
-        related_name = "analytic_tag_transactions",
-        verbose_name = _("AnalyticTag"),
-        help_text = _("The AnalyticTag of this Transaction"))
-    
+        "AnalyticTag",
+        on_delete=models.CASCADE,
+        related_name="analytic_tag_transactions",
+        verbose_name=_("AnalyticTag"),
+        help_text=_("The AnalyticTag of this Transaction"),
+    )
+
     account = models.ForeignKey(
-        'Account',
-        on_delete = models.CASCADE,
-        related_name = "account_transactions",
-        verbose_name = _("Account"),
-        help_text = _("The Account of this Transaction"))
-    
+        "Account",
+        on_delete=models.CASCADE,
+        related_name="account_transactions",
+        verbose_name=_("Account"),
+        help_text=_("The Account of this Transaction"),
+    )
+
     date = models.DateField(
-        default = u.current_date,
-        auto_now = False,
-        auto_now_add = False,
-        verbose_name = _("Transaction Date"),
-        help_text = _("It is the day of the Transaction"))
-    
-    
+        default=u.current_date,
+        auto_now=False,
+        auto_now_add=False,
+        verbose_name=_("Transaction Date"),
+        help_text=_("It is the day of the Transaction"),
+    )
