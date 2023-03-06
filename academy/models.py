@@ -10,7 +10,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from accountant import models as accm
+import accountant.models
 
 # Project Import
 from common import models as cm
@@ -121,7 +121,7 @@ class Enrollment(cm.EditInfo):
     )
 
     transaction = models.OneToOneField(
-        accm.Transaction,
+        accountant.models.Transaction,
         on_delete=models.CASCADE,
         related_name="transaction_enrollment",
         verbose_name=_("Event"),
