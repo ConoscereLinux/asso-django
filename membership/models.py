@@ -28,7 +28,7 @@ class Member(cm.EditInfo, cm.TrashBin):
 
 
 class Membership(cm.EditInfo, cm.TrashBin):
-    """The membership of an user for a particular period."""
+    """The membership of a user for a particular period."""
 
     member = models.ForeignKey(
         "Member",
@@ -54,7 +54,7 @@ class Membership(cm.EditInfo, cm.TrashBin):
 
 
 class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
-    """This represent the applying period of the Membership."""
+    """This represents the applying period of the Membership."""
 
     start_date = models.DateField(
         auto_now=False,

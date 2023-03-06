@@ -2,7 +2,7 @@
 An open source Django Framework to manage Events, Member and basic Accounting for an Italian Association
 
 ## Installation instructions
-To install enviroment, db and migrations
+To install environment, db and migrations
 ```shell
 # If you use an OS with make installed (usually linux)
 $ make bookstrap

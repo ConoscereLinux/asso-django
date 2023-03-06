@@ -122,7 +122,7 @@ class Purchase(cm.Base, cm.EditInfo, cm.TrashBin):
     transaction = models.OneToOneField(
         "Transaction",
         on_delete=models.CASCADE,
-        related_name="transaction_purcase",
+        related_name="transaction_purchase",
         verbose_name=_("Transaction"),
         help_text=_("Indicate the Transaction of the Purchase"),
     )
