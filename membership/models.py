@@ -6,8 +6,7 @@ The membership management, from the single one to the MembersRegister.
 # Standard Import
 
 # Site-package Import
-import dateutil
-import relativedeltafield as rdf
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -63,11 +62,12 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("It is the day the Membership starts"),
     )
 
-    duration = rdf.RelativeDeltaField(
-        default=dateutil.relativedelta(year=1),
-        verbose_name=_("Duration"),
-        help_text=_("How long is the Membership Period"),
-    )
+    # TODO: that library is not working
+    # duration = rdf.RelativeDeltaField(
+    #     default=dateutil.relativedelta(year=1),
+    #     verbose_name=_("Duration"),
+    #     help_text=_("How long is the Membership Period"),
+    # )
 
     price = models.DecimalField(
         max_digits=14,

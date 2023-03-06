@@ -72,7 +72,7 @@ class Event(cm.Base, cm.EditInfo, cm.TrashBin):
 
     trainers = models.ManyToManyField(
         "Trainer",
-        on_delete=models.CASCADE,
+        # on_delete=models.CASCADE,  # TODO: give an error
         related_name="trainer_events",
         verbose_name=_("Trainers"),
         help_text=_("The Trainers that present the Event"),
