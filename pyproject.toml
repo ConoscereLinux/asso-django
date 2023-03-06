@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.setuptools.packages.find]
+include = ["admin", "website"]
+
+[project]
+name = "asso-django"
+version = "0.0.0"
+requires-python = ">=3.10"
+dependencies = [
+    "django>=4",
+    "django-extensions",
+    "loguru",
+    "python-decouple",
+]
+
+[project.optional-dependencies]
+dev = ["black", "isort"]
+test = ["pytest"]
+
+[tool.isort]
+profile = "black"
