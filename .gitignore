@@ -129,9 +129,12 @@ dmypy.json
 .pyre/
 
 
-# Eclipse & PyDev
+# IDE Specific rules (PyCharm, VSCode, Eclipse/PyDev)
+.idea  
+.vscode
 .project
 .pydevproject
+
 
 # Project related folders
 .data
