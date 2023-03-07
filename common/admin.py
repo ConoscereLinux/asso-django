@@ -23,7 +23,7 @@ class EditInfoAdmin(admin.ModelAdmin):
     """
 
     def __init__(self, *args, **kwargs):
-        add_fields(self, "readonly_fields", ("created_by", "updated_by"))
+        add_fields(self, "exclude", ("created_by", "updated_by"))
         super().__init__(*args, **kwargs)
 
     def save_model(self, request, obj, form, change):
@@ -40,4 +40,5 @@ class TrashBinAdmin(admin.ModelAdmin):
 
     def __init__(self, *args, **kwargs):
         add_fields(self, "exclude", ("trash_state",))
+        add_fields(self, "list_filter", ("trash_state",))
         super().__init__(*args, **kwargs)
