@@ -1,8 +1,9 @@
 from django.db import models
 
+import common.models as cm
 
-class Member(models.Model):
 
+class Member(cm.EditInfo, cm.TrashBin):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     cf = models.CharField(unique=True, max_length=16)
