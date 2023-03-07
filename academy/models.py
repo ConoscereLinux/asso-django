@@ -72,7 +72,6 @@ class Event(cm.Base, cm.EditInfo, cm.TrashBin):
 
     trainers = models.ManyToManyField(
         "Trainer",
-        # on_delete=models.CASCADE,  # TODO: give an error
         related_name="trainer_events",
         verbose_name=_("Trainers"),
         help_text=_("The Trainers that present the Event"),
@@ -140,7 +139,7 @@ class Presence(cm.EditInfo):
         help_text=_("The Event of witch the Presence is registered"),
     )
 
-    enrolment = models.ForeignKey(
+    enrollment = models.ForeignKey(
         "Enrollment",
         on_delete=models.CASCADE,
         related_name="enrollment_presences",
