@@ -2,6 +2,8 @@
 
 # Standard Import
 
+from django.conf import settings
+
 # Site-package Import
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -44,13 +46,17 @@ class Ordered(models.Model):
 
     class Meta:
         abstract = True
-
         ordering = ["order_index"]
 
 
 class EditInfo(models.Model):
-    """Record some basic information about the edit user and time."""
+    """Record some basic information about the edit user and time.
 
+    created_by and updated_by fields inspired by:
+    https://dev.to/forhadakhan/automatically-add-logged-in-user-under-createdby-and-updatedby-to-model-in-django-rest-framework-4c9c  # noqa
+    """
+
+    # TODO: ensure it's best practice
     creation_date = models.DateTimeField(
         auto_now=False,
         auto_now_add=True,
@@ -58,6 +64,7 @@ class EditInfo(models.Model):
         help_text=_("The Date and the Time of creation on the object"),
     )
 
+    # TODO: ensure it's best practice
     edit_date = models.DateTimeField(
         auto_now=True,
         auto_now_add=False,
@@ -65,20 +72,24 @@ class EditInfo(models.Model):
         help_text=_("The Date and the Time of last time the object was edited"),
     )
 
-    creation_user = models.CharField(
-        max_length=256,
-        default="",
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        related_name="created_by",
         blank=True,
+        null=True,
         verbose_name=_("Creation User"),
-        help_text=_("The User that has created the object"),
+        help_text=_("The User who has created the object"),
     )
 
-    edit_user = models.CharField(
-        max_length=256,
-        default="",
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        related_name="updated_by",
         blank=True,
+        null=True,
         verbose_name=_("Last edit User"),
-        help_text=_("The User edited the object last time"),
+        help_text=_("The User who edited the object last time"),
     )
 
     # TODO: add some management for the user, from the request in the views
@@ -102,8 +113,8 @@ class EditInfo(models.Model):
 class TrashBin(models.Model):
     """Allow object to be trashed rather than deleted."""
 
-    trash_state = models.SmallIntegerField(
-        default=0,
+    trash_state = models.BooleanField(
+        default=False,
         verbose_name=_("Trashed"),
         help_text=_("Indicates if the object is trashed"),
     )
