@@ -14,8 +14,8 @@ class MembershipInline(admin.StackedInline):
 
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ["id", "cf", "name", "surname", "email"]
-    list_filter = ["name", "surname"]
+    list_display = ["full_name", "id", "cf", "first_name", "last_name", "email"]
+    list_filter = ["first_name", "last_name", "cf", "email"]
 
     inlines = [MembershipInline]
 
