@@ -92,18 +92,6 @@ class EditInfo(models.Model):
         help_text=_("The User who edited the object last time"),
     )
 
-    # TODO: add some management for the user, from the request in the views
-
-    # def save(self, *args, **kwargs):
-    #     print()
-    #     print(dir(self))
-    #     if self.pk is None:
-    #         self.creation_user = self.user.username
-    #
-    #     self.edit_user = self.user.username
-    #
-    #     super(EditInfo, self).save(*args,**kwargs)
-
     class Meta:
         abstract = True
 
