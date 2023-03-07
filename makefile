@@ -42,7 +42,6 @@ bootstrap-django:
 	rm db.sqlite3
 	$(django) migrate
 	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
-	$(django) runscript load_data
 
 serve:
 	DEBUG=True $(django) runserver $(HOST):$(PORT)
