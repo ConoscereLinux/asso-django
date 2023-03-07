@@ -5,7 +5,7 @@ from loguru import logger
 
 from website.models import Member, Membership
 
-DATA_PATH = Path("data")
+DATA_PATH = Path(".data")
 
 
 def run():
