@@ -141,7 +141,7 @@ class Presence(cm.EditInfo):
     )
 
 
-class Trainer(cm.Base, cm.EditInfo, cm.TrashBin):
+class Trainer(cm.EditInfo, cm.TrashBin):
     """Represents someone that can present an Event"""
 
     user = models.OneToOneField(
