@@ -16,8 +16,6 @@ from django.utils.translation import gettext_lazy as _
 class Base(models.Model):
     """Provides name and description fields."""
 
-    id = models.AutoField(primary_key=True)
-
     name = models.CharField(
         max_length=256, default="", verbose_name=_("Name"), help_text=_("Object name")
     )
@@ -75,7 +73,7 @@ class EditInfo(models.Model):
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
-        related_name="created_by",
+        related_name="%(app_label)s_%(class)s_created_by",
         blank=True,
         null=True,
         verbose_name=_("Creation User"),
@@ -85,7 +83,7 @@ class EditInfo(models.Model):
     updated_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
-        related_name="updated_by",
+        related_name="%(app_label)s_%(class)s_updated_by",
         blank=True,
         null=True,
         verbose_name=_("Last edit User"),
