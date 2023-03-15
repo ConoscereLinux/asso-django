@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    # "academy.apps.AcademyConfig",
+    "academy.apps.AcademyConfig",
     # "accountant.apps.AccountantConfig",
     # "common.apps.CommonConfig",
     # "membership.apps.MembershipConfig",
