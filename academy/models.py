@@ -66,7 +66,7 @@ class Event(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Session(cm.Base, cm.EditInfo, cm.TrashBin):
+class Session(cm.EditInfo):
     """If an Event it is divided in more session, it could be managed here."""
 
     event = models.ForeignKey(
