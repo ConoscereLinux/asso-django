@@ -144,6 +144,12 @@ class Presence(cm.EditInfo):
 class Trainer(cm.EditInfo, cm.TrashBin):
     """Represents someone that can present an Event"""
 
+    biography = models.TextField(
+        blank=True,
+        verbose_name=_("Biography"),
+        help_text=_("Trainer Biography"),
+    )
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         null=True,
