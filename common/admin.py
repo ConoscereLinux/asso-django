@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-def add_fields(model: admin.ModelAdmin, attribute: str, fields: tuple) -> tuple:
+def _add_fields(model: admin.ModelAdmin, attribute: str, fields: tuple) -> tuple:
     _fields = getattr(model, attribute, None)
     if _fields is None:
         _fields = tuple()
@@ -23,7 +23,7 @@ class EditInfoAdmin(admin.ModelAdmin):
     """
 
     def __init__(self, *args, **kwargs):
-        add_fields(self, "exclude", ("created_by", "updated_by"))
+        _add_fields(self, "exclude", ("created_by", "updated_by"))
         super().__init__(*args, **kwargs)
 
     def save_model(self, request, obj, form, change):
@@ -39,6 +39,6 @@ class TrashBinAdmin(admin.ModelAdmin):
     """An abstract Admin model to mamage Model with EditInfo enabled."""
 
     def __init__(self, *args, **kwargs):
-        add_fields(self, "exclude", ("trash_state",))
-        add_fields(self, "list_filter", ("trash_state",))
+        _add_fields(self, "exclude", ("trash_state",))
+        _add_fields(self, "list_filter", ("trash_state",))
         super().__init__(*args, **kwargs)
