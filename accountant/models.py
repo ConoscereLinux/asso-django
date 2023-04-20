@@ -41,9 +41,9 @@ class InvoiceDirection(cm.Base, cm.EditInfo, cm.TrashBin):
 
 
 class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represent the Invoice for both type (buy or sell)"""
+    """Represent an invoice"""
 
-    # TODO: manage of sender and recipient
+    # TODO: Invoice Sender and Recipient are not implemented yet
 
     direction = models.ForeignKey(
         "InvoiceDirection",
@@ -79,7 +79,7 @@ class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
 
 
 class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represent the Invoice for both type (buy or sell)"""
+    """Represent the single rows in an invoice"""
 
     invoice = models.ForeignKey(
         "Invoice",
