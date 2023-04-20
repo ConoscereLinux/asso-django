@@ -2,7 +2,6 @@
 The membership management, from the single one to the MembersRegister.
 
 """
-
 # Standard Import
 
 # Site-package Import
@@ -24,6 +23,36 @@ class Member(cm.EditInfo, cm.TrashBin):
         verbose_name=_("User"),
         help_text=_("The User the Member use for Login"),
     )
+
+    first_name = models.CharField(
+        max_length=50,
+        verbose_name=_("First Name"),
+        help_text=_("Member First Name"),
+    )
+    last_name = models.CharField(
+        max_length=50,
+        verbose_name=_("Last Name"),
+        help_text=_("Member Last Name"),
+    )
+    cf = models.CharField(
+        unique=True,
+        max_length=16,
+        verbose_name="Codice Fiscale",
+        help_text=_("Codice Fiscale"),
+    )
+    email = models.EmailField()
+
+    # birth_date: types.Date
+    # gender: types.Gender | None  # (meta) genere_member
+    # address: str  # (meta) indirizzo_member
+    # birth_place: str  # (meta) luogo_nascita_member
+
+    @property
+    def full_name(self):
+        return f"{str(self.first_name)} {str(self.last_name).title()}"
+
+    def __str__(self):
+        return self.full_name
 
 
 class Membership(cm.EditInfo, cm.TrashBin):
