@@ -77,6 +77,16 @@ class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("Indicate if the Invoice was sent"),
     )
 
+    def __repr__(self):
+        return f"{self.year}/{self.invoice_number}"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["invoice_number", "year"], name="unique_invoice_code"
+            )
+        ]
+
 
 class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
     """Represent the single rows in an invoice"""
