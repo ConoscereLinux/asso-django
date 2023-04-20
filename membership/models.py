@@ -3,6 +3,8 @@ The membership management, from the single one to the MembersRegister.
 
 """
 # Standard Import
+import datetime
+import datetime as dt
 
 # Site-package Import
 from django.conf import settings
@@ -74,7 +76,7 @@ class Membership(cm.EditInfo, cm.TrashBin):
         help_text=_("The Period the Membership Apply"),
     )
 
-    card_number = models.IntegerField(
+    card_number = models.SmallIntegerField(
         default=0,
         verbose_name=_("Card Number"),
         help_text=_("The unique number to write on the card"),
@@ -85,16 +87,13 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
     """This represents the applying period of the Membership."""
 
     start_date = models.DateField(
-        auto_now=False,
-        auto_now_add=False,
         verbose_name=_("Start Date"),
         help_text=_("It is the day the Membership starts"),
     )
 
-    # TODO: that library is not working
-    # duration = rdf.RelativeDeltaField(
-    #     default=dateutil.relativedelta(year=1),
-    #     verbose_name=_("Duration"),
+    # duration = models.IntegerField(
+    #     default=365,
+    #     verbose_name=_("Number of days"),
     #     help_text=_("How long is the Membership Period"),
     # )
 
@@ -106,9 +105,13 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("The price to pay for this Period Membership"),
     )
 
+    # @property
+    # def end_date(self) -> datetime.date:
+    #     return self.start_date + date.timedelta(days=self.duration)
+
 
 class MembersRegister(cm.Base, cm.EditInfo, cm.TrashBin):
-    """It represents the Registry of the Members in the specified Period."""
+    """Member registration referred to a specific Period"""
 
     period = models.ForeignKey(
         "MembershipPeriod",
@@ -122,8 +125,6 @@ class MembersRegister(cm.Base, cm.EditInfo, cm.TrashBin):
 class RegisterEntry(cm.EditInfo, cm.TrashBin):
     """It is the single Entry (corresponding to a Membership) of the Register."""
 
-    # TODO: evaluate to eliminate this model, and use a ManyToMany relation
-    # instead
     rester = models.ForeignKey(
         "MembersRegister",
         on_delete=models.CASCADE,
