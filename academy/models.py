@@ -11,10 +11,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # Project Import
+import accountant.models
 from common import models as cm
-
-# TODO: enable when accountant module is ready
-# import accountant.models
 
 
 class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
@@ -111,14 +109,14 @@ class Enrollment(cm.EditInfo):
         help_text=_("The Attendant of witch the Enrollment is referred to"),
     )
 
-    # TODO: enable when accountant module is ready
-    # transaction = models.OneToOneField(
-    #     accountant.models.Transaction,
-    #     on_delete=models.CASCADE,
-    #     related_name="transaction_enrollment",
-    #     verbose_name=_("Event"),
-    #     help_text=_("The Event of witch the Enrollment is referred to"),
-    # )
+    transaction = models.OneToOneField(
+        accountant.models.Transaction,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="transaction_enrollment",
+        verbose_name=_("Event"),
+        help_text=_("The Event of witch the Enrollment is referred to"),
+    )
 
 
 class Presence(cm.EditInfo):
