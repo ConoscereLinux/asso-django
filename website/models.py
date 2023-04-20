@@ -3,6 +3,7 @@ from django.db import models
 import common.models as cm
 
 
+# TODO: move to Membership module
 class Member(cm.EditInfo, cm.TrashBin):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -22,6 +23,7 @@ class Member(cm.EditInfo, cm.TrashBin):
         return self.full_name
 
 
+# TODO: move to Membership module
 class Membership(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     year = models.SmallIntegerField()

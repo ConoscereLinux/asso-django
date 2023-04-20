@@ -50,8 +50,6 @@ class EditInfoTabularInline(admin.TabularInline):
         super().__init__(*args, **kwargs)
 
 
-# TODO: Add ModelAdmin action to send to trash state
-# TODO: Hide in admin page if in trash state
 class TrashBinAdmin(admin.ModelAdmin):
     """An abstract Admin model to mamage Model with EditInfo enabled."""
 
