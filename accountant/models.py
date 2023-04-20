@@ -8,6 +8,7 @@ The Accountant realm, here is all the money part.
 # Site-package Import
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 
 # Project Import
 from common import models as cm
@@ -105,14 +106,19 @@ class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("The Number of the row in the Invoice"),
     )
 
-    unit_price = models.DecimalField(
-        default=0.0,
+    unit_price = MoneyField(
+        default=0,
+        max_digits=14,
+        decimal_places=2,
+        default_currency="EUR",
         verbose_name=_("Unit Price"),
         help_text=_("The price of the single unit"),
     )
 
     quantity = models.DecimalField(
         default=0.0,
+        max_digits=14,
+        decimal_places=4,
         verbose_name=_("Quantity"),
         help_text=_("How many items in the current row"),
     )
@@ -153,8 +159,11 @@ class LiberalOffer(cm.Base, cm.EditInfo, cm.TrashBin):
 class Transaction(cm.EditInfo, cm.TrashBin):
     """Indicate a single transaction between Accounts"""
 
-    value = models.DecimalField(
-        default=0.0,
+    value = MoneyField(
+        default=0,
+        max_digits=14,
+        decimal_places=2,
+        default_currency="EUR",
         verbose_name=_("Value"),
         help_text=_("The Value of the Transaction"),
     )
