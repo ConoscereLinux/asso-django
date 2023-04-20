@@ -2,8 +2,11 @@ from django.contrib import admin
 
 
 def _add_fields(
-    model: admin.ModelAdmin | admin.TabularInline, attribute: str, fields: tuple
+    model: admin.ModelAdmin | admin.TabularInline,
+    attribute: str,
+    fields: tuple,
 ) -> tuple:
+    """Add fields to an attribute of a ModelAdmin mantaining user defined ones."""
     _fields = getattr(model, attribute, None)
     if _fields is None:
         _fields = tuple()
@@ -21,7 +24,7 @@ class EditInfoAdmin(admin.ModelAdmin):
     """An abstract Admin model to mamage Model with EditInfo enabled.
 
     Based upon:
-    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model  # noqa
+    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model
     """
 
     def __init__(self, *args, **kwargs):
@@ -39,7 +42,7 @@ class EditInfoTabularInline(admin.TabularInline):
     """An abstract Admin model to mamage Model with EditInfo enabled.
 
     Based upon:
-    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model  # noqa
+    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model
     """
 
     def __init__(self, *args, **kwargs):
