@@ -25,12 +25,12 @@ class Account(cm.Base, cm.EditInfo, cm.TrashBin):
 class AnalyticTag(cm.Base, cm.EditInfo, cm.TrashBin):
     """Indicate the type of transaction and is used for analysis"""
 
-    father = models.ForeignKey(
+    parent = models.ForeignKey(
         "AnalyticTag",
         on_delete=models.CASCADE,
-        related_name="analytic_tag_sons",
-        verbose_name=_("Father"),
-        help_text=_("The Father of this AnalyticTag"),
+        related_name="analytic_tag_children",
+        verbose_name=_("Parent"),
+        help_text=_("The parent tag of this AnalyticTag"),
     )
 
 
