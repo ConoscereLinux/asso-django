@@ -16,9 +16,7 @@ from common import util as u
 
 
 class Account(cm.Base, cm.EditInfo, cm.TrashBin):
-    """This represents one of the transaction account of the association or for
-    other players.
-    """
+    """Represent a transaction account of the association or for other players."""
 
     pass
 

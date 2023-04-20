@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "academy.apps.AcademyConfig",
-    # "accountant.apps.AccountantConfig",
+    "accountant.apps.AccountantConfig",
     # "common.apps.CommonConfig",
     # "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",
