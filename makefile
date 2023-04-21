@@ -25,8 +25,8 @@ venv: clean
 
 requirements:
 	@echo -e $(bold)Update requirements.txt file$(sgr0)
-	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.txt pyproject.toml
-	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.dev.txt --extra dev --extra test pyproject.toml
+	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.txt \
+			  --extra dev --extra test pyproject.toml
 
 
 # Development environment
@@ -36,7 +36,7 @@ bootstrap: venv develop
 
 develop:
 	@echo -e $(bold)Install requirements and main package$(sgr0)
-	$(python) -m pip install -r requirements.dev.txt
+	$(python) -m pip install -r requirements.txt
 	$(python) -m pip install --editable .
 
 bootstrap-django:
