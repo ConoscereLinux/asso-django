@@ -6,15 +6,36 @@
 #
 asgiref==3.6.0
     # via django
-django==4.1.7
+babel==2.12.1
+    # via py-moneyed
+django==4.2
     # via
     #   asso-django (pyproject.toml)
     #   django-extensions
+    #   django-money
+    #   django-relativedelta
 django-extensions==3.2.1
     # via asso-django (pyproject.toml)
-loguru==0.6.0
+django-money==3.0.0
     # via asso-django (pyproject.toml)
+django-relativedelta==2.0.0
+    # via asso-django (pyproject.toml)
+loguru==0.7.0
+    # via asso-django (pyproject.toml)
+py-moneyed==2.0
+    # via django-money
+python-dateutil==2.8.2
+    # via
+    #   asso-django (pyproject.toml)
+    #   django-relativedelta
 python-decouple==3.8
     # via asso-django (pyproject.toml)
-sqlparse==0.4.3
+six==1.16.0
+    # via python-dateutil
+sqlparse==0.4.4
     # via django
+typing-extensions==4.5.0
+    # via py-moneyed
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

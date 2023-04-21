@@ -56,3 +56,6 @@ import:
 migrate:
 	$(django) migrate
 
+migrations:
+	$(django) makemigrations
+

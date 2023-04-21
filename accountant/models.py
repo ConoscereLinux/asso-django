@@ -8,6 +8,7 @@ The Accountant realm, here is all the money part.
 # Site-package Import
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 
 # Project Import
 from common import models as cm
@@ -15,9 +16,7 @@ from common import util as u
 
 
 class Account(cm.Base, cm.EditInfo, cm.TrashBin):
-    """This represents one of the transaction account of the association or for
-    other players.
-    """
+    """Represent a transaction account of the association or for other players."""
 
     pass
 
@@ -25,12 +24,12 @@ class Account(cm.Base, cm.EditInfo, cm.TrashBin):
 class AnalyticTag(cm.Base, cm.EditInfo, cm.TrashBin):
     """Indicate the type of transaction and is used for analysis"""
 
-    father = models.ForeignKey(
+    parent = models.ForeignKey(
         "AnalyticTag",
         on_delete=models.CASCADE,
-        related_name="analytic_tag_sons",
-        verbose_name=_("Father"),
-        help_text=_("The Father of this AnalyticTag"),
+        related_name="analytic_tag_children",
+        verbose_name=_("Parent"),
+        help_text=_("The parent tag of this AnalyticTag"),
     )
 
 
@@ -41,9 +40,9 @@ class InvoiceDirection(cm.Base, cm.EditInfo, cm.TrashBin):
 
 
 class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represent the Invoice for both type (buy or sell)"""
+    """Represent an invoice"""
 
-    # TODO: manage of sender and recipient
+    # TODO: Invoice Sender and Recipient are not implemented yet
 
     direction = models.ForeignKey(
         "InvoiceDirection",
@@ -77,9 +76,19 @@ class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("Indicate if the Invoice was sent"),
     )
 
+    def __repr__(self):
+        return f"{self.year}/{self.invoice_number}"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["invoice_number", "year"], name="unique_invoice_code"
+            )
+        ]
+
 
 class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
-    """Represent the Invoice for both type (buy or sell)"""
+    """Represent the single rows in an invoice"""
 
     invoice = models.ForeignKey(
         "Invoice",
@@ -95,14 +104,19 @@ class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("The Number of the row in the Invoice"),
     )
 
-    unit_price = models.DecimalField(
-        default=0.0,
+    unit_price = MoneyField(
+        default=0,
+        max_digits=14,
+        decimal_places=2,
+        default_currency="EUR",
         verbose_name=_("Unit Price"),
         help_text=_("The price of the single unit"),
     )
 
     quantity = models.DecimalField(
         default=0.0,
+        max_digits=14,
+        decimal_places=4,
         verbose_name=_("Quantity"),
         help_text=_("How many items in the current row"),
     )
@@ -143,8 +157,11 @@ class LiberalOffer(cm.Base, cm.EditInfo, cm.TrashBin):
 class Transaction(cm.EditInfo, cm.TrashBin):
     """Indicate a single transaction between Accounts"""
 
-    value = models.DecimalField(
-        default=0.0,
+    value = MoneyField(
+        default=0,
+        max_digits=14,
+        decimal_places=2,
+        default_currency="EUR",
         verbose_name=_("Value"),
         help_text=_("The Value of the Transaction"),
     )

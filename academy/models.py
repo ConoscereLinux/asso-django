@@ -10,9 +10,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-import accountant.models
-
 # Project Import
+import accountant.models
 from common import models as cm
 
 
@@ -29,36 +28,23 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
 class Event(cm.Base, cm.EditInfo, cm.TrashBin):
     """Represents a course, a talk or a conference.
 
-    It can have some attendant teachers and can be carried out in several
-    sessions.
+    It can have some attendant teachers and can be carried out in several sessions.
     """
 
     approval_state = models.ForeignKey(
         "ApprovalState",
+        null=True,
         on_delete=models.SET_NULL,
         related_name="menu_entries",
         verbose_name=_("Approval State"),
         help_text=_("It represents the state of approval of the event"),
     )
 
-    # TODO: Decide if the Session it is mandatory and so the 'execution_day'
-    # could be obsolete, and the first session date could be used instead
-    execution_day = models.DateField(
-        auto_now=False,
-        auto_now_add=False,
-        verbose_name=_("The Day Of Execution"),
-        help_text=_(
-            "It is the fist day of execution, is used to order Event"
-            " in visualization and to determine when hide the Event"
-            " in case of more Sessions"
-        ),
-    )
-
-    membership_needed = models.BooleanField(
+    need_membership = models.BooleanField(
         default=True,
         verbose_name=_("Membership Needed"),
         help_text=_(
-            "Indicate if the membership is needed in order to attend" " to this event"
+            "Indicate if the membership is needed in order to attend to this event"
         ),
     )
 
@@ -78,7 +64,7 @@ class Event(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Session(cm.Base, cm.EditInfo, cm.TrashBin):
+class Session(cm.EditInfo):
     """If an Event it is divided in more session, it could be managed here."""
 
     event = models.ForeignKey(
@@ -89,19 +75,23 @@ class Session(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("The Event of witch the Session is referred to"),
     )
 
-    execution_day = models.DateField(
-        auto_now=False,
-        auto_now_add=False,
-        verbose_name=_("The Day Of Execution"),
+    start = models.DateTimeField(
+        verbose_name=_("Start date and time"),
         help_text=_(
-            "It is the day of execution of that Session"
-            " in visualization and determine when hide related Event"
+            "The start time and date of the session, determine hide state of the event"
+        ),
+    )
+
+    end = models.DateTimeField(
+        verbose_name=_("End date and time"),
+        help_text=_(
+            "The end time and date of the session, determine hide state of the event"
         ),
     )
 
 
 class Enrollment(cm.EditInfo):
-    """Indicate that one User want to attend at an Event."""
+    """Indicate that User want to attend the Event."""
 
     event = models.ForeignKey(
         "Event",
@@ -121,6 +111,7 @@ class Enrollment(cm.EditInfo):
 
     transaction = models.OneToOneField(
         accountant.models.Transaction,
+        null=True,
         on_delete=models.CASCADE,
         related_name="transaction_enrollment",
         verbose_name=_("Event"),
@@ -131,12 +122,12 @@ class Enrollment(cm.EditInfo):
 class Presence(cm.EditInfo):
     """Indicate the effective presence of an attendant in a particular session."""
 
-    event = models.ForeignKey(
-        "Event",
+    session = models.ForeignKey(
+        "Session",
         on_delete=models.CASCADE,
-        related_name="event_presences",
-        verbose_name=_("Event"),
-        help_text=_("The Event of witch the Presence is registered"),
+        related_name="session_presences",
+        verbose_name=_("Session"),
+        help_text=_("The Session for which the Presence is registered"),
     )
 
     enrollment = models.ForeignKey(
@@ -144,17 +135,23 @@ class Presence(cm.EditInfo):
         on_delete=models.CASCADE,
         related_name="enrollment_presences",
         verbose_name=_("Enrollment"),
-        help_text=_("The Enrollment of witch the Presence is registered"),
+        help_text=_("The Enrollment of which the Presence is registered"),
     )
 
 
-class Trainer(cm.Base, cm.EditInfo, cm.TrashBin):
+class Trainer(cm.EditInfo, cm.TrashBin):
     """Represents someone that can present an Event"""
+
+    biography = models.TextField(
+        blank=True,
+        verbose_name=_("Biography"),
+        help_text=_("Trainer Biography"),
+    )
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
+        null=True,
         on_delete=models.SET_NULL,
-        related_name="trainer",
         verbose_name=_("User"),
         help_text=_("The User the Trainer use for Login"),
     )

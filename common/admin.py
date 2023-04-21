@@ -1,7 +1,12 @@
 from django.contrib import admin
 
 
-def add_fields(model: admin.ModelAdmin, attribute: str, fields: tuple) -> tuple:
+def _add_fields(
+    model: admin.ModelAdmin | admin.TabularInline,
+    attribute: str,
+    fields: tuple,
+) -> tuple:
+    """Add fields to an attribute of a ModelAdmin mantaining user defined ones."""
     _fields = getattr(model, attribute, None)
     if _fields is None:
         _fields = tuple()
@@ -19,11 +24,11 @@ class EditInfoAdmin(admin.ModelAdmin):
     """An abstract Admin model to mamage Model with EditInfo enabled.
 
     Based upon:
-    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model  # noqa
+    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model
     """
 
     def __init__(self, *args, **kwargs):
-        add_fields(self, "exclude", ("created_by", "updated_by"))
+        _add_fields(self, "exclude", ("created_by", "updated_by"))
         super().__init__(*args, **kwargs)
 
     def save_model(self, request, obj, form, change):
@@ -33,12 +38,22 @@ class EditInfoAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-# TODO: Add ModelAdmin action to send to trash state
-# TODO: Hide in admin page if in trash state
+class EditInfoTabularInline(admin.TabularInline):
+    """An abstract Admin model to mamage Model with EditInfo enabled.
+
+    Based upon:
+    https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model
+    """
+
+    def __init__(self, *args, **kwargs):
+        _add_fields(self, "exclude", ("created_by", "updated_by"))
+        super().__init__(*args, **kwargs)
+
+
 class TrashBinAdmin(admin.ModelAdmin):
     """An abstract Admin model to mamage Model with EditInfo enabled."""
 
     def __init__(self, *args, **kwargs):
-        add_fields(self, "exclude", ("trash_state",))
-        add_fields(self, "list_filter", ("trash_state",))
+        _add_fields(self, "exclude", ("trash_state",))
+        _add_fields(self, "list_filter", ("trash_state",))
         super().__init__(*args, **kwargs)
