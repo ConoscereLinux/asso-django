@@ -12,8 +12,11 @@ $ make bootstrap-django
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 (.venv)$ pip install --upgrade pip
-(.venv)$ pip install --upgrade isort black pytest  # development requirements
 (.venv)$ pip install --upgrade -r requirements.txt # project requirements
+
+(.venv)$ rm -f db.sqlite3  # If you want to reset db
+(.venv)$ python manage.py migrate
+(.venv)$ python manage.py createsuperuser --username=admin
 ```
 
 ## Run server
