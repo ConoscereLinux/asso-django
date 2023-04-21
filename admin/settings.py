@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "academy.apps.AcademyConfig",
     "accountant.apps.AccountantConfig",
     # "common.apps.CommonConfig",
-    # "membership.apps.MembershipConfig",
+    "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
