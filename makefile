@@ -12,7 +12,7 @@ sgr0 := '\033[0m'
 HOST=127.0.0.1
 PORT=8000
 
-.PHONY: clean venv freeze
+.PHONY: clean venv requirements
 
 clean:
 	@echo -e $(bold)Clean up virtualenv and cache directories$(sgr0)
@@ -23,7 +23,7 @@ venv: clean
 	python3 -m venv $(VENV)
 	$(pip) install --upgrade pip pip-tools
 
-freeze:
+requirements:
 	@echo -e $(bold)Update requirements.txt file$(sgr0)
 	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.txt pyproject.toml
 	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.dev.txt --extra dev --extra test pyproject.toml
