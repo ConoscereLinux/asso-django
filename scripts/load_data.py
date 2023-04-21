@@ -3,7 +3,7 @@ from pathlib import Path
 
 from loguru import logger
 
-from website.models import Member, Membership
+from membership.models import Member, Membership
 
 DATA_PATH = Path(".data")
 
