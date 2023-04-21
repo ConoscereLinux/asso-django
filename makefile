@@ -15,15 +15,16 @@ PORT=8000
 .PHONY: clean venv freeze
 
 clean:
-	@echo -e $(bold)Clean up old virtualenv and cache$(sgr0)
+	@echo -e $(bold)Clean up virtualenv and cache directories$(sgr0)
 	rm -rf $(VENV) *.egg-info
 
 venv: clean
-	@echo -e $(bold)Create virtualenv$(sgr0)
+	@echo -e $(bold)Create a new virtualenv$(sgr0)
 	python3 -m venv $(VENV)
 	$(pip) install --upgrade pip pip-tools
 
 freeze:
+	@echo -e $(bold)Update requirements.txt file$(sgr0)
 	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.txt pyproject.toml
 	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.dev.txt --extra dev --extra test pyproject.toml
 
@@ -34,24 +35,23 @@ freeze:
 bootstrap: venv develop
 
 develop:
-	@echo -e $(bold)Install and update requirements$(sgr0)
+	@echo -e $(bold)Install requirements and main package$(sgr0)
 	$(python) -m pip install -r requirements.dev.txt
 	$(python) -m pip install --editable .
 
 bootstrap-django:
+	@echo -e $(bold)Initialize Django db and admin superuser$(sgr0)
 	rm -f db.sqlite3
 	$(django) migrate
 	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
 
 serve:
+	@echo -e $(bold)Launch Django development server$(sgr0)
 	DEBUG=True $(django) runserver $(HOST):$(PORT)
 	
 
 # Database Management
-.PHONY: import migrate
-
-import:
-	$(django) runscript load_data
+.PHONY: migrate migrations
 
 migrate:
 	$(django) migrate
