@@ -12,7 +12,9 @@ dependencies = [
     "django>=4",
     "django-extensions",
     "django-money",
+    "django-relativedelta",
     "loguru",
+    "python-dateutil",
     "python-decouple",
 ]
 

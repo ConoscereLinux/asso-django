@@ -17,9 +17,12 @@ django==4.2
     #   asso-django (pyproject.toml)
     #   django-extensions
     #   django-money
+    #   django-relativedelta
 django-extensions==3.2.1
     # via asso-django (pyproject.toml)
 django-money==3.0.0
+    # via asso-django (pyproject.toml)
+django-relativedelta==2.0.0
     # via asso-django (pyproject.toml)
 exceptiongroup==1.1.1
     # via pytest
@@ -45,8 +48,14 @@ py-moneyed==2.0
     # via django-money
 pytest==7.3.1
     # via asso-django (pyproject.toml)
+python-dateutil==2.8.2
+    # via
+    #   asso-django (pyproject.toml)
+    #   django-relativedelta
 python-decouple==3.8
     # via asso-django (pyproject.toml)
+six==1.16.0
+    # via python-dateutil
 sqlparse==0.4.4
     # via django
 tomli==2.0.1
