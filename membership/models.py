@@ -10,6 +10,7 @@ import datetime as dt
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
 # Project Import
@@ -101,10 +102,11 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("How long is the Membership Period"),
     )
 
-    price = models.DecimalField(
-        max_digits=14,
-        decimal_places=4,
+    price = MoneyField(
+        max_digits=10,
+        decimal_places=2,
         default=0.0,
+        default_currency="EUR",
         verbose_name=_("Price"),
         help_text=_("The price to pay for this Period Membership"),
     )
