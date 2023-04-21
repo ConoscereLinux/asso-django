@@ -18,9 +18,9 @@ from . import models
 #     extra = 0
 
 
-@admin.site.register(models.Member)
-class MemberAdmin(common.admin.EditInfoAdmin, common.admin.TrashBinAdmin):
-    list_display = ["full_name", "id", "cf", "first_name", "last_name", "email"]
-    list_filter = ["first_name", "last_name", "cf", "email"]
-
-    # inlines = [MembershipInline]
+# @admin.site.register(models.Member)
+# class MemberAdmin(common.admin.EditInfoAdmin, common.admin.TrashBinAdmin):
+#     list_display = ["full_name", "id", "cf", "first_name", "last_name", "email"]
+#     list_filter = ["first_name", "last_name", "cf", "email"]
+#
+#     # inlines = [MembershipInline]

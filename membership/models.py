@@ -21,6 +21,7 @@ class Member(cm.EditInfo, cm.TrashBin):
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
+        null=True,
         on_delete=models.SET_NULL,
         related_name="member",
         verbose_name=_("User"),
@@ -88,6 +89,8 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
     """This represents the applying period of the Membership."""
 
     start_date = models.DateField(
+        auto_now=False,
+        auto_now_add=True,
         verbose_name=_("Start Date"),
         help_text=_("It is the day the Membership starts"),
     )
@@ -117,7 +120,7 @@ class MembersRegister(cm.Base, cm.EditInfo, cm.TrashBin):
     period = models.ForeignKey(
         "MembershipPeriod",
         on_delete=models.CASCADE,
-        related_name="period_memberships",
+        related_name="period_member_register",
         verbose_name=_("Period"),
         help_text=_("The Period the Membership Apply"),
     )
