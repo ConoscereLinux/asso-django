@@ -114,13 +114,13 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         return self.start_date + self.duration
 
 
-class MembersRegister(cm.Base, cm.EditInfo, cm.TrashBin):
+class MemberRegister(cm.Base, cm.EditInfo, cm.TrashBin):
     """Member registration referred to a specific Period"""
 
     period = models.ForeignKey(
         "MembershipPeriod",
         on_delete=models.CASCADE,
-        related_name="period_member_register",
+        related_name="period_member_registration",
         verbose_name=_("Period"),
         help_text=_("The Period the Membership Apply"),
     )
@@ -130,7 +130,7 @@ class RegisterEntry(cm.EditInfo, cm.TrashBin):
     """It is the single Entry (corresponding to a Membership) of the Register."""
 
     rester = models.ForeignKey(
-        "MembersRegister",
+        "MemberRegister",
         on_delete=models.CASCADE,
         related_name="register_entries",
         verbose_name=_("Register"),
