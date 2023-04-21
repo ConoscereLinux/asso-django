@@ -39,7 +39,7 @@ develop:
 	$(python) -m pip install --editable .
 
 bootstrap-django:
-	rm db.sqlite3
+	rm -f db.sqlite3
 	$(django) migrate
 	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
 
