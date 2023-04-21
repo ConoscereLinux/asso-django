@@ -2,14 +2,15 @@
 The membership management, from the single one to the MembersRegister.
 
 """
+
 # Standard Import
-import datetime
 import datetime as dt
 
 # Site-package Import
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from relativedeltafield import RelativeDeltaField
 
 # Project Import
 from common import models as cm
@@ -91,11 +92,11 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("It is the day the Membership starts"),
     )
 
-    # duration = models.IntegerField(
-    #     default=365,
-    #     verbose_name=_("Number of days"),
-    #     help_text=_("How long is the Membership Period"),
-    # )
+    duration = RelativeDeltaField(
+        default="P1Y",
+        verbose_name=_("Duration"),
+        help_text=_("How long is the Membership Period"),
+    )
 
     price = models.DecimalField(
         max_digits=14,
@@ -105,9 +106,9 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         help_text=_("The price to pay for this Period Membership"),
     )
 
-    # @property
-    # def end_date(self) -> datetime.date:
-    #     return self.start_date + date.timedelta(days=self.duration)
+    @property
+    def end_date(self) -> dt.date:
+        return self.start_date + self.duration
 
 
 class MembersRegister(cm.Base, cm.EditInfo, cm.TrashBin):
