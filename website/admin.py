@@ -6,4 +6,5 @@ from . import models
 @admin.register(models.NavbarItem)
 class NavbarItemAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ("order", "title", "url")
+    list_display = ("title", "url", "active", "order")
+    ordering = ["-active", "order"]
