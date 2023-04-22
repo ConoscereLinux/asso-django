@@ -1,0 +1,15 @@
+{% extends "website/_base.html" %}
+
+{% block content %}
+  <h1 class="text-center">ConoscereLinux A.p.s.</h1>
+
+  <hr>
+  
+  {% for course in courses %}
+    <div class="border text-center">
+      <h3 class="text-center">{{ course.name }}</h3>
+      <p class="text-body-secondary">{{ course.creation_date }}</p>
+    </div>
+  {% endfor %}
+  
+{% endblock %}

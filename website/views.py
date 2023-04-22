@@ -1,7 +1,12 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.views import generic
+
+from academy.models import Event
 
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the home index.")
+class IndexView(generic.ListView):
+    template_name = "website/index.html"
+    context_object_name = "courses"
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Event.objects.order_by("creation_date")[:5]
