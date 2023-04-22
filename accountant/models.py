@@ -12,7 +12,7 @@ from djmoney.models.fields import MoneyField
 
 # Project Import
 from common import models as cm
-from common import util as u
+from common import utils as u
 
 
 class Account(cm.Base, cm.EditInfo, cm.TrashBin):
