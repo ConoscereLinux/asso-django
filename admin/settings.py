@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "academy.apps.AcademyConfig",
     "accountant.apps.AccountantConfig",
     # "common.apps.CommonConfig",
@@ -140,3 +141,8 @@ MEDIA_ROOT = config("MEDIA_ROOT", default="")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# JAZZMIN_UI_TWEAKS = {
+#     "theme": "cyborg",
+# }
