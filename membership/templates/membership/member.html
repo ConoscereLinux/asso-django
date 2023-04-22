@@ -1,5 +1,7 @@
 {% extends "_base.html" %}
 
+{% block title %}{{ member.full_name }}{% endblock %}
+
 {% block content %}
   <ul class="list-group col-md-6 col-lg-4">
     <li class="list-group-item active" aria-current="true">{{ member.full_name }}</li>
