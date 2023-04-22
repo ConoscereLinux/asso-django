@@ -261,7 +261,7 @@ class Migration(migrations.Migration):
                 (
                     "year",
                     models.IntegerField(
-                        default=common.util.current_year,
+                        default=common.utils.current_year,
                         help_text="The unique number of the Invoice",
                         verbose_name="Invoice Number",
                     ),
@@ -665,7 +665,7 @@ class Migration(migrations.Migration):
                 (
                     "date",
                     models.DateField(
-                        default=common.util.current_date,
+                        default=common.utils.current_date,
                         help_text="It is the day of the Transaction",
                         verbose_name="Transaction Date",
                     ),
