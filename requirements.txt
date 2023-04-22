@@ -16,9 +16,12 @@ django==4.2
     # via
     #   asso-django (pyproject.toml)
     #   django-extensions
+    #   django-jazzmin
     #   django-money
     #   django-relativedelta
 django-extensions==3.2.1
+    # via asso-django (pyproject.toml)
+django-jazzmin==2.6.0
     # via asso-django (pyproject.toml)
 django-money==3.0.0
     # via asso-django (pyproject.toml)
