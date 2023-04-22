@@ -23,9 +23,11 @@
     </main>
     {% endblock %}
     
-    <footer class="bg-black text-white p-3">
-      {% block footer %}{% endblock %}
-    </footer>
+    {% block footer %}
+      <footer class="bg-black text-white p-3">
+        {% block footer_content %}{% include "_footer.html" %}{% endblock %}
+      </footer>
+    {% endblock %}
     
     {% block scripts %}
       {% include "_scripts.html" %}
