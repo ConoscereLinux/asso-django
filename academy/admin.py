@@ -20,7 +20,7 @@ class EnrollmentAdmin(ca.EditInfoTabularInline):
 
 @admin.register(models.Event)
 class EventAdmin(ca.EditInfoAdmin, ca.TrashBinAdmin):
-    list_display = ("name",)
+    list_display = ("title",)
     inlines = [SessionAdmin, EnrollmentAdmin]
 
 

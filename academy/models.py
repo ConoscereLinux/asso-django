@@ -25,11 +25,26 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Event(cm.Base, cm.EditInfo, cm.TrashBin):
+class Event(cm.EditInfo, cm.TrashBin):
     """Represents a course, a talk or a conference.
 
     It can have some attendant teachers and can be carried out in several sessions.
     """
+
+    slug = models.SlugField()
+
+    title = models.CharField(
+        max_length=200,
+        default="",
+        verbose_name=_("Title"),
+        help_text=_("Title of the event"),
+    )
+    subtitle = models.CharField(
+        max_length=200,
+        default="",
+        verbose_name=_("Subtitle"),
+        help_text=_("Subtitle of the event"),
+    )
 
     approval_state = models.ForeignKey(
         "ApprovalState",
