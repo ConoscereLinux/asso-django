@@ -31,7 +31,7 @@ class Event(cm.EditInfo, cm.TrashBin):
     It can have some attendant teachers and can be carried out in several sessions.
     """
 
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=100)
 
     title = models.CharField(
         max_length=200,
@@ -40,8 +40,9 @@ class Event(cm.EditInfo, cm.TrashBin):
         help_text=_("Title of the event"),
     )
     subtitle = models.CharField(
-        max_length=200,
+        max_length=500,
         default="",
+        blank=True,
         verbose_name=_("Subtitle"),
         help_text=_("Subtitle of the event"),
     )
