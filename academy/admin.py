@@ -20,8 +20,9 @@ class EnrollmentAdmin(ca.EditInfoTabularInline):
 
 @admin.register(models.Event)
 class EventAdmin(ca.EditInfoAdmin, ca.TrashBinAdmin):
-    list_display = ("name",)
+    list_display = ("title", "slug")
     inlines = [SessionAdmin, EnrollmentAdmin]
+    prepopulated_fields = {"slug": ("title",)}
 
 
 @admin.register(models.Trainer)

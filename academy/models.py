@@ -8,11 +8,13 @@ The Academy section, with teacher event and participation.
 # Site-package Import
 from django.conf import settings
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 # Project Import
 import accountant.models
 from common import models as cm
+from common.managers import JsonLoadManager
 
 
 class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
@@ -25,11 +27,40 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Event(cm.Base, cm.EditInfo, cm.TrashBin):
+class EventManager(JsonLoadManager):
+    defaults = ("title", "subtitle", "approval_state")
+
+    def prepare_dict(self, item: dict) -> dict:
+        if not item.get("slug"):
+            item["slug"] = slugify(item["title"])
+
+        state, _ = ApprovalState.objects.get_or_create(name=item.pop("approval_state"))
+        item["approval_state"] = state
+
+        return super().prepare_dict(item)
+
+
+class Event(cm.EditInfo, cm.TrashBin):
     """Represents a course, a talk or a conference.
 
     It can have some attendant teachers and can be carried out in several sessions.
     """
+
+    slug = models.SlugField(unique=True, max_length=100)
+
+    title = models.CharField(
+        max_length=200,
+        default="",
+        verbose_name=_("Title"),
+        help_text=_("Title of the event"),
+    )
+    subtitle = models.CharField(
+        max_length=500,
+        default="",
+        blank=True,
+        verbose_name=_("Subtitle"),
+        help_text=_("Subtitle of the event"),
+    )
 
     approval_state = models.ForeignKey(
         "ApprovalState",
@@ -62,6 +93,11 @@ class Event(cm.Base, cm.EditInfo, cm.TrashBin):
         verbose_name=_("Trainers"),
         help_text=_("The Trainers that present the Event"),
     )
+
+    objects = EventManager()
+
+    def __str__(self):
+        return f"{self.title}"
 
 
 class Session(cm.EditInfo):
