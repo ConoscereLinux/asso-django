@@ -46,7 +46,7 @@ class Event(cm.EditInfo, cm.TrashBin):
     It can have some attendant teachers and can be carried out in several sessions.
     """
 
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(unique=True, max_length=100)
 
     title = models.CharField(
         max_length=200,
