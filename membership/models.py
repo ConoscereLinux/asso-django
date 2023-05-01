@@ -34,23 +34,12 @@ class Member(cm.EditInfo, cm.TrashBin):
         help_text=_("The User the Member use for Login"),
     )
 
-    first_name = models.CharField(
-        max_length=50,
-        verbose_name=_("First Name"),
-        help_text=_("Member First Name"),
-    )
-    last_name = models.CharField(
-        max_length=50,
-        verbose_name=_("Last Name"),
-        help_text=_("Member Last Name"),
-    )
     cf = models.CharField(
-        unique=True,
         max_length=16,
+        blank=True,
         verbose_name="Codice Fiscale",
         help_text=_("Codice Fiscale"),
     )
-    email = models.EmailField()
 
     # birth_date: types.Date
     # gender: types.Gender | None  # (meta) genere_member
@@ -58,8 +47,20 @@ class Member(cm.EditInfo, cm.TrashBin):
     # birth_place: str  # (meta) luogo_nascita_member
 
     @property
+    def first_name(self):
+        return self.user.first_name.title()
+
+    @property
+    def email(self):
+        return self.user.email
+
+    @property
+    def last_name(self):
+        return self.user.last_name.title()
+
+    @property
     def full_name(self):
-        return f"{str(self.first_name)} {str(self.last_name).title()}"
+        return f"{self.user.first_name} {self.user.last_name}"
 
     def __str__(self):
         return self.full_name

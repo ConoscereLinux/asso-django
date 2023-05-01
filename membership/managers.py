@@ -1,17 +1,30 @@
 from django.contrib.auth.models import User
-from django.utils.text import slugify
 
 from common.managers import JsonLoadManager
 
 
 class MemberManager(JsonLoadManager):
-    defaults = ("cf", "email")
+    defaults = ("cf",)
 
     def prepare_model(self, item):
-        member = super().prepare_model(item)
-
+        user_email = item.pop("email")
+        user_defaults = {
+            "first_name": item.pop("first_name"),
+            "last_name": item.pop("last_name"),
+            "email": user_email,
+        }
         user, created = User.objects.get_or_create(
-            username=slugify(member.full_name).replace("-", "."),
+            username=user_email,
+            defaults=user_defaults,
         )
-        member.user = user
-        return member
+
+        if not created:
+            for key, value in user_defaults.items():
+                if value and not getattr(user, key):
+                    setattr(user, key, value)
+
+        # user.full_clean()  # password cannot be null
+        user.save()
+
+        item["user"] = user
+        return super().prepare_model(item)

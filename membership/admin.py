@@ -19,8 +19,8 @@ class MembershipInline(admin.StackedInline):
 
 @admin.register(models.Member)
 class MemberAdmin(common.admin.EditInfoAdmin, common.admin.TrashBinAdmin):
-    list_display = ["full_name", "cf", "first_name", "last_name", "email"]
-    list_filter = ["first_name", "last_name", "cf", "email"]
+    list_display = ["full_name", "cf", "user"]
+    list_filter = ["user", "cf"]
 
     inlines = [MembershipInline]
 
