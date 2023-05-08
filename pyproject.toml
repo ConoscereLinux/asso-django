@@ -15,6 +15,7 @@ dependencies = [
     "django-money",
     "django-relativedelta",
     "loguru",
+    "Pillow",
     "python-dateutil",
     "python-decouple",
 ]
