@@ -35,16 +35,20 @@ class Base(models.Model):
         return self.name
 
 
-class Ordered(models.Model):
-    """When inheriting this model an order field is gained."""
+class OrderedModel(models.Model):
+    """A BaseModel with a field for custom ordering."""
 
-    order_index = models.SmallIntegerField(
-        default=10, verbose_name=_("Order"), help_text=_("Used for object ordering")
+    order = models.SmallIntegerField(
+        default=0,
+        null=False,
+        blank=False,
+        verbose_name=_("Order"),
+        help_text=_("Used for object ordering"),
     )
 
     class Meta:
         abstract = True
-        ordering = ["order_index"]
+        ordering = ["order"]
 
 
 class EditInfo(models.Model):
