@@ -1,6 +1,17 @@
 from django.conf import settings
 from django.db import models
 
+from common import fields
+
+
+class ThemeConfig(models.Model):
+    active = fields.UniqueBooleanField(default=False, null=False)
+    brand = models.CharField(max_length=100)
+    # logo = models.ImageField(upload_to="logos")
+
+    class Meta:
+        ordering = ["-active"]
+
 
 class NavbarItem(models.Model):
     class Meta:

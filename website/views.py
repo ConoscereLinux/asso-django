@@ -2,7 +2,7 @@ from django.views import generic
 
 from academy.models import Event
 
-from .models import NavbarItem
+from .models import NavbarItem, ThemeConfig
 
 
 def add_header_info_and_menu_items_to_context(request):
@@ -11,7 +11,7 @@ def add_header_info_and_menu_items_to_context(request):
     See https://docs.djangoproject.com/en/4.2/ref/templates/api/#writing-your-own-context-processors
     """
     return {
-        "site_brand": "ConoscereLinux",  # TODO: should be taken from .env
+        "theme": ThemeConfig.objects.filter(active=True).first(),
         "menu_items": NavbarItem.objects.filter(active=True),
     }
 
