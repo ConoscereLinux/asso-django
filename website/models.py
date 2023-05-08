@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from common import fields
+from common import models as cm
 
 
 class ThemeConfig(models.Model):
@@ -13,15 +15,11 @@ class ThemeConfig(models.Model):
         ordering = ["-active"]
 
 
-class NavbarItem(models.Model):
-    class Meta:
-        ordering = ["order"]
-
+class NavbarItem(cm.OrderedModel):
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=50, blank=True)
     url = models.CharField(max_length=200, null=True, blank=True)
     active = models.BooleanField(default=True)
-    order = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return f"({self.order:02}) {self.title}"
@@ -31,3 +29,15 @@ class NavbarItem(models.Model):
         if self.url and settings.BASE_URL:
             return str(settings.BASE_URL / self.url.lstrip("/"))
         return self.url
+
+
+class SocialLink(cm.OrderedModel):
+    title = models.CharField(max_length=100, blank=True)
+    url = models.URLField()
+    logo = models.SlugField(
+        verbose_name="Logo Icon",
+        help_text=_(
+            "One of the logo-* icons on https://ionic.io/ionicons (facebook, twitter, "
+            "linkedin, youtube, ...)"
+        ),
+    )
