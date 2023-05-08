@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-md bg-body-secondary">
   <div class="container-fluid">
-    <a href="/" class="navbar-brand">{{ theme.brand | default:'site brand' }}</a>
+    <a href="/" class="navbar-brand">
+      {% if theme.logo %}
+        <img src="{{ theme.logo.url }}" alt="Site logo">
+      {% else %}
+        {{ theme.brand | default:'site brand' }}
+      {% endif %}
+    </a>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 

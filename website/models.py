@@ -5,9 +5,9 @@ from common import fields
 
 
 class ThemeConfig(models.Model):
-    active = fields.UniqueBooleanField(default=False, null=False)
     brand = models.CharField(max_length=100)
-    # logo = models.ImageField(upload_to="logos")
+    logo = models.ImageField(upload_to="logos", null=True, blank=True)
+    active = fields.UniqueBooleanField(default=False, null=False)
 
     class Meta:
         ordering = ["-active"]
