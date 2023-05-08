@@ -2,15 +2,22 @@
 
 {% block content %}
   <h1 class="text-center">ConoscereLinux A.p.s.</h1>
-
-  <hr>
   
-  {% for course in courses %}
-    <div class="border text-center">
-      <h3 class="text-center">{{ course.title }}</h3>
-      <h4 class="text-center">{{ course.subtitle }}</h4>
-      <p class="text-body-secondary">{{ course.creation_date }}</p>
-    </div>
-  {% endfor %}
+  <section id="courses" class="row">
+    {% for course in courses %}
+      <div class="col-12 col-md-6 col-lg-4 p-1">
+        <article class="card">
+          {% if course.image %}
+          <img class="card-img-top" src="" alt="">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ course.title }}</h5>
+            <h6 class="card-subtitle">{{ course.subtitle }}</h6>
+            <p class="card-text">{{ course.creation_date }}</p>  
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  </section>
   
 {% endblock %}

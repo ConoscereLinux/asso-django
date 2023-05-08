@@ -22,4 +22,4 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Event.objects.order_by("creation_date")[:5]
+        return Event.objects.order_by("-creation_date")[:10]
