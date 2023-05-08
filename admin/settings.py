@@ -135,8 +135,8 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 
 # Path to the real resources in the system
-STATIC_ROOT = config("STATIC_ROOT", default="")
-MEDIA_ROOT = config("MEDIA_ROOT", default="")
+STATIC_ROOT = config("STATIC_ROOT", default=".static")
+MEDIA_ROOT = config("MEDIA_ROOT", default=".media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

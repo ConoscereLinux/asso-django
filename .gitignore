@@ -138,3 +138,5 @@ dmypy.json
 
 # Project related folders
 .data
+.media
+.static
