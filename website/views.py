@@ -17,7 +17,7 @@ def add_header_info_and_menu_items_to_context(request):
     }
 
 
-class IndexView(generic.ListView):
+class HomePage(generic.TemplateView):
     template_name = "website/index.html"
     context_object_name = "courses"
 
