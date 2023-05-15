@@ -17,4 +17,4 @@ class NavbarItemAdmin(admin.ModelAdmin):
 
 @admin.register(models.SocialLink)
 class SocialLinkAdmin(admin.ModelAdmin):
-    list_display = ("title", "order", "url", "logo")
+    list_display = ("title", "order", "url", "logo", "order")
