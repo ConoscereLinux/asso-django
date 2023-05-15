@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from loguru import logger
 
 import website.models as wm
+from common.data import load_item
 
 
 def run():
@@ -12,25 +13,13 @@ def run():
         data = json.load(fp)
 
     if theme := data.get("theme"):
-        brand = theme.pop("brand", "My Brand")
-        theme.setdefault("active", True)
-        if image := theme.get("logo"):
-            logger.warning("Cannot save theme logo image at the moment")
-        obj, _ = wm.ThemeConfig.objects.update_or_create(brand=brand, defaults=theme)
-        obj.full_clean()
-        obj.save()
+        if theme.pop("logo", None):
+            logger.warning("[ThemeConfig] Image loading is not yet supported")
+        load_item(theme, wm.ThemeConfig, ("brand",))
 
     for item in data.get("navbar", []):
-        # get slug from obj, if not exists slugify title then check if is valid
-        if not (slug := item.pop("slug", slugify(item.get("title", "")))):
-            logger.warning("Either slug or title must be set in navbar item, skipping")
-            continue
-
-        obj, _ = wm.NavbarItem.objects.update_or_create(slug=slug, defaults=item)
-        obj.full_clean()
-        obj.save()
+        item.setdefault("slug", slugify(item.get("title", "")))
+        load_item(item, wm.NavbarItem, ("slug",))
 
     for social in data.get("socials", []):
-        obj, _ = wm.SocialLink.objects.update_or_create(**social)
-        obj.full_clean()
-        obj.save()
+        load_item(social, wm.SocialLink)
