@@ -21,11 +21,11 @@ class JsonLoadManager(models.Manager):
         >>> Sample.objects.load("path/to.json")
     """
 
-    defaults: tuple[str]
+    search_on: tuple[str]
 
     def prepare_dict(self, item: dict) -> dict:
-        item_ = {k: v for k, v in item.items() if k not in self.defaults}
-        item_["defaults"] = {k: v for k, v in item.items() if k in self.defaults}
+        item_ = {k: v for k, v in item.items() if k in self.search_on}
+        item_["defaults"] = {k: v for k, v in item.items() if k not in self.search_on}
         return item_
 
     def prepare_model(self, item: dict):

@@ -28,14 +28,7 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
 
 
 class EventManager(JsonLoadManager):
-    defaults = (
-        "title",
-        "subtitle",
-        "approval_state",
-        "creation_date",
-        "start_date",
-        "end_date",
-    )
+    search_on = ("slug",)
 
     def prepare_dict(self, item: dict) -> dict:
         if not item.get("slug"):

@@ -4,7 +4,7 @@ from common.managers import JsonLoadManager
 
 
 class MemberManager(JsonLoadManager):
-    defaults = ("cf",)
+    search_on = ("user",)
 
     def prepare_model(self, item):
         user_email = item.pop("email")
