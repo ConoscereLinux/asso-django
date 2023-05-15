@@ -28,7 +28,14 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
 
 
 class EventManager(JsonLoadManager):
-    defaults = ("title", "subtitle", "approval_state")
+    defaults = (
+        "title",
+        "subtitle",
+        "approval_state",
+        "creation_date",
+        "start_date",
+        "end_date",
+    )
 
     def prepare_dict(self, item: dict) -> dict:
         if not item.get("slug"):
@@ -92,6 +99,22 @@ class Event(cm.EditInfo, cm.TrashBin):
         related_name="trainer_events",
         verbose_name=_("Trainers"),
         help_text=_("The Trainers that present the Event"),
+    )
+
+    # TODO: add automation to set this value when saving session to min date if null
+    start_date = models.DateField(
+        default=None,
+        null=True,
+        blank=True,
+        help_text=_("Set this value if you dont want to set sessions"),
+    )
+
+    # TODO: add automation to set this value when saving session to max date if null
+    end_date = models.DateField(
+        default=None,
+        null=True,
+        blank=True,
+        help_text=_("Set this value if you dont want to set sessions"),
     )
 
     objects = EventManager()
