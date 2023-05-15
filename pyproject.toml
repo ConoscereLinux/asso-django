@@ -6,7 +6,7 @@ include = ["admin", "website"]
 
 [project]
 name = "asso-django"
-version = "0.0.0"
+version = "0.0.1"
 requires-python = ">=3.10"
 dependencies = [
     "django>=4",
