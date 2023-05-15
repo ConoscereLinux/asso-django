@@ -1,24 +1,20 @@
 from django.contrib import admin
 
-from .models import Member, Membership
+from . import models
 
 
-class MembershipAdmin(admin.ModelAdmin):
-    list_display = ["year", "card", "member"]
-    list_filter = ["year", "card"]
+@admin.register(models.ThemeConfig)
+class ThemeConfigAdmin(admin.ModelAdmin):
+    list_display = ("brand", "active", "logo")
 
 
-class MembershipInline(admin.StackedInline):
-    model = Membership
-    extra = 0
+@admin.register(models.NavbarItem)
+class NavbarItemAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("title",)}
+    list_display = ("title", "url", "active", "order")
+    ordering = ["-active", "order"]
 
 
-class MemberAdmin(admin.ModelAdmin):
-    list_display = ["id", "cf", "name", "surname", "email"]
-    list_filter = ["name", "surname"]
-
-    inlines = [MembershipInline]
-
-
-admin.site.register(Member, MemberAdmin)
-admin.site.register(Membership, MembershipAdmin)
+@admin.register(models.SocialLink)
+class SocialLinkAdmin(admin.ModelAdmin):
+    list_display = ("title", "order", "url", "logo", "order")

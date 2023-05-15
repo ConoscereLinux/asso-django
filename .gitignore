@@ -128,4 +128,15 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-data/*
+
+# IDE Specific rules (PyCharm, VSCode, Eclipse/PyDev)
+.idea  
+.vscode
+.project
+.pydevproject
+
+
+# Project related folders
+.data
+.media
+.static

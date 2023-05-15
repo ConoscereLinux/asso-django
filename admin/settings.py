@@ -28,12 +28,17 @@ SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 TEMPLATE_DEBUG = DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
+    "academy.apps.AcademyConfig",
+    "accountant.apps.AccountantConfig",
+    # "common.apps.CommonConfig",
+    "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -41,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "djmoney",
     "django_extensions",
 ]
 
@@ -67,6 +73,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "website.views.add_header_info_and_menu_items_to_context",
             ],
         },
     },
@@ -91,7 +98,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -120,9 +127,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+# Used for collecting static files
+STATICFILES_DIRS = [Path(BASE_DIR, "static")]
+
+# Base for the URL of static and media resources
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+
+# Path to the real resources in the system
+STATIC_ROOT = config("STATIC_ROOT", default=".static")
+MEDIA_ROOT = config("MEDIA_ROOT", default=".media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# JAZZMIN_UI_TWEAKS = {
+#     "theme": "cyborg",
+# }

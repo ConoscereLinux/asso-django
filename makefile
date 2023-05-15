@@ -5,53 +5,57 @@ python=$(VENV)/bin/python3
 pip=$(VENV)/bin/pip3
 django=$(python) manage.py
 
-HOST=127.0.0.1
-PORT=8000
-
 # Utility scripts to prettify echo outputs
 bold := '\033[1m'
 sgr0 := '\033[0m'
 
+HOST=127.0.0.1
+PORT=8000
 
-.PHONY: bootstrap
+.PHONY: clean venv requirements
+
+clean:
+	@echo -e $(bold)Clean up virtualenv and cache directories$(sgr0)
+	rm -rf $(VENV) *.egg-info
+
+venv: clean
+	@echo -e $(bold)Create a new virtualenv$(sgr0)
+	python3 -m venv $(VENV)
+	$(pip) install --upgrade pip pip-tools
+
+requirements:
+	@echo -e $(bold)Update requirements.txt file$(sgr0)
+	$(python) -m piptools compile --upgrade --resolver backtracking -o requirements.txt \
+			  --extra dev --extra test pyproject.toml
+
+
+# Development environment
+.PHONY: bootstrap develop bootstrap-django serve
+
 bootstrap: venv develop
 
-
-.PHONY: clean
-clean:
-	@echo -e $(bold)Clean up old virtualenv and cache$(sgr0)
-	rm -rf $(VENV)
-
-
-.PHONY: venv
-venv: clean
-	@echo -e $(bold)Create virtualenv$(sgr0)
-	python3 -m venv $(VENV)
-	$(pip) install --upgrade pip
-
-
-.PHONY: develop
 develop:
-	@echo -e $(bold)Install and update requirements$(sgr0)
-	$(pip) install --upgrade isort black pytest
-	$(pip) install --upgrade -r requirements.txt
+	@echo -e $(bold)Install requirements and main package$(sgr0)
+	$(python) -m pip install -r requirements.txt
+	$(python) -m pip install --editable .
 
-
-.PHONY: bootstrap-django
 bootstrap-django:
-	rm db.sqlite3
+	@echo -e $(bold)Initialize Django db and admin superuser$(sgr0)
+	rm -f db.sqlite3
 	$(django) migrate
 	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
-	$(django) runscript load_data
+
+serve:
+	@echo -e $(bold)Launch Django development server$(sgr0)
+	DEBUG=True $(django) runserver $(HOST):$(PORT)
 	
 
-.PHONY: import migrate serve
-
-import:
-	$(django) runscript load_data
+# Database Management
+.PHONY: migrate migrations
 
 migrate:
 	$(django) migrate
 
-serve:
-	DEBUG=True $(django) runserver $(HOST):$(PORT)
+migrations:
+	$(django) makemigrations
+
