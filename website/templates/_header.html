@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a href="/" class="navbar-brand">
       {% if theme.logo %}
-        <img src="{{ theme.logo.url }}" alt="Site logo">
+        <img style="max-height: 3rem" src="{{ theme.logo.url }}" alt="Site logo">
       {% else %}
         {{ theme.brand | default:'site brand' }}
       {% endif %}
