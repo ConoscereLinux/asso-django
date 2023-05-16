@@ -16,13 +16,9 @@ from relativedeltafield import RelativeDeltaField
 # Project Import
 from common import models as cm
 
-from .managers import MemberManager
-
 
 class Member(cm.EditInfo, cm.TrashBin):
     """It represents an Association Member"""
-
-    objects = MemberManager()
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
