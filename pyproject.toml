@@ -18,6 +18,7 @@ dependencies = [
     "Pillow",
     "python-dateutil",
     "python-decouple",
+    "tqdm",
 ]
 
 [project.optional-dependencies]

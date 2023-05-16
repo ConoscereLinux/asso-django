@@ -45,6 +45,9 @@ bootstrap-django:
 	$(django) migrate
 	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
 
+secret_key:
+	@$(python) scripts/generate_secret_key.py
+
 serve:
 	@echo -e $(bold)Launch Django development server$(sgr0)
 	DEBUG=True $(django) runserver $(HOST):$(PORT)
