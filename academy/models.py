@@ -8,13 +8,11 @@ The Academy section, with teacher event and participation.
 # Site-package Import
 from django.conf import settings
 from django.db import models
-from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 # Project Import
 import accountant.models
 from common import models as cm
-from common.managers import JsonLoadManager
 
 
 class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
@@ -25,19 +23,6 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
         verbose_name=_("Show At This State"),
         help_text=_("Indicates if at this state the Event has to be shown"),
     )
-
-
-class EventManager(JsonLoadManager):
-    search_on = ("slug",)
-
-    def prepare_dict(self, item: dict) -> dict:
-        if not item.get("slug"):
-            item["slug"] = slugify(item["title"])
-
-        state, _ = ApprovalState.objects.get_or_create(name=item.pop("approval_state"))
-        item["approval_state"] = state
-
-        return super().prepare_dict(item)
 
 
 class Event(cm.EditInfo, cm.TrashBin):
@@ -109,8 +94,6 @@ class Event(cm.EditInfo, cm.TrashBin):
         blank=True,
         help_text=_("Set this value if you dont want to set sessions"),
     )
-
-    objects = EventManager()
 
     def __str__(self):
         return f"{self.title}"

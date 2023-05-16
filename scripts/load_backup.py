@@ -4,8 +4,10 @@ import pathlib
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from tqdm import tqdm
 
+import academy.models as am
 import membership.models as mm
 from common.data import load_item
 
@@ -27,3 +29,11 @@ def run(*args):
         member["user"], _ = load_item(user, User, ("username",))
 
         load_item(member, mm.Member, ("user",))
+
+    print("Loading Courses")
+    for event in tqdm(data.get("courses", [])):
+        approval_state = {"name": event.pop("approval_state")}
+        event["approval_state"], _ = load_item(approval_state, am.ApprovalState)
+
+        event.setdefault("slug", slugify(event.get("title", "")))
+        load_item(event, am.Event, ("slug",))
