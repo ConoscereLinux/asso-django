@@ -31,7 +31,7 @@ def run(*args):
         }
         member["user"], _ = load_item(user, User, ("username",))
 
-        load_item(member, mm.Member, ("user",))
+        load_item(member, mm.Member, ("user",), ("post_id", "phone"))
 
     print("Loading Courses")
     for event in tqdm(data.get("courses", [])):
@@ -39,4 +39,6 @@ def run(*args):
         event["approval_state"], _ = load_item(approval_state, am.ApprovalState)
 
         event.setdefault("slug", slugify(event.get("title", "")))
-        load_item(event, am.Event, ("slug",))
+        event["creation_date"] = event.pop("published")
+        event["edit_date"] = event.pop("modified")
+        load_item(event, am.Event, ("slug",), ("post_id", "end_sub_date"))
