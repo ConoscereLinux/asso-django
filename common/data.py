@@ -1,10 +1,17 @@
-from django.db.models import Model
 from typing import Type
+
+from django.db.models import Model
 
 
 def load_item(
-    item: dict, model: Type[Model], fields: tuple[str] = None
+    item: dict,
+    model: Type[Model],
+    fields: (str, ...) = None,
+    exclude: (str, ...) = None,
 ) -> tuple[Model, bool]:
+    if exclude:
+        item = {k: v for k, v in item.items() if k not in exclude}
+
     if fields is None:
         filters, defaults = item, {}
     else:
