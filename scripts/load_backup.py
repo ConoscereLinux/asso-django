@@ -19,6 +19,9 @@ def run(*args):
 
     print("Loading members...")
     for member in tqdm(data.get("members", [])):
+        if not member["cf"]:
+            continue
+
         user = {
             "username": (email := member.pop("email")),
             "first_name": member.pop("first_name"),
