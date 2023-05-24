@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from tqdm import tqdm
 
 import asso.academy.models as am
-import membership.models as mm
+import asso.membership.models as mm
 from asso.core.data import load_item
 
 
