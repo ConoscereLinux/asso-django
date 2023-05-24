@@ -7,7 +7,7 @@ import djmoney.models.fields
 from django.conf import settings
 from django.db import migrations, models
 
-import common.utils
+import asso.common.utils
 
 
 class Migration(migrations.Migration):
@@ -60,7 +60,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -144,7 +146,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -238,7 +242,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -261,7 +267,7 @@ class Migration(migrations.Migration):
                 (
                     "year",
                     models.IntegerField(
-                        default=common.utils.current_year,
+                        default=asso.common.utils.current_year,
                         help_text="The unique number of the Invoice",
                         verbose_name="Invoice Number",
                     ),
@@ -320,7 +326,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -665,7 +673,7 @@ class Migration(migrations.Migration):
                 (
                     "date",
                     models.DateField(
-                        default=common.utils.current_date,
+                        default=asso.common.utils.current_date,
                         help_text="It is the day of the Transaction",
                         verbose_name="Transaction Date",
                     ),
@@ -762,7 +770,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -856,7 +866,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -950,7 +962,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -1237,7 +1251,8 @@ class Migration(migrations.Migration):
                             ("THB", "Thai Baht"),
                             (
                                 "XXX",
-                                "The codes assigned for transactions where no currency is involved",
+                                "The codes assigned for transactions where no currency "
+                                "is involved",
                             ),
                             ("TPE", "Timorese Escudo"),
                             ("TOP", "Tongan Paʻanga"),
@@ -1402,7 +1417,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),

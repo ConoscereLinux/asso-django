@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 import academy.models as am
 import membership.models as mm
-from common.data import load_item
+from asso.common.data import load_item
 
 
 def run(*args):

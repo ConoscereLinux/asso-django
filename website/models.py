@@ -2,8 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from common import fields
-from common import models as cm
+from asso.common import fields
+from asso.common import models as cm
 
 
 class ThemeConfig(models.Model):

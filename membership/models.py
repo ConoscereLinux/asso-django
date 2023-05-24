@@ -14,7 +14,7 @@ from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
 # Project Import
-from common import models as cm
+from asso.common import models as cm
 
 
 class Member(cm.EditInfo, cm.TrashBin):
