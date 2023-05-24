@@ -42,24 +42,8 @@ class Member(cm.EditInfo, cm.TrashBin):
     # address: str  # (meta) indirizzo_member
     # birth_place: str  # (meta) luogo_nascita_member
 
-    @property
-    def first_name(self):
-        return self.user.first_name.title()
-
-    @property
-    def email(self):
-        return self.user.email
-
-    @property
-    def last_name(self):
-        return self.user.last_name.title()
-
-    @property
-    def full_name(self):
-        return f"{self.user.first_name} {self.user.last_name}"
-
     def __str__(self):
-        return self.full_name
+        return f"{self.user.first_name} {self.user.last_name}"  # noqa
 
 
 class Membership(cm.EditInfo, cm.TrashBin):
