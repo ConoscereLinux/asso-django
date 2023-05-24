@@ -4,8 +4,6 @@ import asso.core.admin
 
 from . import models
 
-# Register your models here.
-
 
 @admin.register(models.Membership)
 class MembershipAdmin(admin.ModelAdmin):
@@ -19,7 +17,7 @@ class MembershipInline(admin.StackedInline):
 
 @admin.register(models.Member)
 class MemberAdmin(asso.core.admin.EditInfoAdmin, asso.core.admin.TrashBinAdmin):
-    list_display = ["full_name", "cf", "user"]
+    list_display = ["cf", "user"]
     list_filter = ["user", "cf"]
 
     inlines = [MembershipInline]
