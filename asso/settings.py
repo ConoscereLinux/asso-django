@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "jazzmin",
-    "academy.apps.AcademyConfig",
+    "asso.academy.apps.AcademyConfig",
     "accountant.apps.AccountantConfig",
     "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",

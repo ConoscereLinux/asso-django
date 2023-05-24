@@ -3,7 +3,7 @@ import datetime as dt
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
-from academy.models import Event
+from asso.academy.models import Event
 
 from .models import NavbarItem, SocialLink, ThemeConfig
 

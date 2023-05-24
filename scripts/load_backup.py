@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from tqdm import tqdm
 
-import academy.models as am
+import asso.academy.models as am
 import membership.models as mm
 from asso.core.data import load_item
 
