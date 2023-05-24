@@ -21,7 +21,7 @@ def add_header_info_and_menu_items_to_context(request):
 
 
 class HomePage(generic.TemplateView):
-    template_name = "website/templates/website/index.html"
+    template_name = "website/index.html"
 
     MODES = {
         "next": _("Prossimi Eventi"),
