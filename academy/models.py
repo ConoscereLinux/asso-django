@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Project Import
 import accountant.models
-from asso.common import models as cm
+from asso.core import models as cm
 
 
 class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from asso.common import admin as ca
+from asso.core import admin as ca
 
 from . import models
 

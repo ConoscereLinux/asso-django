@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 
 # Project Import
-from asso.common import models as cm
+from asso.core import models as cm
 
 
 class Account(cm.Base, cm.EditInfo, cm.TrashBin):

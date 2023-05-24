@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-import asso.common.fields
+import asso.core.fields
 
 
 class Migration(migrations.Migration):
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("active", asso.common.fields.UniqueBooleanField(default=False)),
+                ("active", asso.core.fields.UniqueBooleanField(default=False)),
                 ("brand", models.CharField(max_length=100)),
             ],
             options={

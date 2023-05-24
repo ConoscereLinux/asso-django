@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     "jazzmin",
     "academy.apps.AcademyConfig",
     "accountant.apps.AccountantConfig",
-    # "common.apps.CommonConfig",
     "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",
     "django.contrib.admin",
