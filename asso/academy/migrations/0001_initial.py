@@ -55,7 +55,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -71,7 +73,9 @@ class Migration(migrations.Migration):
                     "show",
                     models.BooleanField(
                         default=False,
-                        help_text="Indicates if at this state the Event has to be shown",
+                        help_text=(
+                            "Indicates if at this state the Event has to be shown"
+                        ),
                         verbose_name="Show At This State",
                     ),
                 ),
@@ -129,14 +133,18 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
                 (
                     "attendant",
                     models.ForeignKey(
-                        help_text="The Attendant of witch the Enrollment is referred to",
+                        help_text=(
+                            "The Attendant of witch the Enrollment is referred to"
+                        ),
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="event_attendants",
                         to=settings.AUTH_USER_MODEL,
@@ -203,7 +211,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -219,7 +229,10 @@ class Migration(migrations.Migration):
                     "need_membership",
                     models.BooleanField(
                         default=True,
-                        help_text="Indicate if the membership is needed in order to attend to this event",
+                        help_text=(
+                            "Indicate if the membership is needed in order to attend "
+                            "to this event"
+                        ),
                         verbose_name="Membership Needed",
                     ),
                 ),
@@ -304,7 +317,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -398,7 +413,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
@@ -413,14 +430,20 @@ class Migration(migrations.Migration):
                 (
                     "start",
                     models.DateTimeField(
-                        help_text="The start time and date of the session, determine hide state of the event",
+                        help_text=(
+                            "The start time and date of the session, determine hide "
+                            "state of the event"
+                        ),
                         verbose_name="Start date and time",
                     ),
                 ),
                 (
                     "end",
                     models.DateTimeField(
-                        help_text="The end time and date of the session, determine hide state of the event",
+                        help_text=(
+                            "The end time and date of the session, determine hide "
+                            "state of the event"
+                        ),
                         verbose_name="End date and time",
                     ),
                 ),
@@ -488,7 +511,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),

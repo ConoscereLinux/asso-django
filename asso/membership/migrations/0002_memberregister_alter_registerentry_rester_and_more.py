@@ -54,7 +54,9 @@ class Migration(migrations.Migration):
                     "edit_date",
                     models.DateTimeField(
                         auto_now=True,
-                        help_text="The Date and the Time of last time the object was edited",
+                        help_text=(
+                            "The Date and the Time of last time the object was edited"
+                        ),
                         verbose_name="Last edit Date and Time",
                     ),
                 ),
