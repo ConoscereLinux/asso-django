@@ -11,7 +11,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # Project Import
-import accountant.models
+import asso.accountant.models
 from asso.core import models as cm
 
 
@@ -145,7 +145,7 @@ class Enrollment(cm.EditInfo):
     )
 
     transaction = models.OneToOneField(
-        accountant.models.Transaction,
+        asso.accountant.models.Transaction,
         null=True,
         on_delete=models.CASCADE,
         related_name="transaction_enrollment",

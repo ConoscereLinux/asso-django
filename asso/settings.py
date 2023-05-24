@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "jazzmin",
     "asso.academy.apps.AcademyConfig",
-    "accountant.apps.AccountantConfig",
+    "asso.accountant.apps.AccountantConfig",
     "membership.apps.MembershipConfig",
     "website.apps.WebsiteConfig",
     "django.contrib.admin",
