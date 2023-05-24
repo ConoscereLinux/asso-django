@@ -4,6 +4,7 @@ The Accountant realm, here is all the money part.
 """
 
 # Standard Import
+import datetime as dt
 
 # Site-package Import
 from django.db import models
@@ -12,7 +13,6 @@ from djmoney.models.fields import MoneyField
 
 # Project Import
 from asso.common import models as cm
-from asso.common import utils as u
 
 
 class Account(cm.Base, cm.EditInfo, cm.TrashBin):
@@ -59,7 +59,7 @@ class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
     year = models.IntegerField(
-        default=u.current_year,
+        default=dt.date.today,
         verbose_name=_("Invoice Number"),
         help_text=_("The unique number of the Invoice"),
     )
@@ -183,7 +183,7 @@ class Transaction(cm.EditInfo, cm.TrashBin):
     )
 
     date = models.DateField(
-        default=u.current_date,
+        default=dt.date.today,
         auto_now=False,
         auto_now_add=False,
         verbose_name=_("Transaction Date"),
