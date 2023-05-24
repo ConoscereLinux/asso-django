@@ -9,7 +9,7 @@ from asso.core.data import load_item
 
 
 def run():
-    with open(settings.BASE_DIR / "scripts" / "default_theme.json", "r") as fp:
+    with open(settings.BASE_DIR / "scripts" / "data" / "default_theme.json", "r") as fp:
         data = json.load(fp)
 
     if theme := data.get("theme"):
