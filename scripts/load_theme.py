@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.text import slugify
 from loguru import logger
 
-import website.models as wm
+from asso import website as wm
 from asso.core.data import load_item
 
 
