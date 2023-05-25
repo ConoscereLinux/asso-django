@@ -1,7 +1,4 @@
-"""
-The Accountant realm, here is all the money part.
-
-"""
+"""The Accountant realm, here is all the money part."""
 
 # Standard Import
 import datetime as dt
@@ -11,17 +8,16 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 
-# Project Import
-from asso.core import models as cm
+from ..core.models import Common, Created, Editable, Trashable
 
 
-class Account(cm.Base, cm.EditInfo, cm.TrashBin):
+class Account(Common, Trashable):
     """Represent a transaction account of the association or for other players."""
 
     pass
 
 
-class AnalyticTag(cm.Base, cm.EditInfo, cm.TrashBin):
+class AnalyticTag(Common, Trashable):
     """Indicate the type of transaction and is used for analysis"""
 
     parent = models.ForeignKey(
@@ -33,13 +29,13 @@ class AnalyticTag(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class InvoiceDirection(cm.Base, cm.EditInfo, cm.TrashBin):
+class InvoiceDirection(Common, Trashable):
     """Indicate if the Invoice is for sale or for buy"""
 
     pass
 
 
-class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
+class Invoice(Common, Trashable):
     """Represent an invoice"""
 
     # TODO: Invoice Sender and Recipient are not implemented yet
@@ -87,7 +83,7 @@ class Invoice(cm.Base, cm.EditInfo, cm.TrashBin):
         ]
 
 
-class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
+class InvoiceRow(Common, Trashable):
     """Represent the single rows in an invoice"""
 
     invoice = models.ForeignKey(
@@ -130,7 +126,7 @@ class InvoiceRow(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Purchase(cm.Base, cm.EditInfo, cm.TrashBin):
+class Purchase(Common, Trashable):
     """Represents the purchase of something."""
 
     transaction = models.OneToOneField(
@@ -142,7 +138,7 @@ class Purchase(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class LiberalOffer(cm.Base, cm.EditInfo, cm.TrashBin):
+class LiberalOffer(Common, Trashable):
     """Represents the offer of something."""
 
     transaction = models.OneToOneField(
@@ -154,7 +150,7 @@ class LiberalOffer(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Transaction(cm.EditInfo, cm.TrashBin):
+class Transaction(Created, Editable, Trashable):
     """Indicate a single transaction between Accounts"""
 
     value = MoneyField(

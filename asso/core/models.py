@@ -1,49 +1,19 @@
 """Base models for other application."""
 
-# Standard Import
-
 from django.conf import settings
-
-# Site-package Import
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# Local Import
 
-# Create your models here.
-
-
-class Base(models.Model):
-    """Provides name and description fields."""
-
-    name = models.CharField(
-        max_length=256, default="", verbose_name=_("Name"), help_text=_("Object name")
-    )
-
-    description = models.TextField(
-        default="",
-        blank=True,
-        verbose_name=_("Description"),
-        help_text=_("Object description"),
-    )
-
-    class Meta:
-        abstract = True
-        ordering = ["name"]
-
-    def __str__(self):
-        return self.name
-
-
-class OrderedModel(models.Model):
-    """A BaseModel with a field for custom ordering."""
+class Ordered(models.Model):
+    """A Model with a field for custom ordering."""
 
     order = models.SmallIntegerField(
         default=0,
         null=False,
         blank=False,
         verbose_name=_("Order"),
-        help_text=_("Used for object ordering"),
+        help_text=_("Object ordering value"),
     )
 
     class Meta:
@@ -51,27 +21,14 @@ class OrderedModel(models.Model):
         ordering = ["order"]
 
 
-class EditInfo(models.Model):
-    """Record some basic information about the edit user and time.
+class Created(models.Model):
+    """A Model with field for creation date and user"""
 
-    created_by and updated_by fields inspired by:
-    https://dev.to/forhadakhan/automatically-add-logged-in-user-under-createdby-and-updatedby-to-model-in-django-rest-framework-4c9c  # noqa
-    """
-
-    # TODO: ensure it's best practice
     creation_date = models.DateTimeField(
         auto_now=False,
         auto_now_add=True,
         verbose_name=_("Creation Date and Time"),
-        help_text=_("The Date and the Time of creation on the object"),
-    )
-
-    # TODO: ensure it's best practice
-    edit_date = models.DateTimeField(
-        auto_now=True,
-        auto_now_add=False,
-        verbose_name=_("Last edit Date and Time"),
-        help_text=_("The Date and the Time of last time the object was edited"),
+        help_text=_("Date and Time of %(class)'s creation"),
     )
 
     created_by = models.ForeignKey(
@@ -81,33 +38,80 @@ class EditInfo(models.Model):
         blank=True,
         null=True,
         verbose_name=_("Creation User"),
-        help_text=_("The User who has created the object"),
+        help_text=_("The User who has created this %(class)"),
     )
 
-    updated_by = models.ForeignKey(
+    class Meta:
+        abstract = True
+        ordering = ["-creation_date"]
+
+
+class Editable(models.Model):
+    """A Model with field for last edit date and user"""
+
+    edit_date = models.DateTimeField(
+        auto_now=True,
+        auto_now_add=False,
+        verbose_name=_("Last edit Date and Time"),
+        help_text=_("Date and Time of object's last edit"),
+    )
+
+    edit_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         related_name="%(app_label)s_%(class)s_updated_by",
         blank=True,
         null=True,
         verbose_name=_("Last edit User"),
-        help_text=_("The User who edited the object last time"),
+        help_text=_("The User who last edited this %(class)"),
     )
 
     class Meta:
         abstract = True
+        ordering = ["-edit_date"]
 
-        ordering = ["-creation_date"]
 
+class Trashable(models.Model):
+    """A Model for trashable objects"""
 
-class TrashBin(models.Model):
-    """Allow object to be trashed rather than deleted."""
-
-    trash_state = models.BooleanField(
+    is_trashed = models.BooleanField(
         default=False,
         verbose_name=_("Trashed"),
-        help_text=_("Indicates if the object is trashed"),
+        help_text=_("Is the object trashed"),
     )
 
     class Meta:
         abstract = True
+
+
+class Activable(models.Model):
+    """A Model for activable objects"""
+
+    active = models.BooleanField(
+        default=True,
+        verbose_name=_("Active"),
+        help_text=_("Is the object active"),
+    )
+
+    class Meta:
+        abstract = True
+
+
+class Descripted(models.Model):
+    title = models.CharField(max_length=256, default="", verbose_name=_("Title"))
+    description = models.TextField(
+        default="",
+        blank=True,
+        verbose_name=_("Description"),
+        help_text=_("%(class) description"),
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ["title"]
+
+
+class Common(Descripted, Editable, Created):
+    class Meta:
+        abstract = True
+        ordering = Created.Meta.ordering

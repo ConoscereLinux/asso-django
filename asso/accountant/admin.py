@@ -1,28 +1,31 @@
 from django.contrib import admin
 
-from asso.core import admin as ca
-
+from ..core.admin import (
+    CreatedAdmin,
+    CreatedTabularInline,
+    EditableAdmin,
+    EditableTabularInline,
+    TrashableAdmin,
+)
 from . import models
-
-# Register your models here.
 
 
 @admin.register(models.Account)
-class AccountAdmin(ca.EditInfoAdmin, ca.TrashBinAdmin):
+class AccountAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     pass
 
 
 @admin.register(models.AnalyticTag)
-class AnalyticTagAdmin(ca.EditInfoAdmin, ca.TrashBinAdmin):
+class AnalyticTagAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     pass
 
 
-class InvoiceRowAdmin(ca.EditInfoTabularInline):
+class InvoiceRowAdmin(CreatedTabularInline, EditableTabularInline):
     model = models.InvoiceRow
 
 
 @admin.register(models.Invoice)
-class InvoiceAdmin(ca.EditInfoAdmin, ca.TrashBinAdmin):
+class InvoiceAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     inlines = [InvoiceRowAdmin]
 
 

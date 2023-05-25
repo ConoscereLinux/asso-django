@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-import asso.core.admin
-
+from ..core.admin import CreatedAdmin, EditableAdmin, TrashableAdmin
 from . import models
 
 
@@ -16,7 +15,7 @@ class MembershipInline(admin.StackedInline):
 
 
 @admin.register(models.Member)
-class MemberAdmin(asso.core.admin.EditInfoAdmin, asso.core.admin.TrashBinAdmin):
+class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     list_display = ["cf", "user"]
     list_filter = ["user", "cf"]
 

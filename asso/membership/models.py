@@ -1,7 +1,4 @@
-"""
-The membership management, from the single one to the MembersRegister.
-
-"""
+"""The membership management, from the single one to the MembersRegister."""
 
 # Standard Import
 import datetime as dt
@@ -13,11 +10,10 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
-# Project Import
-from asso.core import models as cm
+from ..core.models import Common, Created, Editable, Trashable
 
 
-class Member(cm.EditInfo, cm.TrashBin):
+class Member(Editable, Created, Trashable):
     """It represents an Association Member"""
 
     user = models.OneToOneField(
@@ -29,6 +25,9 @@ class Member(cm.EditInfo, cm.TrashBin):
         verbose_name=_("User"),
         help_text=_("The User the Member use for Login"),
     )
+
+    # first_name = models.CharField(_("first name"), max_length=30, blank=True)
+    # last_name = models.CharField(_("last name"), max_length=30, blank=True)
 
     cf = models.CharField(
         max_length=16,
@@ -46,7 +45,7 @@ class Member(cm.EditInfo, cm.TrashBin):
         return f"{self.user.first_name} {self.user.last_name}"  # noqa
 
 
-class Membership(cm.EditInfo, cm.TrashBin):
+class Membership(Editable, Created, Trashable):
     """The membership of a user for a particular period."""
 
     member = models.ForeignKey(
@@ -72,7 +71,7 @@ class Membership(cm.EditInfo, cm.TrashBin):
     )
 
 
-class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
+class MembershipPeriod(Common, Trashable):
     """This represents the applying period of the Membership."""
 
     start_date = models.DateField(
@@ -102,7 +101,7 @@ class MembershipPeriod(cm.Base, cm.EditInfo, cm.TrashBin):
         return self.start_date + self.duration
 
 
-class MemberRegister(cm.Base, cm.EditInfo, cm.TrashBin):
+class MemberRegister(Common, Trashable):
     """Member registration referred to a specific Period"""
 
     period = models.ForeignKey(
@@ -114,7 +113,7 @@ class MemberRegister(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class RegisterEntry(cm.EditInfo, cm.TrashBin):
+class RegisterEntry(Editable, Created, Trashable):
     """It is the single Entry (corresponding to a Membership) of the Register."""
 
     rester = models.ForeignKey(
