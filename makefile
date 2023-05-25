@@ -43,7 +43,7 @@ bootstrap-django:
 	@echo -e $(bold)Initialize Django db and admin superuser$(sgr0)
 	rm -f db.sqlite3
 	$(django) migrate
-	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
+	$(django) createsuperuser --email=info@conoscerelinux.org
 
 secret_key:
 	@$(python) scripts/generate_secret_key.py
