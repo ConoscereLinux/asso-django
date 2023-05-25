@@ -41,9 +41,6 @@ class Member(Editable, Created, Trashable):
     # address: str  # (meta) indirizzo_member
     # birth_place: str  # (meta) luogo_nascita_member
 
-    def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}"  # noqa
-
 
 class Membership(Editable, Created, Trashable):
     """The membership of a user for a particular period."""

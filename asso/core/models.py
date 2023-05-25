@@ -31,7 +31,7 @@ class Created(models.Model):
         auto_now=False,
         auto_now_add=True,
         verbose_name=_("Creation Date and Time"),
-        help_text=_("Date and Time of %(class)'s creation"),
+        help_text=_("Date and Time of object's creation"),
     )
 
     created_by = models.ForeignKey(
@@ -41,7 +41,7 @@ class Created(models.Model):
         blank=True,
         null=True,
         verbose_name=_("Creation User"),
-        help_text=_("The User who has created this %(class)"),
+        help_text=_("The User who has created this object"),
     )
 
     class Meta:
@@ -66,7 +66,7 @@ class Editable(models.Model):
         blank=True,
         null=True,
         verbose_name=_("Last edit User"),
-        help_text=_("The User who last edited this %(class)"),
+        help_text=_("The User who last edited this object"),
     )
 
     class Meta:
@@ -106,7 +106,7 @@ class Descripted(models.Model):
         default="",
         blank=True,
         verbose_name=_("Description"),
-        help_text=_("%(class) description"),
+        help_text=_("object description"),
     )
 
     class Meta:
