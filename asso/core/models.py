@@ -160,17 +160,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     creation_date = models.DateTimeField(
         auto_now=False,
         auto_now_add=True,
-        verbose_name=_("Creation DateTime"),
+        verbose_name=_("Creation Date"),
         help_text=_("Date and Time of user creation"),
     )
 
-    is_active = models.BooleanField(_("active"), default=False)
+    is_active = models.BooleanField(_("active"), default=True)
     is_staff = models.BooleanField(_("Staff member"), default=False)
 
     objects = UserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["is_active"]
+    REQUIRED_FIELDS = ["is_staff"]
 
     class Meta:
         verbose_name = _("user")
