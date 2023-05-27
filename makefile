@@ -3,7 +3,7 @@ SHELL=/bin/bash
 
 python=$(VENV)/bin/python3
 pip=$(VENV)/bin/pip3
-django=$(python) manage.py
+django=$(python) asso/manage.py
 
 # Utility scripts to prettify echo outputs
 bold := '\033[1m'
@@ -43,7 +43,10 @@ bootstrap-django:
 	@echo -e $(bold)Initialize Django db and admin superuser$(sgr0)
 	rm -f db.sqlite3
 	$(django) migrate
-	$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
+	$(django) createsuperuser --email=info@conoscerelinux.org
+
+secret_key:
+	@$(python) scripts/generate_secret_key.py
 
 serve:
 	@echo -e $(bold)Launch Django development server$(sgr0)
@@ -51,7 +54,7 @@ serve:
 	
 
 # Database Management
-.PHONY: migrate migrations
+.PHONY: demo migrate migrations
 
 migrate:
 	$(django) migrate
@@ -59,3 +62,6 @@ migrate:
 migrations:
 	$(django) makemigrations
 
+demo:
+	$(django) runscript load_theme
+	$(django) runscript load_backup

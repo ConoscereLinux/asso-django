@@ -15,8 +15,8 @@ $ source .venv/bin/activate
 (.venv)$ pip install --upgrade -r requirements.txt # project requirements
 
 (.venv)$ rm -f db.sqlite3  # If you want to reset db
-(.venv)$ python manage.py migrate
-(.venv)$ python manage.py createsuperuser --username=admin
+(.venv)$ python asso/manage.py migrate
+(.venv)$ python asso/manage.py createsuperuser --username=admin
 ```
 
 ## Run server
@@ -26,5 +26,5 @@ $ make serve
 
 # using command line
 $ source .venv/bin/activate
-(.venv)$ python manage.py runserver
+(.venv)$ python asso/manage.py runserver
 ```
