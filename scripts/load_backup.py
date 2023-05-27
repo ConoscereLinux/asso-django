@@ -14,6 +14,10 @@ from asso.core.data import load_item
 
 def run(*args):
     path = args[0] if args else settings.BASE_DIR / ".data" / "export.json"
+    if not path.exists():
+        print(f"File {path} not found")
+        return
+
     with open(pathlib.Path(path), "r") as fp:
         data = json.load(fp)
 
