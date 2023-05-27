@@ -54,7 +54,7 @@ serve:
 	
 
 # Database Management
-.PHONY: migrate migrations
+.PHONY: demo migrate migrations
 
 migrate:
 	$(django) migrate
@@ -62,3 +62,6 @@ migrate:
 migrations:
 	$(django) makemigrations
 
+demo:
+	$(django) runscript load_theme
+	$(django) runscript load_backup
