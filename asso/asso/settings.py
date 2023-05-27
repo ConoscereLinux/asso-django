@@ -17,6 +17,7 @@ from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = BASE_DIR.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "jazzmin",
+    "asso.core.apps.CoreConfig",
     "asso.academy.apps.AcademyConfig",
     "asso.accountant.apps.AccountantConfig",
     "asso.membership.apps.MembershipConfig",
@@ -87,14 +89,14 @@ WSGI_APPLICATION = "asso.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": PROJECT_DIR / ".data" / "db.sqlite3",
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
+AUTH_USER_MODEL = "core.User"
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
@@ -127,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # Used for collecting static files
-STATICFILES_DIRS = [Path(BASE_DIR, "static")]
+STATICFILES_DIRS = [PROJECT_DIR / "static"]
 
 # Base for the URL of static and media resources
 STATIC_URL = "/static/"

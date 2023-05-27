@@ -1,21 +1,14 @@
-"""
-The Academy section, with teacher event and participation.
+"""The Academy section, with teacher event and participation."""
 
-"""
-
-# Standard Import
-
-# Site-package Import
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# Project Import
-import asso.accountant.models
-from asso.core import models as cm
+from ..accountant.models import Transaction
+from ..core.models import Common, Created, Editable, Trashable
 
 
-class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
+class ApprovalState(Common, Trashable):
     """Represents the state of approval of an Event."""
 
     show = models.BooleanField(
@@ -25,7 +18,7 @@ class ApprovalState(cm.Base, cm.EditInfo, cm.TrashBin):
     )
 
 
-class Event(cm.EditInfo, cm.TrashBin):
+class Event(Created, Editable, Trashable):
     """Represents a course, a talk or a conference.
 
     It can have some attendant teachers and can be carried out in several sessions.
@@ -99,7 +92,7 @@ class Event(cm.EditInfo, cm.TrashBin):
         return f"{self.title}"
 
 
-class Session(cm.EditInfo):
+class Session(Created, Editable):
     """If an Event it is divided in more session, it could be managed here."""
 
     event = models.ForeignKey(
@@ -125,7 +118,7 @@ class Session(cm.EditInfo):
     )
 
 
-class Enrollment(cm.EditInfo):
+class Enrollment(Created, Editable):
     """Indicate that User want to attend the Event."""
 
     event = models.ForeignKey(
@@ -145,7 +138,7 @@ class Enrollment(cm.EditInfo):
     )
 
     transaction = models.OneToOneField(
-        asso.accountant.models.Transaction,
+        Transaction,
         null=True,
         on_delete=models.CASCADE,
         related_name="transaction_enrollment",
@@ -154,7 +147,7 @@ class Enrollment(cm.EditInfo):
     )
 
 
-class Presence(cm.EditInfo):
+class Presence(Created, Editable):
     """Indicate the effective presence of an attendant in a particular session."""
 
     session = models.ForeignKey(
@@ -174,7 +167,7 @@ class Presence(cm.EditInfo):
     )
 
 
-class Trainer(cm.EditInfo, cm.TrashBin):
+class Trainer(Created, Editable, Trashable):
     """Represents someone that can present an Event"""
 
     biography = models.TextField(

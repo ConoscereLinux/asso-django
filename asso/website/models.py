@@ -2,20 +2,20 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from asso.core import fields
-from asso.core import models as cm
+from ..core.fields import UniqueBooleanField
+from ..core.models import Descripted, Ordered
 
 
 class ThemeConfig(models.Model):
     brand = models.CharField(max_length=100)
     logo = models.ImageField(upload_to="logos", null=True, blank=True)
-    active = fields.UniqueBooleanField(default=False, null=False)
+    active = UniqueBooleanField(default=False, null=False)
 
     class Meta:
         ordering = ["-active"]
 
 
-class NavbarItem(cm.OrderedModel):
+class NavbarItem(Ordered):
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=50, blank=True)
     url = models.CharField(max_length=200, default="")
@@ -31,13 +31,12 @@ class NavbarItem(cm.OrderedModel):
         return self.url
 
 
-class SocialLink(cm.OrderedModel):
-    title = models.CharField(max_length=100, blank=True)
+class SocialLink(Descripted, Ordered):
     url = models.URLField()
     logo = models.SlugField(
         verbose_name="Logo Icon",
         help_text=_(
-            "One of the logo-* icons on https://ionic.io/ionicons (facebook, twitter, "
-            "linkedin, youtube, ...)"
+            "One of the logo-* icons on https://ionic.io/ionicons "
+            "(facebook, twitter, linkedin, youtube, ...)"
         ),
     )
