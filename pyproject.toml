@@ -9,7 +9,7 @@ name = "asso-django"
 version = "0.0.2"
 requires-python = ">=3.10"
 dependencies = [
-    "django==4.2",
+    "django~=4.2",
     "django-extensions",
     "django-jazzmin",
     "django-money",

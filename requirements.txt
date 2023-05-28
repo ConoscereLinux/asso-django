@@ -99,7 +99,7 @@ traitlets==5.9.0
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==4.6.1
+typing-extensions==4.6.2
     # via py-moneyed
 wcwidth==0.2.6
     # via prompt-toolkit
