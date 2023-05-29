@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["black", "isort", "ipython"]
+dev = ["black", "isort"]
 test = ["pytest"]
 
 [tool.isort]
