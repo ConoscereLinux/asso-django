@@ -23,7 +23,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["black", "isort"]
-test = ["pytest"]
+test = ["pytest", "pytest-django"]
 
 [tool.isort]
 profile = "black"
