@@ -24,11 +24,10 @@ class Member(Editable, Created, Trashable):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         null=True,
-        blank=True,
         on_delete=models.SET_NULL,
         related_name="member",
         verbose_name=_("User"),
-        help_text=_("The User the Member use for Login"),
+        help_text=_("The User used for Login"),
     )
 
     first_name = models.CharField(_("first name"), max_length=150, blank=False)
