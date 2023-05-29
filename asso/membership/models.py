@@ -5,6 +5,7 @@ import datetime as dt
 
 # Site-package Import
 from django.conf import settings
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
@@ -31,9 +32,9 @@ class Member(Editable, Created, Trashable):
 
     cf = models.CharField(
         max_length=16,
-        blank=True,
         verbose_name="Codice Fiscale",
         help_text=_("Codice Fiscale"),
+        validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
     )
 
     # birth_date: types.Date
