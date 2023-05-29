@@ -41,7 +41,7 @@ develop:
 
 bootstrap-django:
 	@echo -e $(bold)Initialize Django db and admin superuser$(sgr0)
-	rm -f .data/db.sqlite3
+	mkdir -p .data && rm -f .data/db.sqlite3
 	$(django) migrate
 	$(django) createsuperuser --email=info@conoscerelinux.org
 
