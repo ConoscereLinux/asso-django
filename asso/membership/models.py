@@ -17,6 +17,10 @@ from ..core.models import Common, Created, Editable, Trashable
 class Member(Editable, Created, Trashable):
     """It represents an Association Member"""
 
+    class Genders(models.TextChoices):
+        MALE = "M", _("Male")
+        FEMALE = "F", _("Female")
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -35,6 +39,10 @@ class Member(Editable, Created, Trashable):
         verbose_name="Codice Fiscale",
         help_text=_("Codice Fiscale"),
         validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
+    )
+
+    sex = models.CharField(
+        choices=Genders, max_length=1, verbose_name=_("Gender (M/F)")
     )
 
     # birth_date: types.Date
