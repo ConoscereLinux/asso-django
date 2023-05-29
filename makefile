@@ -51,7 +51,9 @@ secret_key:
 serve:
 	@echo -e $(bold)Launch Django development server$(sgr0)
 	DEBUG=True $(django) runserver $(HOST):$(PORT)
-	
+
+test:
+	$(python) -m pytest
 
 # Database Management
 .PHONY: demo migrate migrations
