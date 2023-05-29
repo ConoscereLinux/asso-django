@@ -41,7 +41,7 @@ class Member(Editable, Created, Trashable):
     )
 
     sex = models.CharField(
-        choices=Genders, max_length=1, verbose_name=_("Gender (M/F)")
+        choices=Genders.choices, max_length=1, verbose_name=_("Gender (M/F)")
     )
 
     # birth_date: types.Date
