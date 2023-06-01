@@ -51,11 +51,12 @@ class Member(Editable, Created, Trashable):
     )
     birth_city = models.CharField(
         max_length=150,
-        blank=False,
         help_text=_("Birth City"),
         verbose_name=_("The city/municipality where Member is born"),
     )  # ITA: Comune di nascita
-    birth_provence = models.CharField(choices=ITALIAN_PROVINCES, max_length=2)
+    birth_provence = models.CharField(
+        choices=ITALIAN_PROVINCES, max_length=2, default="EE"
+    )
 
     # address: str  # (meta) indirizzo_member
     # ...
