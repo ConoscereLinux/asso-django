@@ -48,7 +48,10 @@ class Member(Editable, Created, Trashable):
     # birth_date: types.Date
     # gender: types.Gender | None  # (meta) genere_member
     # address: str  # (meta) indirizzo_member
-    # birth_place: str  # (meta) luogo_nascita_member
+
+    @property
+    def full_name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
 
 
 class Membership(Editable, Created, Trashable):
