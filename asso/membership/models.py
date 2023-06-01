@@ -12,6 +12,7 @@ from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
 from ..core.models import Common, Created, Editable, Trashable
+from .constants import ITALIAN_PROVINCES
 
 
 class Member(Editable, Created, Trashable):
@@ -45,9 +46,19 @@ class Member(Editable, Created, Trashable):
         choices=Genders.choices, max_length=1, verbose_name=_("Gender (M/F)")
     )
 
-    # birth_date: types.Date
-    # gender: types.Gender | None  # (meta) genere_member
+    birth_date = models.DateField(
+        help_text=_("Birth Date"), verbose_name=_("Birth Date")
+    )
+    birth_city = models.CharField(
+        max_length=150,
+        blank=False,
+        help_text=_("Birth City"),
+        verbose_name=_("The city/municipality where Member is born"),
+    )  # ITA: Comune di nascita
+    birth_provence = models.CharField(choices=ITALIAN_PROVINCES, max_length=2)
+
     # address: str  # (meta) indirizzo_member
+    # ...
 
     @property
     def full_name(self) -> str:
