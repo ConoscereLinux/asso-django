@@ -1,6 +1,9 @@
 from typing import Type
 
+from django.core.exceptions import ValidationError
 from django.db.models import Model
+from django.db.utils import IntegrityError
+from loguru import logger
 
 
 def load_item(
@@ -17,9 +20,13 @@ def load_item(
     else:
         filters = {k: v for k, v in item.items() if fields and k in fields}
         defaults = {k: v for k, v in item.items() if not fields or k not in fields}
+    try:
+        obj, created = model.objects.update_or_create(**filters, defaults=defaults)
+        obj.full_clean()
+    except (ValidationError, IntegrityError):
+        logger.debug(item)
+        raise
 
-    obj, created = model.objects.update_or_create(**filters, defaults=defaults)
-    obj.full_clean()
     obj.save()
 
     return obj, created
