@@ -56,6 +56,18 @@ class Member(Editable, Created, Trashable):
         default="EE",
     )
 
+    phone = models.CharField(
+        _("Phone Number"),
+        max_length=50,
+        help_text="Phone Number",
+        validators=[
+            RegexValidator(
+                r"^(00|\+)?((\d+|\(\d+\))[ \-]?)+\d$",
+                _("Use only plus sign (at start), dashes (-), spaces and parenthesis"),
+            )
+        ],
+    )
+
     # address: str  # (meta) indirizzo_member
     # ...
 
