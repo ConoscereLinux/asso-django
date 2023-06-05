@@ -34,6 +34,10 @@ class Member(Editable, Created, Trashable):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
 
+    @property
+    def full_name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
     cf = models.CharField(
         _("Codice Fiscale"),
         max_length=16,
@@ -90,9 +94,15 @@ class Member(Editable, Created, Trashable):
         default="MO",
     )
 
-    @property
-    def full_name(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+    privacy_acknowledgement = models.DateField(
+        _("Privacy Page Aknowledgement"),
+        null=True,
+        blank=True,
+        default=None,
+        help_text=_("Last date Member has read privacy page"),
+    )
+
+    notes = models.TextField(_("Internal Notes"), default="", blank=True)
 
 
 class Membership(Editable, Created, Trashable):
