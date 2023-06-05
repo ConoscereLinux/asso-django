@@ -38,18 +38,7 @@ def run(*args):
         }
         member["user"], _ = load_item(user, User, ("email",))
 
-        load_item(
-            member,
-            Member,
-            ("user",),
-            (
-                "title",
-                "address_description",
-                "address_city",
-                "address_postal_code",
-                "address_province",
-            ),
-        )
+        load_item(member, Member, ("user",), ["title"])
         # load_item(membership, Membership, ...)
 
     print("Loading Courses")

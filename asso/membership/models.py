@@ -53,7 +53,7 @@ class Member(Editable, Created, Trashable):
         help_text=_("Italian Province where Member is born (EE for other countries)"),
         choices=ITALIAN_PROVINCES,
         max_length=2,
-        default="EE",
+        default="MO",
     )
 
     phone = models.CharField(
@@ -68,8 +68,27 @@ class Member(Editable, Created, Trashable):
         ],
     )
 
-    # address: str  # (meta) indirizzo_member
-    # ...
+    address_description = models.CharField(_("Address description"), max_length=150)
+    address_number = models.CharField(_("Address Number"), max_length=8)
+    address_additional = models.CharField(
+        _("Address additional info"), max_length=150, blank=True, default=""
+    )
+
+    address_city = models.CharField(_("Address City"), max_length=100)
+    address_postal_code = models.CharField(
+        _("Postal Code"),
+        max_length=5,
+        validators=[
+            RegexValidator(r"[0-9]{5}", _("Italian Postal Code is made of 5 digits"))
+        ],
+    )
+    address_province = models.CharField(
+        _("Address Province"),
+        help_text=_("Address Province (EE for other countries)"),
+        choices=ITALIAN_PROVINCES,
+        max_length=2,
+        default="MO",
+    )
 
     @property
     def full_name(self) -> str:
