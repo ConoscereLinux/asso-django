@@ -18,10 +18,6 @@ from .constants import ITALIAN_PROVINCES
 class Member(Editable, Created, Trashable):
     """It represents an Association Member"""
 
-    class Genders(models.TextChoices):
-        MALE = "M", _("Male")
-        FEMALE = "F", _("Female")
-
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         unique=True,
@@ -45,7 +41,12 @@ class Member(Editable, Created, Trashable):
         validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
     )
 
-    sex = models.CharField(_("Gender"), choices=Genders.choices, max_length=1)
+    class Gender(models.TextChoices):
+        MALE = "M", _("Male")
+        FEMALE = "F", _("Female")
+
+    sex = models.CharField(_("Gender"), choices=Gender.choices, max_length=1)
+
     birth_date = models.DateField(_("Birth Date"), help_text=_("Birth Date"))
     birth_city = models.CharField(
         _("Birth City"),
