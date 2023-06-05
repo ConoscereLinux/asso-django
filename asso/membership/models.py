@@ -121,6 +121,9 @@ class Member(Editable, Created, Trashable):
 
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
 
+    def __str__(self):
+        return f"{self.full_name} ({self.cf})"
+
 
 class Membership(Editable, Created, Trashable):
     """The membership of a user for a particular period."""
