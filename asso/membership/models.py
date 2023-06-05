@@ -95,6 +95,22 @@ class Member(Editable, Created, Trashable):
         default="MO",
     )
 
+    class DocumentType(models.TextChoices):
+        CARTA_IDENTITA = "carta-identita", _("Carta Identità")
+        PASSAPORTO = "passaporto", _("Passaporto")
+        PATENTE = "patente", _("Patente")
+
+    document_type = models.CharField(
+        _("Document Type"), choices=DocumentType.choices, max_length=16
+    )
+    document_grant_from = models.CharField(
+        _("Who has grant the Document"),
+        max_length=100,
+        help_text=_("Public Authority who grant you the document"),
+    )
+    document_number = models.CharField(_("Document Number/Code"), max_length=30)
+    document_expires = models.DateField(_("Document Expiration Date"))
+
     privacy_acknowledgement = models.DateField(
         _("Privacy Page Aknowledgement"),
         null=True,
