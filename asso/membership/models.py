@@ -28,34 +28,32 @@ class Member(Editable, Created, Trashable):
         null=True,
         on_delete=models.SET_NULL,
         related_name="member",
-        verbose_name=_("User"),
         help_text=_("The User used for Login"),
     )
 
-    first_name = models.CharField(_("first name"), max_length=150, blank=False)
-    last_name = models.CharField(_("last name"), max_length=150, blank=False)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
 
     cf = models.CharField(
+        _("Codice Fiscale"),
         max_length=16,
-        verbose_name="Codice Fiscale",
         help_text=_("Codice Fiscale"),
         validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
     )
 
-    sex = models.CharField(
-        choices=Genders.choices, max_length=1, verbose_name=_("Gender (M/F)")
-    )
-
-    birth_date = models.DateField(
-        help_text=_("Birth Date"), verbose_name=_("Birth Date")
-    )
+    sex = models.CharField(_("Gender"), choices=Genders.choices, max_length=1)
+    birth_date = models.DateField(_("Birth Date"), help_text=_("Birth Date"))
     birth_city = models.CharField(
+        _("Birth City"),
         max_length=150,
-        help_text=_("Birth City"),
-        verbose_name=_("The city/municipality where Member is born"),
+        help_text=_("City/municipality or foreign country where Member is born"),
     )  # ITA: Comune di nascita
-    birth_provence = models.CharField(
-        choices=ITALIAN_PROVINCES, max_length=2, default="EE"
+    birth_province = models.CharField(
+        _("Birth Province"),
+        help_text=_("Italian Province where Member is born (EE for other countries)"),
+        choices=ITALIAN_PROVINCES,
+        max_length=2,
+        default="EE",
     )
 
     # address: str  # (meta) indirizzo_member
