@@ -5,12 +5,14 @@ import datetime as dt
 
 # Site-package Import
 from django.conf import settings
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
 from ..core.models import Common, Created, Editable, Trashable
+from .constants import ITALIAN_PROVINCES
 
 
 class Member(Editable, Created, Trashable):
@@ -18,28 +20,144 @@ class Member(Editable, Created, Trashable):
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
+        unique=True,
         null=True,
-        blank=True,
         on_delete=models.SET_NULL,
         related_name="member",
-        verbose_name=_("User"),
-        help_text=_("The User the Member use for Login"),
+        help_text=_("The User used for Login"),
     )
 
-    # first_name = models.CharField(_("first name"), max_length=30, blank=True)
-    # last_name = models.CharField(_("last name"), max_length=30, blank=True)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+
+    @property
+    def full_name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
 
     cf = models.CharField(
+        _("Codice Fiscale"),
         max_length=16,
-        blank=True,
-        verbose_name="Codice Fiscale",
         help_text=_("Codice Fiscale"),
+        validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
     )
 
-    # birth_date: types.Date
-    # gender: types.Gender | None  # (meta) genere_member
-    # address: str  # (meta) indirizzo_member
-    # birth_place: str  # (meta) luogo_nascita_member
+    class Gender(models.TextChoices):
+        MALE = "M", _("Male")
+        FEMALE = "F", _("Female")
+
+    sex = models.CharField(_("Gender"), choices=Gender.choices, max_length=1)
+
+    birth_date = models.DateField(_("Birth Date"), help_text=_("Birth Date"))
+    birth_city = models.CharField(
+        _("Birth City"),
+        max_length=150,
+        help_text=_("City/municipality or foreign country where Member is born"),
+    )  # ITA: Comune di nascita
+    birth_province = models.CharField(
+        _("Birth Province"),
+        help_text=_("Italian Province where Member is born (EE for other countries)"),
+        choices=ITALIAN_PROVINCES,
+        max_length=2,
+        default="MO",
+    )
+
+    phone = models.CharField(
+        _("Phone Number"),
+        max_length=50,
+        help_text="Phone Number",
+        validators=[
+            RegexValidator(
+                r"^(00|\+)?((\d+|\(\d+\))[ \-]?)+\d$",
+                _("Use only plus sign (at start), dashes (-), spaces and parenthesis"),
+            )
+        ],
+    )
+
+    address_description = models.CharField(_("Address description"), max_length=150)
+    address_number = models.CharField(_("Address Number"), max_length=8)
+    address_additional = models.CharField(
+        _("Address additional info"), max_length=150, blank=True, default=""
+    )
+
+    address_city = models.CharField(_("Address City"), max_length=100)
+    address_postal_code = models.CharField(
+        _("Postal Code"),
+        max_length=5,
+        validators=[
+            RegexValidator(r"[0-9]{5}", _("Italian Postal Code is made of 5 digits"))
+        ],
+    )
+    address_province = models.CharField(
+        _("Address Province"),
+        help_text=_("Address Province (EE for other countries)"),
+        choices=ITALIAN_PROVINCES,
+        max_length=2,
+        default="MO",
+    )
+
+    class DocumentType(models.TextChoices):
+        CARTA_IDENTITA = "carta-identita", _("Carta Identità")
+        PASSAPORTO = "passaporto", _("Passaporto")
+        PATENTE = "patente", _("Patente")
+
+    document_type = models.CharField(
+        _("Document Type"), choices=DocumentType.choices, max_length=16
+    )
+    document_grant_from = models.CharField(
+        _("Who has grant the Document"),
+        max_length=100,
+        help_text=_("Public Authority who grant you the document"),
+    )
+    document_number = models.CharField(_("Document Number/Code"), max_length=30)
+    document_expires = models.DateField(_("Document Expiration Date"))
+
+    privacy_acknowledgement = models.DateField(
+        _("Privacy Page Aknowledgement"),
+        null=True,
+        blank=True,
+        default=None,
+        help_text=_("Last date Member has read privacy page"),
+    )
+
+    class Qualification(models.TextChoices):
+        DEFAULT = None
+        MASTER = "master", _("Master Universitario")
+        PHD = "phd", _("Dottorato di Ricerca")
+        MASTER_DEGREE = "master-degree", _("Laurea Magistrale")
+        BACHELOR_DEGREE = "bachelor-degree", _("Laurea")
+        HIGH_SCHOOL = "high-school", _("Diploma Maturità")
+        MID_SCHOOL = "mid-school", _("Licenza Media")
+        PRIMARY_SCHOOL = "primary_school", _("Elementari")
+
+    profession = models.CharField(
+        _("Profession"), blank=True, max_length=80, default=""
+    )
+    qualification = models.CharField(
+        _("Study Degree"),
+        null=True,
+        blank=True,
+        choices=Qualification.choices,
+        max_length=16,
+        default=None,
+    )
+
+    come_from = models.CharField(
+        _("How you found us"),
+        blank=True,
+        max_length=200,
+        default="",
+    )
+    interests = models.CharField(
+        _("Interests"),
+        blank=True,
+        max_length=200,
+        default="",
+    )
+
+    notes = models.TextField(_("Internal Notes"), default="", blank=True)
+
+    def __str__(self):
+        return f"{self.full_name} ({self.cf})"
 
 
 class Membership(Editable, Created, Trashable):

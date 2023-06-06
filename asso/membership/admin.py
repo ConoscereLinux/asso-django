@@ -16,8 +16,10 @@ class MembershipInline(admin.StackedInline):
 
 @admin.register(models.Member)
 class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ["cf", "user"]
+    list_display = ["user", "id", "first_name", "last_name", "cf", "birth_date"]
     list_filter = ["user", "cf"]
+
+    search_fields = ["first_name", "last_name", "cf"]
 
     inlines = [MembershipInline]
 

@@ -5,7 +5,10 @@
 {% block content %}
   <ul class="list-group col-md-6 col-lg-4">
     <li class="list-group-item active" aria-current="true">{{ member.full_name }}</li>
+    <li class="list-group-item">{{ member.user.email }}</li>
     <li class="list-group-item">{{ member.cf }}</li>
-    <li class="list-group-item">{{ member.email }}</li>
+    <li class="list-group-item">{{ member.get_sex_display }}</li>
+    <li class="list-group-item">{{ member.birth_date }}</li>
+    <li class="list-group-item">{{ member.birth_city }} ({{ member.birth_provence }})</li>
   </ul>
 {% endblock %}
