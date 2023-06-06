@@ -119,6 +119,26 @@ class Member(Editable, Created, Trashable):
         help_text=_("Last date Member has read privacy page"),
     )
 
+    class Qualification(models.TextChoices):
+        DEFAULT = None
+        MASTER = "master", _("Master Universitario")
+        PHD = "phd", _("Dottorato di Ricerca")
+        MASTER_DEGREE = "master-degree", _("Laurea Magistrale")
+        BACHELOR_DEGREE = "bachelor-degree", _("Laurea")
+        HIGH_SCHOOL = "high-school", _("Diploma Maturità")
+        MID_SCHOOL = "mid-school", _("Licenza Media")
+        PRIMARY_SCHOOL = "primary_school", _("Elementari")
+
+    profession = models.CharField(_("Profession"), blank=True, max_length=80)
+    qualification = models.CharField(
+        _("Study Degree"),
+        null=True,
+        blank=True,
+        choices=Qualification.choices,
+        max_length=16,
+        default=None,
+    )
+
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
 
     def __str__(self):
