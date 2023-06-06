@@ -129,7 +129,9 @@ class Member(Editable, Created, Trashable):
         MID_SCHOOL = "mid-school", _("Licenza Media")
         PRIMARY_SCHOOL = "primary_school", _("Elementari")
 
-    profession = models.CharField(_("Profession"), blank=True, max_length=80)
+    profession = models.CharField(
+        _("Profession"), blank=True, max_length=80, default=""
+    )
     qualification = models.CharField(
         _("Study Degree"),
         null=True,
@@ -137,6 +139,19 @@ class Member(Editable, Created, Trashable):
         choices=Qualification.choices,
         max_length=16,
         default=None,
+    )
+
+    come_from = models.CharField(
+        _("How you found us"),
+        blank=True,
+        max_length=200,
+        default="",
+    )
+    interests = models.CharField(
+        _("Interests"),
+        blank=True,
+        max_length=200,
+        default="",
     )
 
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
