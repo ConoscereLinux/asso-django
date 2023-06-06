@@ -4,6 +4,7 @@ import pathlib
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.utils.text import slugify
+from loguru import logger
 from tqdm import tqdm
 
 import asso.academy.models as am
@@ -12,6 +13,12 @@ from asso.core.models import User
 from asso.membership.models import Member
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
+
+
+def fill_none(item: dict, key, default):
+    if item.get(key) is None:
+        logger.debug(f"Fill value for {item['slug']} in key {key} with {default}")
+        item[key] = default
 
 
 def run(*args):
@@ -26,10 +33,29 @@ def run(*args):
     print("Loading members...")
     members = {m.pop("id"): m for m in data.get("members", [])}
     for membership in tqdm(data.get("memberships", [])):
-        if membership["year"] not in {2022}:
+        if membership["year"] not in {2020, 2021, 2022, 2023}:
             continue
 
         member = members[membership.pop("member_id")]
+
+        fill_none(member, "cf", "AAAABBBBCCCCDDDD")
+        fill_none(member, "sex", "M")
+        fill_none(member, "birth_city", "NOT VALID")
+        fill_none(member, "birth_date", "1970-01-01")
+        fill_none(member, "birth_province", "EE")
+        fill_none(member, "phone", "+39 000 0000000")
+
+        fill_none(member, "address_description", "Via")
+        fill_none(member, "address_number", " ")
+        fill_none(member, "address_city", "NOT VALID")
+        fill_none(member, "address_province", "EE")
+        fill_none(member, "address_postal_code", "00000")
+
+        fill_none(member, "document_type", "carta-identita")
+        fill_none(member, "document_grant_from", "NOT VALID")
+        fill_none(member, "document_number", "NOT VALID")
+
+        member = member.copy()
 
         user = {
             "username": member.pop("slug"),
