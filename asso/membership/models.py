@@ -110,7 +110,9 @@ class Member(Editable, Created, Trashable):
         help_text=_("Public Authority who grant you the document"),
     )
     document_number = models.CharField(_("Document Number/Code"), max_length=30)
-    document_expires = models.DateField(_("Document Expiration Date"))
+    document_expires = models.DateField(
+        _("Document Expiration Date"), default=dt.date.today
+    )
 
     privacy_acknowledgement = models.DateField(
         _("Privacy Page Aknowledgement"),

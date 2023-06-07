@@ -1,3 +1,4 @@
+import datetime as dt
 import json
 import pathlib
 
@@ -15,9 +16,10 @@ from asso.membership.models import Member
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
 
 
-def fill_none(item: dict, key, default):
+def fill_none(item: dict, key, default, skip_log: bool = False):
     if item.get(key) is None:
-        logger.debug(f"Fill value for {item['slug']} in key {key} with {default}")
+        if not skip_log:
+            logger.debug(f"Fill value for {item['slug']} in key {key} with {default}")
         item[key] = default
 
 
@@ -46,7 +48,7 @@ def run(*args):
         fill_none(member, "phone", "+39 000 0000000")
 
         fill_none(member, "address_description", "Via")
-        fill_none(member, "address_number", " ")
+        fill_none(member, "address_number", "SNC", skip_log=True)
         fill_none(member, "address_city", "NOT VALID")
         fill_none(member, "address_province", "EE")
         fill_none(member, "address_postal_code", "00000")
@@ -54,6 +56,7 @@ def run(*args):
         fill_none(member, "document_type", "carta-identita")
         fill_none(member, "document_grant_from", "NOT VALID")
         fill_none(member, "document_number", "NOT VALID")
+        fill_none(member, "document_expires", dt.date.today(), skip_log=True)
 
         member = member.copy()
 
