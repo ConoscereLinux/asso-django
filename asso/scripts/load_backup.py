@@ -7,9 +7,9 @@ from django.utils.text import slugify
 from loguru import logger
 from tqdm import tqdm
 
-import asso.academy.models as am
+from asso.academy.models import ApprovalState, Event
 from asso.core.data import load_item
-from asso.core.models import User
+from asso.core.models.users import User
 from asso.membership.models import Member
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
@@ -70,9 +70,9 @@ def run(*args):
     print("Loading Courses")
     for event in tqdm(data.get("courses", [])):
         approval_state = {"title": event.pop("approval_state")}
-        event["approval_state"], _ = load_item(approval_state, am.ApprovalState)
+        event["approval_state"], _ = load_item(approval_state, ApprovalState)
 
         event.setdefault("slug", slugify(event.get("title", "")))
         event["creation_date"] = event.pop("creation_date")
         event["edit_date"] = event.pop("edit_date")
-        load_item(event, am.Event, ("slug",), ("id", "end_sub_date", "teacher_ids"))
+        load_item(event, Event, ("slug",), ("id", "end_sub_date", "teacher_ids"))

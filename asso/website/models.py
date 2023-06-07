@@ -2,8 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from ..core.fields import UniqueBooleanField
-from ..core.models import Descripted, Ordered
+from asso.core.fields import UniqueBooleanField
+from asso.core.models.commons import Descripted, Ordered
 
 
 class ThemeConfig(models.Model):

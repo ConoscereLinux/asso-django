@@ -8,7 +8,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 
-from ..core.models import Common, Created, Editable, Trashable
+from asso.core.models.commons import Common, Created, Editable, Trashable
 
 
 class Account(Common, Trashable):

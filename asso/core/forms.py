@@ -2,7 +2,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.forms import CharField, ModelForm, PasswordInput
 
-from .models import User
+from asso.core.models.users import User
 
 
 class UserCreationForm(ModelForm):

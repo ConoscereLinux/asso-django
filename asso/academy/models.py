@@ -4,8 +4,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from ..accountant.models import Transaction
-from ..core.models import Common, Created, Editable, Trashable
+from asso.accountant.models import Transaction
+from asso.core.models.commons import Common, Created, Editable, Trashable
 
 
 class ApprovalState(Common, Trashable):

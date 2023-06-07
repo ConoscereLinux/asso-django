@@ -11,7 +11,8 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
-from ..core.models import Common, Created, Editable, Trashable
+from asso.core.models.commons import Common, Created, Editable, Trashable
+
 from .constants import ITALIAN_PROVINCES
 
 

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserChangeForm, UserCreationForm
-from .models import User
+from .models.users import User
 
 
 class UserAdmin(BaseUserAdmin):
@@ -52,7 +52,6 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-# admin.site.unregister(Group)  # uncomment to disable groups
 
 
 def _add_fields(
