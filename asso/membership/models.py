@@ -11,7 +11,8 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
-from ..core.models import Common, Created, Editable, Trashable
+from asso.core.models.commons import Common, Created, Editable, Trashable
+
 from .constants import ITALIAN_PROVINCES
 
 
@@ -37,7 +38,6 @@ class Member(Editable, Created, Trashable):
     cf = models.CharField(
         _("Codice Fiscale"),
         max_length=16,
-        help_text=_("Codice Fiscale"),
         validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
     )
 
@@ -47,7 +47,7 @@ class Member(Editable, Created, Trashable):
 
     sex = models.CharField(_("Gender"), choices=Gender.choices, max_length=1)
 
-    birth_date = models.DateField(_("Birth Date"), help_text=_("Birth Date"))
+    birth_date = models.DateField(_("Birth Date"))
     birth_city = models.CharField(
         _("Birth City"),
         max_length=150,
@@ -109,7 +109,9 @@ class Member(Editable, Created, Trashable):
         help_text=_("Public Authority who grant you the document"),
     )
     document_number = models.CharField(_("Document Number/Code"), max_length=30)
-    document_expires = models.DateField(_("Document Expiration Date"))
+    document_expires = models.DateField(
+        _("Document Expiration Date"), default=dt.date.today
+    )
 
     privacy_acknowledgement = models.DateField(
         _("Privacy Page Aknowledgement"),
@@ -168,15 +170,13 @@ class Membership(Editable, Created, Trashable):
         on_delete=models.CASCADE,
         related_name="member_memberships",
         verbose_name=_("Member"),
-        help_text=_("The Member for that period"),
     )
 
     period = models.ForeignKey(
         "MembershipPeriod",
         on_delete=models.CASCADE,
         related_name="period_memberships",
-        verbose_name=_("Period"),
-        help_text=_("The Period the Membership Apply"),
+        verbose_name=_("Membership Period"),
     )
 
     card_number = models.SmallIntegerField(
@@ -231,7 +231,7 @@ class MemberRegister(Common, Trashable):
 class RegisterEntry(Editable, Created, Trashable):
     """It is the single Entry (corresponding to a Membership) of the Register."""
 
-    rester = models.ForeignKey(
+    register = models.ForeignKey(
         "MemberRegister",
         on_delete=models.CASCADE,
         related_name="register_entries",
