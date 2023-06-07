@@ -64,7 +64,7 @@ class Member(Editable, Created, Trashable):
     phone = models.CharField(
         _("Phone Number"),
         max_length=50,
-        help_text="Phone Number",
+        help_text=_("Phone Number, use only digits, +, -, space and parenthesis"),
         validators=[
             RegexValidator(
                 r"^(00|\+)?((\d+|\(\d+\))[ \-]?)+\d$",

@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-07 03:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:27
+msgid "The User used for Login"
+msgstr "L'utente relativo a questo membro"
+
+#: models.py:38 models.py:40
+msgid "Codice Fiscale"
+msgstr ""
+
+#: models.py:41
+msgid "Invalid Fiscal Code"
+msgstr "Codice Fiscale Invalido"
+
+#: models.py:45
+msgid "Male"
+msgstr "Maschio"
+
+#: models.py:46
+msgid "Female"
+msgstr "Femmina"
+
+#: models.py:48
+msgid "Gender"
+msgstr "Genere"
+
+#: models.py:50
+msgid "Birth Date"
+msgstr "Data di nascita"
+
+#: models.py:52
+msgid "Birth City"
+msgstr "Comune di nascita"
+
+#: models.py:54
+msgid "City/municipality or foreign country where Member is born"
+msgstr "Comune di nascita (nazione di nascita se nato all'estero)"
+
+#: models.py:57
+msgid "Birth Province"
+msgstr "Provincia di nascita"
+
+#: models.py:58
+msgid "Italian Province where Member is born (EE for other countries)"
+msgstr "Provincia di nascita (EE se nato all'estero)"
+
+#: models.py:65
+msgid "Phone Number"
+msgstr "Numero di telefono"
+
+#: models.py:67
+msgid "Phone Number, use only digits, +, -, space and parenthesis"
+msgstr "Numero di Telefono, usa solo numeri, +, -, spazi e/o parentesi"
+
+#: models.py:71
+msgid "Use only plus sign (at start), dashes (-), spaces and parenthesis"
+msgstr "Usa solo il simbolo + (solo all'inizio), trattino (-), spazio e parentesi"
+
+#: models.py:76
+msgid "Address description"
+msgstr "Indirizzo (descrizione/via)"
+
+#: models.py:77
+msgid "Address Number"
+msgstr "Numero Civico"
+
+#: models.py:79
+msgid "Address additional info"
+msgstr "Indirizzo (informazioni aggiuntive)"
+
+#: models.py:82
+msgid "Address City"
+msgstr "Indirizzo (Città)"
+
+#: models.py:84
+msgid "Postal Code"
+msgstr "Codice di Avviamento Postale (CAP)"
+
+#: models.py:87
+msgid "Italian Postal Code is made of 5 digits"
+msgstr "Il codice CAP è composto esattamente da 5 cifre numeriche"
+
+#: models.py:91
+msgid "Address Province"
+msgstr "Indirizzo (Provincia)"
+
+#: models.py:92
+msgid "Address Province (EE for other countries)"
+msgstr "Indirizzo (Provincia) - EE se non in Italia"
+
+#: models.py:99
+msgid "Carta Identità"
+msgstr ""
+
+#: models.py:100
+msgid "Passaporto"
+msgstr ""
+
+#: models.py:101
+msgid "Patente"
+msgstr ""
+
+#: models.py:104
+msgid "Document Type"
+msgstr "Tipo di Documento"
+
+#: models.py:107
+msgid "Who has grant the Document"
+msgstr "Docuemnto rilasciato da"
+
+#: models.py:109
+msgid "Public Authority who grant you the document"
+msgstr "Ente che ha rilasciato il documento"
+
+#: models.py:111
+msgid "Document Number/Code"
+msgstr "Numero Documento"
+
+#: models.py:112
+msgid "Document Expiration Date"
+msgstr "Data scadenza documento"
+
+#: models.py:115
+msgid "Privacy Page Aknowledgement"
+msgstr "Presa visione della pagina privacy"
+
+#: models.py:119
+msgid "Last date Member has read privacy page"
+msgstr "Data più recente in cui l'utente ha visionato la pagina privacy"
+
+#: models.py:124
+msgid "Master Universitario"
+msgstr ""
+
+#: models.py:125
+msgid "Dottorato di Ricerca"
+msgstr ""
+
+#: models.py:126
+msgid "Laurea Magistrale"
+msgstr ""
+
+#: models.py:127
+msgid "Laurea"
+msgstr ""
+
+#: models.py:128
+msgid "Diploma Maturità"
+msgstr ""
+
+#: models.py:129
+msgid "Licenza Media"
+msgstr ""
+
+#: models.py:130
+msgid "Elementari"
+msgstr ""
+
+#: models.py:133
+msgid "Profession"
+msgstr "Professione"
+
+#: models.py:136
+msgid "Study Degree"
+msgstr "Titolo di Studio"
+
+#: models.py:145
+msgid "How you found us"
+msgstr "Come ci hai trovato?"
+
+#: models.py:151
+msgid "Interests"
+msgstr "Interessi"
+
+#: models.py:157
+msgid "Internal Notes"
+msgstr "Note"
+
+#: models.py:170
+msgid "Member"
+msgstr ""
+
+#: models.py:171
+msgid "The Member for that period"
+msgstr ""
+
+#: models.py:178 models.py:226
+msgid "Period"
+msgstr ""
+
+#: models.py:179 models.py:227
+msgid "The Period the Membership Apply"
+msgstr ""
+
+#: models.py:184
+msgid "Card Number"
+msgstr ""
+
+#: models.py:185
+msgid "The unique number to write on the card"
+msgstr ""
+
+#: models.py:195
+msgid "Start Date"
+msgstr ""
+
+#: models.py:196
+msgid "It is the day the Membership starts"
+msgstr ""
+
+#: models.py:201
+msgid "Duration"
+msgstr ""
+
+#: models.py:202
+msgid "How long is the Membership Period"
+msgstr ""
+
+#: models.py:210
+msgid "Price"
+msgstr ""
+
+#: models.py:211
+msgid "The price to pay for this Period Membership"
+msgstr ""
+
+#: models.py:238
+msgid "Register"
+msgstr ""
+
+#: models.py:239
+msgid "The owner Register"
+msgstr ""
+
+#: models.py:246
+msgid "Membership"
+msgstr ""
+
+#: models.py:247
+msgid "The corresponding Membership"
+msgstr ""
