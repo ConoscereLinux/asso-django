@@ -34,6 +34,17 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
 
+    first_name = models.CharField(
+        _("First Name"),
+        max_length=150,
+        blank=False,
+    )
+    last_name = models.CharField(
+        _("Last Name"),
+        max_length=150,
+        blank=False,
+    )
+
     username_validator = UnicodeUsernameValidator()
     username = models.CharField(
         _("username"),
@@ -58,5 +69,5 @@ class User(AbstractUser):
 
     def __str__(self):
         if full_name := self.get_full_name():
-            return f"{full_name}<{self.email}>"
+            return f"{full_name} ({self.email})"
         return self.email

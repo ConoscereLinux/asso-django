@@ -21,19 +21,14 @@ class Member(Editable, Created, Trashable):
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
-        unique=True,
-        null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         related_name="member",
-        help_text=_("The User used for Login"),
     )
-
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
 
     @property
     def full_name(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+        if self.user:
+            return f"{self.user.first_name} {self.user.last_name}"
 
     cf = models.CharField(
         _("Codice Fiscale"),
@@ -167,8 +162,8 @@ class Membership(Editable, Created, Trashable):
 
     member = models.ForeignKey(
         "Member",
-        on_delete=models.CASCADE,
-        related_name="member_memberships",
+        on_delete=models.PROTECT,
+        related_name="memberships",
         verbose_name=_("Member"),
     )
 
