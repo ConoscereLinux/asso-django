@@ -2,10 +2,14 @@
 
 from django.conf import settings
 from django.db import models
+from django.db.models import Q
+from django.db.models.functions import Length
 from django.utils.translation import gettext_lazy as _
 
 from asso.accountant.models import Transaction
 from asso.core.models.commons import Common, Created, Editable, Trashable
+
+models.CharField.register_lookup(Length)
 
 
 class ApprovalState(Common, Trashable):
@@ -170,6 +174,10 @@ class Presence(Created, Editable):
 class Trainer(Created, Editable, Trashable):
     """Represents someone that can present an Event"""
 
+    display_name = models.CharField(
+        _("Displayed name"), max_length=200, blank=True, default=""
+    )
+
     biography = models.TextField(
         blank=True,
         verbose_name=_("Biography"),
@@ -179,7 +187,23 @@ class Trainer(Created, Editable, Trashable):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         null=True,
+        blank=True,
         on_delete=models.SET_NULL,
         verbose_name=_("User"),
         help_text=_("The User the Trainer use for Login"),
     )
+
+    @property
+    def template_name(self):
+        return self.user.full_name if not (dn := self.display_name) else dn
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=Q(user__isnull=False) | Q(display_name__length__gt=0),
+                name="not_both_null",
+                violation_error_message=_(
+                    "displayed name and user cannot be either unset"
+                ),
+            )
+        ]
