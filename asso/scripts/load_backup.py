@@ -9,8 +9,8 @@ from loguru import logger
 from tqdm import tqdm
 
 from asso.academy.models import ApprovalState, Event
-from asso.core.data import load_item
 from asso.core.models.users import User
+from asso.core.utils import load_item
 from asso.membership.models import Member
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"

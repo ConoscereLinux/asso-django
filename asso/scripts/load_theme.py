@@ -5,7 +5,7 @@ from django.utils.text import slugify
 from loguru import logger
 
 import asso.website.models as wm
-from asso.core.data import load_item
+from asso.core.utils import load_item
 
 
 def run():
