@@ -12,6 +12,7 @@ from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
 from asso.core.models.commons import Common, Created, Editable, Trashable
+from asso.core.utils import year_first_day, yearly_duration
 
 from .constants import ITALIAN_PROVINCES
 
@@ -185,17 +186,20 @@ class MembershipPeriod(Common, Trashable):
     """This represents the applying period of the Membership."""
 
     start_date = models.DateField(
-        auto_now=False,
-        auto_now_add=True,
+        default=year_first_day,
         verbose_name=_("Start Date"),
         help_text=_("It is the day the Membership starts"),
     )
 
     duration = RelativeDeltaField(
-        default="P1Y",
+        default=yearly_duration,
         verbose_name=_("Duration"),
         help_text=_("How long is the Membership Period"),
     )
+
+    @property
+    def end_date(self) -> dt.date:
+        return self.start_date + self.duration
 
     price = MoneyField(
         max_digits=10,
@@ -203,12 +207,11 @@ class MembershipPeriod(Common, Trashable):
         default=0.0,
         default_currency="EUR",
         verbose_name=_("Price"),
-        help_text=_("The price to pay for this Period Membership"),
+        help_text=_("The default price to pay for this Period Membership"),
     )
 
-    @property
-    def end_date(self) -> dt.date:
-        return self.start_date + self.duration
+    def __str__(self):
+        return self.title
 
 
 class MemberRegister(Common, Trashable):

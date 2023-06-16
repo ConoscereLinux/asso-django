@@ -26,4 +26,4 @@ class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
 
 @admin.register(models.MembershipPeriod)
 class MembershipPeriodAdmin(admin.ModelAdmin):
-    list_display = ["start_date", "end_date"]
+    list_display = ["title", "start_date", "end_date", "duration", "description"]
