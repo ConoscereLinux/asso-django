@@ -31,6 +31,7 @@ class Member(Editable, Created, Trashable):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
+        verbose_name=_("User"),
         related_name="member",
     )
 
