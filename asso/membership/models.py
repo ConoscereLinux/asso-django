@@ -3,8 +3,11 @@
 # Standard Import
 import datetime as dt
 
+from codicefiscale import codicefiscale
+
 # Site-package Import
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -15,6 +18,11 @@ from asso.core.models.commons import Common, Created, Editable, Trashable
 from asso.core.utils import year_first_day, yearly_duration
 
 from .constants import ITALIAN_PROVINCES
+
+
+def check_member_cf(value: str):
+    if not codicefiscale.is_valid(value):
+        raise ValidationError(_(f"Fiscal Code {value} formally invalid"))
 
 
 class Member(Editable, Created, Trashable):
@@ -29,7 +37,7 @@ class Member(Editable, Created, Trashable):
     cf = models.CharField(
         _("Codice Fiscale"),
         max_length=16,
-        validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
+        validators=[check_member_cf],
     )
 
     class Gender(models.TextChoices):
