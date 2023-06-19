@@ -73,11 +73,9 @@ class Member(Editable, Created, Trashable):
         ],
     )
 
-    address_description = models.CharField(_("Address description"), max_length=150)
-    address_additional = models.CharField(
-        _("Address additional info"), max_length=150, blank=True, default=""
+    address_description = models.CharField(
+        _("Address"), max_length=200, help_text=_("Example: Via Roma 42/a")
     )
-
     address_city = models.CharField(_("Address City"), max_length=100)
     address_postal_code = models.CharField(
         _("Postal Code"),
