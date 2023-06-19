@@ -26,11 +26,6 @@ class Member(Editable, Created, Trashable):
         related_name="member",
     )
 
-    @property
-    def full_name(self) -> str:
-        if self.user:
-            return f"{self.user.first_name} {self.user.last_name}"
-
     cf = models.CharField(
         _("Codice Fiscale"),
         max_length=16,
@@ -44,11 +39,12 @@ class Member(Editable, Created, Trashable):
     sex = models.CharField(_("Gender"), choices=Gender.choices, max_length=1)
 
     birth_date = models.DateField(_("Birth Date"))
+    # Translators: Comune di nascita (ITA)
     birth_city = models.CharField(
         _("Birth City"),
         max_length=150,
         help_text=_("City/municipality or foreign country where Member is born"),
-    )  # ITA: Comune di nascita
+    )
     birth_province = models.CharField(
         _("Birth Province"),
         help_text=_("Italian Province where Member is born (EE for other countries)"),
@@ -153,6 +149,10 @@ class Member(Editable, Created, Trashable):
     )
 
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
+
+    @property
+    def full_name(self) -> str:
+        return getattr(self.user, "full_name", None)
 
     def __str__(self):
         return f"{self.full_name} ({self.cf})"
