@@ -74,7 +74,6 @@ class Member(Editable, Created, Trashable):
     )
 
     address_description = models.CharField(_("Address description"), max_length=150)
-    address_number = models.CharField(_("Address Number"), max_length=8)
     address_additional = models.CharField(
         _("Address additional info"), max_length=150, blank=True, default=""
     )
