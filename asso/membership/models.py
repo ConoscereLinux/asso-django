@@ -3,8 +3,11 @@
 # Standard Import
 import datetime as dt
 
+from codicefiscale import codicefiscale
+
 # Site-package Import
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -17,24 +20,25 @@ from asso.core.utils import year_first_day, yearly_duration
 from .constants import ITALIAN_PROVINCES
 
 
+def check_member_cf(value: str):
+    if not codicefiscale.is_valid(value):
+        raise ValidationError(_(f"Fiscal Code {value} formally invalid"))
+
+
 class Member(Editable, Created, Trashable):
     """It represents an Association Member"""
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
+        verbose_name=_("User"),
         related_name="member",
     )
-
-    @property
-    def full_name(self) -> str:
-        if self.user:
-            return f"{self.user.first_name} {self.user.last_name}"
 
     cf = models.CharField(
         _("Codice Fiscale"),
         max_length=16,
-        validators=[RegexValidator(r"[A-Z0-9]{16}", _("Invalid Fiscal Code"))],
+        validators=[check_member_cf],
     )
 
     class Gender(models.TextChoices):
@@ -44,11 +48,12 @@ class Member(Editable, Created, Trashable):
     sex = models.CharField(_("Gender"), choices=Gender.choices, max_length=1)
 
     birth_date = models.DateField(_("Birth Date"))
+    # Translators: Comune di nascita (ITA)
     birth_city = models.CharField(
         _("Birth City"),
         max_length=150,
         help_text=_("City/municipality or foreign country where Member is born"),
-    )  # ITA: Comune di nascita
+    )
     birth_province = models.CharField(
         _("Birth Province"),
         help_text=_("Italian Province where Member is born (EE for other countries)"),
@@ -69,12 +74,9 @@ class Member(Editable, Created, Trashable):
         ],
     )
 
-    address_description = models.CharField(_("Address description"), max_length=150)
-    address_number = models.CharField(_("Address Number"), max_length=8)
-    address_additional = models.CharField(
-        _("Address additional info"), max_length=150, blank=True, default=""
+    address_description = models.CharField(
+        _("Address"), max_length=200, help_text=_("Example: Via Roma 42/a")
     )
-
     address_city = models.CharField(_("Address City"), max_length=100)
     address_postal_code = models.CharField(
         _("Postal Code"),
@@ -153,6 +155,10 @@ class Member(Editable, Created, Trashable):
     )
 
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
+
+    @property
+    def full_name(self) -> str:
+        return getattr(self.user, "full_name", None)
 
     def __str__(self):
         return f"{self.full_name} ({self.cf})"
