@@ -26,7 +26,7 @@ def fill_none(item: dict, key, default, skip_log: bool = False):
 
 
 def fill_member(member: dict) -> dict:
-    fill_none(member, "document_expires", dt.date.today(), skip_log=True)
+    fill_none(member, "document_expires", dt.date(1970, 1, 1), skip_log=True)
 
     member.pop("title", None)
     return member
