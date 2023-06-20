@@ -12,8 +12,8 @@ from tqdm import tqdm
 
 from asso.academy.models import ApprovalState, Event
 from asso.core.models.users import User
-from asso.core.utils import load_item
-from asso.membership.models import Member
+from asso.core.utils import load_item, yearly_duration
+from asso.membership.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
 
@@ -55,8 +55,22 @@ def run(*args):
         }
         members[member_id] = member
 
+    membership_periods = {
+        year: load_item(
+            {
+                "title": str(year),
+                "start_date": dt.date(year, 1, 1),
+                "duration": yearly_duration(),
+                "price": 10,
+            },
+            MembershipPeriod,
+            ("start_date",),
+        )
+        for year in (2020, 2021, 2022, 2023)
+    }
+
     for membership in tqdm(data.get("memberships", [])):
-        if membership["year"] not in {2020, 2021, 2022, 2023}:
+        if (year := membership["year"]) not in membership_periods:
             continue
 
         id_ = membership["member_id"]
@@ -74,7 +88,15 @@ def run(*args):
                 logger.error(f"Skip Member {name}: {getattr(err, 'error_list', err)}")
                 continue
 
-        # load_item(membership, Membership, ...)
+        load_item(
+            {
+                "member": member,
+                "period": membership_periods[year],
+                "card_number": membership["card"],
+            },
+            Membership,
+            ("member", "period"),
+        )
 
     print("Loading Courses")
     for event in tqdm(data.get("courses", [])):
