@@ -16,12 +16,14 @@ class MembershipInline(admin.StackedInline):
 
 @admin.register(models.Member)
 class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ["cf", "user"]
-    list_filter = ["user", "cf"]
+    list_display = ["user", "id", "cf", "birth_date"]
+    list_filter = ["sex", "document_type"]
+
+    search_fields = ["user", "cf"]
 
     inlines = [MembershipInline]
 
 
 @admin.register(models.MembershipPeriod)
 class MembershipPeriodAdmin(admin.ModelAdmin):
-    list_display = ["start_date", "end_date"]
+    list_display = ["title", "start_date", "end_date", "duration", "description"]

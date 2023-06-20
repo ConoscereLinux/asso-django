@@ -32,4 +32,4 @@ class EventAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
 
 @admin.register(models.Trainer)
 class TrainerAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ("user",)
+    list_display = ("template_name", "user", "display_name")

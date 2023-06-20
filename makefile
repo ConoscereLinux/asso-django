@@ -41,7 +41,7 @@ develop:
 
 bootstrap-django:
 	@echo -e $(bold)Initialize Django db and admin superuser$(sgr0)
-	rm -f db.sqlite3
+	mkdir -p .data && rm -f .data/db.sqlite3
 	$(django) migrate
 	$(django) createsuperuser --email=info@conoscerelinux.org
 
@@ -51,7 +51,9 @@ secret_key:
 serve:
 	@echo -e $(bold)Launch Django development server$(sgr0)
 	DEBUG=True $(django) runserver $(HOST):$(PORT)
-	
+
+test:
+	$(python) -m pytest
 
 # Database Management
 .PHONY: demo migrate migrations

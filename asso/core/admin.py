@@ -2,41 +2,56 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserChangeForm, UserCreationForm
-from .models import User
+from .models.users import User
 
 
 class UserAdmin(BaseUserAdmin):
-    """A Custom USerAdmin
+    """A Custom UserAdmin using email instead of username
 
     see: https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#a-full-example
+    see: https://testdriven.io/blog/django-custom-user-model/
     """
+
+    list_display = [
+        "email",
+        "username",
+        "first_name",
+        "last_name",
+        "is_staff",
+        "is_superuser",
+        "last_login",
+    ]
+
+    list_filter = ["is_staff", "is_superuser"]
+    search_fields = ["email", "first_name", "last_name", "username"]
+    ordering = ["email"]
 
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ["email", "nickname", "is_staff", "is_active", "creation_date"]
-    list_filter = ["is_staff", "is_active"]
-
-    fieldsets = [
-        (None, {"fields": ["email", "nickname", "password"]}),
-        ("Permissions", {"fields": ["is_staff", "is_active", "groups"]}),
-    ]
+    # fieldsets = [
+    #     (None, {"fields": ["email", "password"]}),
+    #     ("Permissions", {"fields": ["is_staff", "is_active", "groups"]}),
+    # ]
     add_fieldsets = [
         (
             None,
             {
                 "classes": ["wide"],
-                "fields": ["email", "creation_date", "password1", "password2"],
+                "fields": [
+                    "email",
+                    "username",
+                    "first_name",
+                    "last_name",
+                    "password1",
+                    "password2",
+                ],
             },
         ),
     ]
-    search_fields = ["email"]
-    ordering = ["email"]
-    filter_horizontal = []
 
 
 admin.site.register(User, UserAdmin)
-# admin.site.unregister(Group)  # uncomment to disable groups
 
 
 def _add_fields(
