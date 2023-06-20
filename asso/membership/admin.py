@@ -19,7 +19,7 @@ class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     list_display = ["user", "id", "cf", "birth_date"]
     list_filter = ["sex", "document_type"]
 
-    search_fields = ["user", "cf"]
+    search_fields = ["user__first_name", "user__last_name", "user__email", "cf"]
 
     inlines = [MembershipInline]
 
