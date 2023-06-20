@@ -67,3 +67,13 @@ migrations:
 demo:
 	$(django) runscript load_theme
 	$(django) runscript load_backup
+
+
+# Internationalization
+.PHONY: messages translations
+
+messages:
+	$(django) makemessages -l it
+
+translations: messages
+	$(django) compilemessages
