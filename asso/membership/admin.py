@@ -5,7 +5,7 @@ from . import models
 
 
 @admin.register(models.Membership)
-class MembershipAdmin(admin.ModelAdmin):
+class MembershipAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     list_display = ["member", "card_number", "period"]
 
 
@@ -25,5 +25,5 @@ class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
 
 
 @admin.register(models.MembershipPeriod)
-class MembershipPeriodAdmin(admin.ModelAdmin):
+class MembershipPeriodAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
     list_display = ["title", "start_date", "end_date", "duration", "description"]
