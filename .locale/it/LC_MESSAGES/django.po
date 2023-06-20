@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 02:13+0200\n"
+"POT-Creation-Date: 2023-06-20 02:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Indicate if the membership is needed in order to attend to this event"
 msgstr ""
 
-#: asso/academy/models.py:68 asso/membership/models.py:215
+#: asso/academy/models.py:68 asso/membership/models.py:219
 msgid "Price"
 msgstr ""
 
@@ -552,63 +552,67 @@ msgstr "Interessi"
 msgid "Internal Notes"
 msgstr "Note"
 
-#: asso/membership/models.py:174
+#: asso/membership/models.py:167 asso/membership/models.py:178
 msgid "Member"
-msgstr ""
+msgstr "Socio"
 
-#: asso/membership/models.py:181
+#: asso/membership/models.py:168
+msgid "Members"
+msgstr "Soci"
+
+#: asso/membership/models.py:185
 msgid "Membership Period"
 msgstr ""
 
-#: asso/membership/models.py:186
+#: asso/membership/models.py:190
 msgid "Card Number"
 msgstr ""
 
-#: asso/membership/models.py:187
+#: asso/membership/models.py:191
 msgid "The unique number to write on the card"
 msgstr ""
 
-#: asso/membership/models.py:196
+#: asso/membership/models.py:200
 msgid "Start Date"
 msgstr ""
 
-#: asso/membership/models.py:197
+#: asso/membership/models.py:201
 msgid "It is the day the Membership starts"
 msgstr ""
 
-#: asso/membership/models.py:202
+#: asso/membership/models.py:206
 msgid "Duration"
 msgstr ""
 
-#: asso/membership/models.py:203
+#: asso/membership/models.py:207
 msgid "How long is the Membership Period"
 msgstr ""
 
-#: asso/membership/models.py:216
+#: asso/membership/models.py:220
 msgid "The default price to pay for this Period Membership"
 msgstr ""
 
-#: asso/membership/models.py:230
+#: asso/membership/models.py:234
 msgid "Period"
 msgstr ""
 
-#: asso/membership/models.py:231
+#: asso/membership/models.py:235
 msgid "The Period the Membership Apply"
 msgstr ""
 
-#: asso/membership/models.py:242
+#: asso/membership/models.py:246
 msgid "Register"
 msgstr ""
 
-#: asso/membership/models.py:243
+#: asso/membership/models.py:247
 msgid "The owner Register"
 msgstr ""
 
-#: asso/membership/models.py:250
+#: asso/membership/models.py:254
 msgid "Membership"
 msgstr ""
 
-#: asso/membership/models.py:251
+#: asso/membership/models.py:255
 msgid "The corresponding Membership"
 msgstr ""
 

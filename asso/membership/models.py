@@ -163,6 +163,10 @@ class Member(Editable, Created, Trashable):
     def __str__(self):
         return f"{self.full_name} ({self.cf})"
 
+    class Meta:
+        verbose_name = _("Member")
+        verbose_name_plural = _("Members")
+
 
 class Membership(Editable, Created, Trashable):
     """The membership of a user for a particular period."""
