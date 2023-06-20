@@ -98,6 +98,8 @@ class Activable(models.Model):
 
 
 class Descripted(models.Model):
+    """A Model wich implement a title and description text fields"""
+
     title = models.CharField(max_length=256, default="", verbose_name=_("Title"))
     description = models.TextField(
         default="",
@@ -112,6 +114,8 @@ class Descripted(models.Model):
 
 
 class Common(Descripted, Editable, Created):
+    """A Model which implement a title, description, edit info and creation info"""
+
     class Meta:
         abstract = True
         ordering = Created.Meta.ordering
