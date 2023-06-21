@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 import pathlib
+from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
@@ -16,6 +17,11 @@ from asso.core.utils import load_item, yearly_duration
 from asso.membership.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
+TZ = ZoneInfo("Europe/Rome")
+
+
+def as_datetime(date: str, timezone: ZoneInfo = None) -> dt.datetime:
+    return dt.datetime.combine(dt.date.fromisoformat(date), dt.time(0, 0), timezone)
 
 
 def fill_none(item: dict, key, default, skip_log: bool = False):
@@ -93,6 +99,8 @@ def run(*args):
                 "member": member,
                 "period": membership_periods[year],
                 "card_number": membership["card"],
+                # NOTE: on creation this value is ignored
+                "creation_date": as_datetime(membership["date"], TZ),
             },
             Membership,
             ("member", "period"),
