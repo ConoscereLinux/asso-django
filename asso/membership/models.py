@@ -191,6 +191,9 @@ class Membership(Editable, Created, Trashable):
         help_text=_("The unique number to write on the card"),
     )
 
+    def __str__(self):
+        return f"{str(self.period)}/{self.card_number}"
+
 
 class MembershipPeriod(Common, Trashable):
     """This represents the applying period of the Membership."""
