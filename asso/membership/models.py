@@ -207,7 +207,7 @@ class MembershipPeriod(Common, Trashable):
     duration = RelativeDeltaField(
         default=yearly_duration,
         verbose_name=_("Duration"),
-        help_text=_("Duration of this Period (as ISO8601 format with designators"),
+        help_text=_("Duration of this Period (as ISO8601 format with designators)"),
     )
 
     @property

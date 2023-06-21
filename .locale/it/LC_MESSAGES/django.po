@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 02:26+0200\n"
+"POT-Creation-Date: 2023-06-21 00:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Indicates if at this state the Event has to be shown"
 msgstr ""
 
-#: asso/academy/models.py:36 asso/core/models/commons.py:101
+#: asso/academy/models.py:36 asso/core/models/commons.py:103
 msgid "Title"
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Indicate if the membership is needed in order to attend to this event"
 msgstr ""
 
-#: asso/academy/models.py:68 asso/membership/models.py:219
+#: asso/academy/models.py:68 asso/membership/models.py:222
 msgid "Price"
 msgstr ""
 
@@ -341,11 +341,11 @@ msgstr ""
 msgid "Is the object active"
 msgstr ""
 
-#: asso/core/models/commons.py:105
+#: asso/core/models/commons.py:107
 msgid "Description"
 msgstr ""
 
-#: asso/core/models/commons.py:106
+#: asso/core/models/commons.py:108
 msgid "object description"
 msgstr ""
 
@@ -562,57 +562,59 @@ msgstr "Soci"
 
 #: asso/membership/models.py:185
 msgid "Membership Period"
-msgstr ""
+msgstr "Periodo di Tesseramento"
 
 #: asso/membership/models.py:190
 msgid "Card Number"
-msgstr ""
+msgstr "Numero Tessera"
 
 #: asso/membership/models.py:191
 msgid "The unique number to write on the card"
-msgstr ""
+msgstr "Il codice univoco della tessera"
 
-#: asso/membership/models.py:200
+#: asso/membership/models.py:203
 msgid "Start Date"
-msgstr ""
+msgstr "Data di inizio"
 
-#: asso/membership/models.py:201
-msgid "It is the day the Membership starts"
-msgstr ""
+#: asso/membership/models.py:204
+msgid "Initial day of the Membership period"
+msgstr "Data in cui inizia il periodo di validità della tessera"
 
-#: asso/membership/models.py:206
+#: asso/membership/models.py:209
 msgid "Duration"
-msgstr ""
+msgstr "Durata"
 
-#: asso/membership/models.py:207
-msgid "How long is the Membership Period"
-msgstr ""
+#: asso/membership/models.py:210
+#, fuzzy
+#| msgid "Duration of this Period (as ISO8601 format with designators"
+msgid "Duration of this Period (as ISO8601 format with designators)"
+msgstr "Durata di questo periodo di tesseramento (come stringa ISO8601)"
 
-#: asso/membership/models.py:220
+#: asso/membership/models.py:223
 msgid "The default price to pay for this Period Membership"
-msgstr ""
+msgstr "Il costo della tessera per questo periodo"
 
-#: asso/membership/models.py:234
+#: asso/membership/models.py:237
 msgid "Period"
-msgstr ""
+msgstr "Periodo"
 
-#: asso/membership/models.py:235
+#: asso/membership/models.py:238
 msgid "The Period the Membership Apply"
-msgstr ""
+msgstr "Il periodo di tesseramento"
 
-#: asso/membership/models.py:246
+#: asso/membership/models.py:249
 msgid "Register"
 msgstr ""
 
-#: asso/membership/models.py:247
+#: asso/membership/models.py:250
 msgid "The owner Register"
 msgstr ""
 
-#: asso/membership/models.py:254
+#: asso/membership/models.py:257
 msgid "Membership"
 msgstr ""
 
-#: asso/membership/models.py:255
+#: asso/membership/models.py:258
 msgid "The corresponding Membership"
 msgstr ""
 
@@ -620,7 +622,8 @@ msgstr ""
 msgid ""
 "One of the logo-* icons on https://ionic.io/ionicons (facebook, twitter, "
 "linkedin, youtube, ...)"
-msgstr ""
+msgstr "Una delle icone nel formato logo-* su https://ionic.io/ionicons (facebook, twitter, "
+"linkedin, youtube, ...)"
 
 #: asso/website/views.py:27
 msgid "Prossimi Eventi"
