@@ -1,19 +1,18 @@
 import datetime as dt
-from typing import Type
+from typing import Type, TypeVar
 
 from dateutil.relativedelta import relativedelta
-from django.core.exceptions import ValidationError
 from django.db.models import Model
-from django.db.utils import IntegrityError
-from loguru import logger
+
+M = TypeVar("M", bound=Model)
 
 
 def load_item(
     item: dict,
-    model: Type[Model],
+    model: Type[M],
     fields: (str, ...) = None,
     exclude: (str, ...) = None,
-) -> tuple[Model, bool]:
+) -> M:
     if exclude:
         item = {k: v for k, v in item.items() if k not in exclude}
 
@@ -27,7 +26,7 @@ def load_item(
     obj.full_clean()
     obj.save()
 
-    return obj, created
+    return obj
 
 
 def year_first_day(year: int = None) -> dt.date:

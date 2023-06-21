@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 import pathlib
+from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
@@ -12,10 +13,15 @@ from tqdm import tqdm
 
 from asso.academy.models import ApprovalState, Event
 from asso.core.models.users import User
-from asso.core.utils import load_item
-from asso.membership.models import Member
+from asso.core.utils import load_item, yearly_duration
+from asso.membership.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
+TZ = ZoneInfo("Europe/Rome")
+
+
+def as_datetime(date: str, timezone: ZoneInfo = None) -> dt.datetime:
+    return dt.datetime.combine(dt.date.fromisoformat(date), dt.time(0, 0), timezone)
 
 
 def fill_none(item: dict, key, default, skip_log: bool = False):
@@ -27,7 +33,6 @@ def fill_none(item: dict, key, default, skip_log: bool = False):
 
 def fill_member(member: dict) -> dict:
     fill_none(member, "document_expires", dt.date(1970, 1, 1), skip_log=True)
-
     member.pop("title", None)
     return member
 
@@ -42,7 +47,9 @@ def run(*args):
         data = json.load(fp)
 
     print("Loading members...")
-    members, users = {}, {}
+    members: dict[str, dict | Member] = {}
+    users: dict[str, dict | User] = {}
+
     for member in data.get("members", []):
         member_id = member.pop("id")
         users[member_id] = {
@@ -54,29 +61,55 @@ def run(*args):
         }
         members[member_id] = member
 
+    membership_periods = {
+        year: load_item(
+            {
+                "title": str(year),
+                "start_date": dt.date(year, 1, 1),
+                "duration": yearly_duration(),
+                "price": 10,
+            },
+            MembershipPeriod,
+            ("start_date",),
+        )
+        for year in (2020, 2021, 2022, 2023)
+    }
+
     for membership in tqdm(data.get("memberships", [])):
-        if membership["year"] not in {2020, 2021, 2022, 2023}:
+        if (year := membership["year"]) not in membership_periods:
             continue
 
         id_ = membership["member_id"]
-        member_data, user_data = members[id_], users[id_]
-        fill_member(member_data)
 
-        user, _ = load_item(user_data, User, ("email",))
-        member_data.setdefault("user", user)
-        try:
-            load_item(member_data, Member, ("user",))
-        except (ValidationError, IntegrityError) as err:
-            name = getattr(user, "full_name")
-            logger.error(f"Skip Member {name}: {getattr(err, 'error_list', err)}")
-            continue
+        if isinstance(user := users[id_], dict):
+            users[id_] = user = load_item(user, User, ("email",))
 
-        # load_item(membership, Membership, ...)
+        if isinstance(member := members[id_], dict):
+            try:
+                fill_member(member)
+                member.setdefault("user", user)
+                members[id_] = member = load_item(member, Member, ("user",))
+            except (ValidationError, IntegrityError) as err:
+                name = getattr(user, "full_name")
+                logger.error(f"Skip Member {name}: {getattr(err, 'error_list', err)}")
+                continue
+
+        load_item(
+            {
+                "member": member,
+                "period": membership_periods[year],
+                "card_number": membership["card"],
+                # NOTE: on creation this value is ignored
+                "creation_date": as_datetime(membership["date"], TZ),
+            },
+            Membership,
+            ("member", "period"),
+        )
 
     print("Loading Courses")
     for event in tqdm(data.get("courses", [])):
         approval_state = {"title": event.pop("approval_state")}
-        event["approval_state"], _ = load_item(approval_state, ApprovalState)
+        event["approval_state"] = load_item(approval_state, ApprovalState)
 
         event.setdefault("slug", slugify(event.get("title", "")))
         event["creation_date"] = event.pop("creation_date")

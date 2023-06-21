@@ -191,6 +191,9 @@ class Membership(Editable, Created, Trashable):
         help_text=_("The unique number to write on the card"),
     )
 
+    def __str__(self):
+        return f"{str(self.period)}/{self.card_number}"
+
 
 class MembershipPeriod(Common, Trashable):
     """This represents the applying period of the Membership."""
@@ -198,13 +201,13 @@ class MembershipPeriod(Common, Trashable):
     start_date = models.DateField(
         default=year_first_day,
         verbose_name=_("Start Date"),
-        help_text=_("It is the day the Membership starts"),
+        help_text=_("Initial day of the Membership period"),
     )
 
     duration = RelativeDeltaField(
         default=yearly_duration,
         verbose_name=_("Duration"),
-        help_text=_("How long is the Membership Period"),
+        help_text=_("Duration of this Period (as ISO8601 format with designators)"),
     )
 
     @property
