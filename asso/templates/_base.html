@@ -13,7 +13,7 @@
   
     {% block header %}
       <header class="sticky-top bg-body-secondary">
-        {% block menu %}{% include "website/_header.html" %}{% endblock %}  
+        {% block menu %}{% include "_header.html" %}{% endblock %}  
       </header>
     {% endblock %}
     
@@ -26,12 +26,12 @@
     
     {% block footer %}
       <footer class="bg-body-secondary text-white p-3">
-        {% block footer_content %}{% include "website/_footer.html" %}{% endblock %}
+        {% block footer_content %}{% include "_footer.html" %}{% endblock %}
       </footer>
     {% endblock %}
     
     {% block scripts %}
-      {% include "website/_scripts.html" %}
+      {% include "_scripts.html" %}
       {% block custom_scritps %}{% endblock %}
     {% endblock %}
   </body>
