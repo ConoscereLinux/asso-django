@@ -6,7 +6,7 @@ To install environment, db and migrations
 ```shell
 # If you use an OS with make installed (usually linux)
 $ make bookstrap
-$ make bootstrap-django
+$ make db-bootstrap
 
 # If you want to launch single commands (require python3 installed)
 $ python3 -m venv .venv
