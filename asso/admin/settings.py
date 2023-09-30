@@ -131,7 +131,7 @@ LOCALE_PATHS = [PROJECT_DIR / ".locale"]
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # Used for collecting static files
-STATICFILES_DIRS = [PROJECT_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Base for the URL of static and media resources
 STATIC_URL = "/static/"
