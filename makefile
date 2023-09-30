@@ -3,7 +3,7 @@ SHELL=/bin/bash
 
 python=$(VENV)/bin/python3
 pip=$(VENV)/bin/python -m pip
-django=$(python) asso/manage.py
+django=$(python) manage.py
 
 # Utility scripts to prettify echo outputs
 bold := '\033[1m'
