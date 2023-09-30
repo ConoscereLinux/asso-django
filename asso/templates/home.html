@@ -6,7 +6,7 @@
   <section id="courses" class="row">
     <div id="courses-filters" class="btn-group my-2" role="group" aria-label="Basic example">
       {% for mode_, text_ in modes.items %}
-        <a href="{% url 'index' %}?mode={{ mode_ }}"
+        <a href="{% url 'home' %}?mode={{ mode_ }}"
            class="btn btn-{% if mode == mode_ %}primary{% else %}outline-secondary{% endif %}">
           {{ text_ }}
         </a>
