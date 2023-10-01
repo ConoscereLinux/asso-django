@@ -1,10 +1,2 @@
-from .commons import (
-    Activable,
-    Common,
-    Created,
-    Descripted,
-    Editable,
-    Ordered,
-    Trashable,
-)
+from .commons import Activable, Common, Created, Described, Editable, Ordered, Trashable
 from .users import User

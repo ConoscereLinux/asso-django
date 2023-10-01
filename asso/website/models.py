@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from asso.core.fields import UniqueBooleanField
-from asso.core.models.commons import Descripted, Ordered
+from asso.core.models.commons import Described, Ordered
 
 
 class ThemeConfig(models.Model):
@@ -31,7 +31,7 @@ class NavbarItem(Ordered):
         return self.url
 
 
-class SocialLink(Descripted, Ordered):
+class SocialLink(Described, Ordered):
     url = models.URLField()
     logo = models.SlugField(
         verbose_name="Logo Icon",
