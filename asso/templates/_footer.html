@@ -1,7 +1,9 @@
-<div class="d-flex flex-row justify-content-center align-items-center text-primary">
+<nav id="socials">
+  
   {% for social in socials %}
-    <a href="{{ social.url }}">
-      <ion-icon class="h2 p-2 mb-0" name="logo-{{ social.logo | lower }}"></ion-icon>
-    </a>
+  <a class="flex-center br-round" href="{{ social.url }}">
+    <i data-feather="{{ social.logo | lower }}"></i>
+  </a>
   {% endfor %}
-</div>
+  
+</nav>

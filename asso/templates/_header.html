@@ -1,29 +1,14 @@
-<nav class="navbar navbar-expand-md">
-  <div class="container-fluid">
-    <a href="{% url 'index' %}" class="navbar-brand">
-      {% if theme.logo %}
-        <img style="max-height: 3rem" src="{{ theme.logo.url }}" alt="Site logo">
-      {% else %}
-        {{ theme.brand | default:'site brand' }}
-      {% endif %}
-    </a>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        {% for item in menu_items %}
-        <li class="nav-item">
-          <a class="nav-link {% if item.active %}active{% endif %}" 
-             aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+<nav>
+  <a class="link" href="{% url 'home' %}">
+    {% if theme.logo %}
+      <img style="max-height: 3rem" src="{{ theme.logo.url }}" alt="Site logo">
+    {% else %}
+      {{ theme.brand | default:'site brand' }}
+    {% endif %}
+  </a>
 
-  </div>
+  {% for item in menu_items %}
+  <a class="link" {% if item.active %}data-active{% endif %} 
+     aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
+  {% endfor %}
 </nav>
