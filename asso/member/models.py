@@ -1,4 +1,4 @@
-"""The membership management, from the single one to the MembersRegister."""
+"""The member management, from the single one to the MembersRegister."""
 
 import datetime as dt
 
@@ -173,7 +173,7 @@ class Member(Editable, Created, Trashable):
 
 
 class Membership(Editable, Created, Trashable):
-    """The membership of a user for a particular period."""
+    """The member of a user for a particular period."""
 
     member = models.ForeignKey(
         "Member",

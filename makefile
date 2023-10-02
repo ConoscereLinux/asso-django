@@ -76,7 +76,7 @@ superuser:
 
 demo:
 	@$(django) loaddata website/demo
-	@$(django) loaddata membership/demo
+	@$(django) loaddata member/demo
 
 
 # Database commands

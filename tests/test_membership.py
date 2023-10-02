@@ -4,7 +4,7 @@ import pytest
 from django.core.exceptions import ValidationError
 
 from asso.core.models.users import User
-from asso.membership.models import Member
+from asso.member.models import Member
 
 
 @pytest.fixture

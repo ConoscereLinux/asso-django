@@ -16,7 +16,7 @@ from tqdm import tqdm
 from asso.academy.models import ApprovalState, Event
 from asso.core.models.users import User
 from asso.core.utils import yearly_duration
-from asso.membership.models import Member, Membership, MembershipPeriod
+from asso.member.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
 TZ = ZoneInfo("Europe/Rome")

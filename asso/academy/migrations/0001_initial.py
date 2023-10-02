@@ -166,7 +166,7 @@ class Migration(migrations.Migration):
                     "need_membership",
                     models.BooleanField(
                         default=True,
-                        help_text="Indicate if the membership is needed in order to attend to this event",
+                        help_text="Indicate if the member is needed in order to attend to this event",
                         verbose_name="Membership Needed",
                     ),
                 ),

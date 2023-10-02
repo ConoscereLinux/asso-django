@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "asso.core.apps.CoreConfig",
     "asso.academy.apps.AcademyConfig",
     "asso.accountant.apps.AccountantConfig",
-    "asso.membership.apps.MembershipConfig",
+    "asso.member.apps.MemberConfig",
     "asso.website.apps.WebsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
