@@ -1,0 +1,27 @@
+- model: core.User
+  pk: 2
+  fields:
+    email: john@doe.com
+    first_name: John
+    last_name: Doe
+    username: john-doe
+- model: member.Member
+  pk: 1
+  fields:
+    creation_date: 1970-01-01T00:00:00Z
+    edit_date: 1970-01-01T00:00:00Z
+    user: 2
+    cf: AAAAAAAAAAAAAAAA
+    sex: M
+    birth_date: 1970-01-01
+    birth_city: "London"
+    birth_province: EE
+    phone: +44 000 0000000
+    address_description: "Main Road 1"
+    address_city: "London"
+    address_postal_code: 00000
+    address_province: EE
+    document_type: "carta-identita"
+    document_grant_from: "London Municipality"
+    document_number: 00000
+    document_expires: 2028-01-01
