@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class Ordered(models.Model):
+class OrderedModel(models.Model):
     """A Model with a field for custom ordering."""
 
     order = models.SmallIntegerField(
