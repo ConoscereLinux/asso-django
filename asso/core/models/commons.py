@@ -5,6 +5,29 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+class SlugModel(models.Model):
+    slug = models.SlugField(
+        unique=True,
+        max_length=100,
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ["slug"]
+
+
+class TitleModel(models.Model):
+    title = models.CharField(
+        max_length=200,
+        default="",
+        verbose_name=_("Title"),
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ["title"]
+
+
 class OrderedModel(models.Model):
     """A Model with a field for custom ordering."""
 
