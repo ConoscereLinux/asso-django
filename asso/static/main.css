@@ -5,11 +5,14 @@
     --color-background: #FFFFFF;
 }
 
+.tc { text-align: center }
 
 .flex { display: flex; }
 .flex-row { flex-direction: row; }
 .flex-column { flex-direction: column; }
 .flex-center { display: flex; justify-content: center; align-items: center }
+
+.grid { display: grid }
 
 .sticky-top { position: sticky; top: 0; }
 .sticky-bottom { position: sticky; bottom: 0; }
@@ -75,3 +78,10 @@ footer#footer > nav#socials > a {
     width: 3rem;
     height: 3rem;
 }
+
+fieldset.grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: .5rem;
+    row-gap: .5rem;
+}
+fieldset label { text-align: left; }

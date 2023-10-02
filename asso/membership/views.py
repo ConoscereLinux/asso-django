@@ -7,3 +7,8 @@ class MemberDetailView(generic.DetailView):
     template_name = "membership/member.html"
     context_object_name = "member"
     model = models.Member
+
+
+class MemberCreateView(generic.CreateView):
+    model = models.Member
+    fields = ["user", "cf", "sex", "phone"]
