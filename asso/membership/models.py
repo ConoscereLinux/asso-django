@@ -1,15 +1,13 @@
 """The membership management, from the single one to the MembersRegister."""
 
-# Standard Import
 import datetime as dt
 
 from codicefiscale import codicefiscale
-
-# Site-package Import
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
+from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
@@ -162,6 +160,9 @@ class Member(Editable, Created, Trashable):
     @property
     def full_name(self) -> str:
         return getattr(self.user, "full_name", None)
+
+    def get_absolute_url(self):
+        return reverse("member", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.full_name} ({self.cf})"
