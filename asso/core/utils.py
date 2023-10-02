@@ -1,32 +1,6 @@
 import datetime as dt
-from typing import Type, TypeVar
 
 from dateutil.relativedelta import relativedelta
-from django.db.models import Model
-
-M = TypeVar("M", bound=Model)
-
-
-def load_item(
-    item: dict,
-    model: Type[M],
-    fields: (str, ...) = None,
-    exclude: (str, ...) = None,
-) -> M:
-    if exclude:
-        item = {k: v for k, v in item.items() if k not in exclude}
-
-    if fields is None:
-        filters, defaults = item, {}
-    else:
-        filters = {k: v for k, v in item.items() if fields and k in fields}
-        defaults = {k: v for k, v in item.items() if not fields or k not in fields}
-
-    obj, created = model.objects.update_or_create(**filters, defaults=defaults)
-    obj.full_clean()
-    obj.save()
-
-    return obj
 
 
 def year_first_day(year: int = None) -> dt.date:

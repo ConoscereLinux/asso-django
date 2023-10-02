@@ -1,11 +1,13 @@
 import datetime as dt
 import json
 import pathlib
+from typing import Type, TypeVar
 from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
+from django.db.models import Model
 from django.db.utils import IntegrityError
 from django.utils.text import slugify
 from loguru import logger
@@ -13,11 +15,36 @@ from tqdm import tqdm
 
 from asso.academy.models import ApprovalState, Event
 from asso.core.models.users import User
-from asso.core.utils import load_item, yearly_duration
+from asso.core.utils import yearly_duration
 from asso.membership.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
 TZ = ZoneInfo("Europe/Rome")
+
+
+M = TypeVar("M", bound=Model)
+
+
+def load_item(
+    item: dict,
+    model: Type[M],
+    fields: (str, ...) = None,
+    exclude: (str, ...) = None,
+) -> M:
+    if exclude:
+        item = {k: v for k, v in item.items() if k not in exclude}
+
+    if fields is None:
+        filters, defaults = item, {}
+    else:
+        filters = {k: v for k, v in item.items() if fields and k in fields}
+        defaults = {k: v for k, v in item.items() if not fields or k not in fields}
+
+    obj, created = model.objects.update_or_create(**filters, defaults=defaults)
+    obj.full_clean()
+    obj.save()
+
+    return obj
 
 
 def as_datetime(date: str, timezone: ZoneInfo = None) -> dt.datetime:
