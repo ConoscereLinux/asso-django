@@ -16,6 +16,7 @@ dependencies = [
     "django-relativedelta",
     "loguru",
     "Pillow",
+    "PyYAML",
     "python-codicefiscale",
     "python-dateutil",
     "python-decouple",
