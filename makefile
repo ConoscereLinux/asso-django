@@ -75,7 +75,7 @@ superuser:
 	@$(django) createsuperuser --email=info@conoscerelinux.org
 
 demo:
-	@$(django) loaddata website/default
+	@$(django) loaddata website/demo
 
 
 # Database commands
