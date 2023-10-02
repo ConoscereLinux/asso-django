@@ -5,7 +5,30 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class Ordered(models.Model):
+class SlugModel(models.Model):
+    slug = models.SlugField(
+        unique=True,
+        max_length=100,
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ["slug"]
+
+
+class TitleModel(models.Model):
+    title = models.CharField(
+        max_length=200,
+        default="",
+        verbose_name=_("Title"),
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ["title"]
+
+
+class OrderedModel(models.Model):
     """A Model with a field for custom ordering."""
 
     order = models.SmallIntegerField(
@@ -97,7 +120,9 @@ class Activable(models.Model):
         abstract = True
 
 
-class Descripted(models.Model):
+class Described(models.Model):
+    """A Model wich implement a title and description text fields"""
+
     title = models.CharField(max_length=256, default="", verbose_name=_("Title"))
     description = models.TextField(
         default="",
@@ -111,7 +136,9 @@ class Descripted(models.Model):
         ordering = ["title"]
 
 
-class Common(Descripted, Editable, Created):
+class Common(Described, Editable, Created):
+    """A Model which implement a title, description, edit info and creation info"""
+
     class Meta:
         abstract = True
         ordering = Created.Meta.ordering

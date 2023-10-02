@@ -16,7 +16,7 @@ from decouple import config  # noqa
 from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
 
 
@@ -27,7 +27,7 @@ PROJECT_DIR = BASE_DIR.parent
 SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-TEMPLATE_DEBUG = DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -61,12 +61,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "admin.urls"
+ROOT_URLCONF = "asso.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -80,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "admin.wsgi.application"
+WSGI_APPLICATION = "asso.wsgi.application"
 
 
 # Database
@@ -89,7 +89,7 @@ WSGI_APPLICATION = "admin.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": PROJECT_DIR / ".data" / "db.sqlite3",
+        "NAME": PROJECT_DIR / "db.sqlite3",
     }
 }
 
@@ -124,12 +124,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = [PROJECT_DIR / ".locale"]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # Used for collecting static files
-STATICFILES_DIRS = [PROJECT_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Base for the URL of static and media resources
 STATIC_URL = "/static/"

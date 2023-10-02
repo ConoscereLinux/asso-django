@@ -1,0 +1,14 @@
+<nav>
+  <a class="link" href="{% url 'home' %}">
+    {% if theme.logo %}
+      <img style="max-height: 3rem" src="{{ theme.logo.url }}" alt="Site logo">
+    {% else %}
+      {{ theme.brand | default:'site brand' }}
+    {% endif %}
+  </a>
+
+  {% for item in menu_items %}
+  <a class="link" {% if item.active %}data-active{% endif %} 
+     aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
+  {% endfor %}
+</nav>

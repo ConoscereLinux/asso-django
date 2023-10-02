@@ -14,7 +14,15 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
-from asso.core.models.commons import Common, Created, Editable, Trashable
+from asso.core.models.commons import (
+    Common,
+    Created,
+    Editable,
+    OrderedModel,
+    SlugModel,
+    TitleModel,
+    Trashable,
+)
 from asso.core.utils import year_first_day, yearly_duration
 
 from .constants import ITALIAN_PROVINCES
@@ -23,6 +31,11 @@ from .constants import ITALIAN_PROVINCES
 def check_member_cf(value: str):
     if not codicefiscale.is_valid(value):
         raise ValidationError(_(f"Fiscal Code {value} formally invalid"))
+
+
+class MemberQualification(SlugModel, TitleModel, OrderedModel):
+    def __str__(self):
+        return f"{self.title}"
 
 
 class Member(Editable, Created, Trashable):
@@ -119,26 +132,16 @@ class Member(Editable, Created, Trashable):
         help_text=_("Last date Member has read privacy page"),
     )
 
-    class Qualification(models.TextChoices):
-        DEFAULT = None
-        MASTER = "master", _("Master Universitario")
-        PHD = "phd", _("Dottorato di Ricerca")
-        MASTER_DEGREE = "master-degree", _("Laurea Magistrale")
-        BACHELOR_DEGREE = "bachelor-degree", _("Laurea")
-        HIGH_SCHOOL = "high-school", _("Diploma Maturità")
-        MID_SCHOOL = "mid-school", _("Licenza Media")
-        PRIMARY_SCHOOL = "primary_school", _("Elementari")
-
     profession = models.CharField(
         _("Profession"), blank=True, max_length=80, default=""
     )
-    qualification = models.CharField(
-        _("Study Degree"),
+    qualification = models.ForeignKey(
+        to=MemberQualification,
         null=True,
         blank=True,
-        choices=Qualification.choices,
-        max_length=16,
-        default=None,
+        on_delete=models.PROTECT,
+        related_name="members",
+        verbose_name=_("Study Degree"),
     )
 
     come_from = models.CharField(
@@ -162,6 +165,10 @@ class Member(Editable, Created, Trashable):
 
     def __str__(self):
         return f"{self.full_name} ({self.cf})"
+
+    class Meta:
+        verbose_name = _("Member")
+        verbose_name_plural = _("Members")
 
 
 class Membership(Editable, Created, Trashable):
@@ -187,6 +194,9 @@ class Membership(Editable, Created, Trashable):
         help_text=_("The unique number to write on the card"),
     )
 
+    def __str__(self):
+        return f"{str(self.period)}/{self.card_number}"
+
 
 class MembershipPeriod(Common, Trashable):
     """This represents the applying period of the Membership."""
@@ -194,13 +204,13 @@ class MembershipPeriod(Common, Trashable):
     start_date = models.DateField(
         default=year_first_day,
         verbose_name=_("Start Date"),
-        help_text=_("It is the day the Membership starts"),
+        help_text=_("Initial day of the Membership period"),
     )
 
     duration = RelativeDeltaField(
         default=yearly_duration,
         verbose_name=_("Duration"),
-        help_text=_("How long is the Membership Period"),
+        help_text=_("Duration of this Period (as ISO8601 format with designators)"),
     )
 
     @property

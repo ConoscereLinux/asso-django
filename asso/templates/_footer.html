@@ -1,0 +1,9 @@
+<nav id="socials">
+  
+  {% for social in socials %}
+  <a class="flex-center br-round" href="{{ social.url }}">
+    <i data-feather="{{ social.logo | lower }}"></i>
+  </a>
+  {% endfor %}
+  
+</nav>

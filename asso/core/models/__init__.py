@@ -2,9 +2,9 @@ from .commons import (
     Activable,
     Common,
     Created,
-    Descripted,
+    Described,
     Editable,
-    Ordered,
+    OrderedModel,
     Trashable,
 )
 from .users import User
