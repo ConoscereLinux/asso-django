@@ -75,12 +75,15 @@ superuser:
 	@$(django) createsuperuser --email=info@conoscerelinux.org
 
 demo:
-	@$(django) loaddata website/demo
-	@$(django) loaddata member/demo
+	@#$(django) loaddata member/demo
 
 
 # Database commands
-db-bootstrap: db-flush migrate demo superuser
+db-bootstrap: db-flush migrate db-default superuser
+
+db-default:
+	@$(django) loaddata website/default
+	@$(django) loaddata member/default
 
 db-flush:
 	@echo -e $(bold)Deleting all data from database$(sgr0)
