@@ -89,6 +89,11 @@ db-flush:
 	@echo -e $(bold)Deleting all data from database$(sgr0)
 	@$(django) flush
 
+# TailwindCSS
+.PHONY: watch
+watch: 
+	npx tailwindcss -i ./tailwind/main.tw.css -o ./asso/static/main.tw.css --watch
+
 
 # Internationalization
 .PHONY: messages translations
