@@ -2,30 +2,28 @@
 
 {% block content %}
   <h1 class="text-center">ConoscereLinux A.p.s.</h1>
-  
-  <section id="courses" class="row">
-    <div id="courses-filters" class="btn-group my-2" role="group" aria-label="Basic example">
+
+  <section id="courses" class="flex flex-column items-center">
+    <div class="flex justify-content-center gap-0 border border-solid border-l border-r">
       {% for mode_, text_ in modes.items %}
-        <a href="{% url 'home' %}?mode={{ mode_ }}"
-           class="btn btn-{% if mode == mode_ %}primary{% else %}outline-secondary{% endif %}">
-          {{ text_ }}
-        </a>
+      <button class="p-2 border-2 border-l border-r border-black {% if mode == mode_ %}font-bold text-white bg-blue-500{% endif %}" 
+              onclick="window.location.href = '{% url 'home' %}?mode={{ mode_ }}'">
+        {{ text_ }}
+      </button>
       {% endfor %}
     </div>
   
     {% for course in courses %}
-      <div class="col-12 col-md-6 col-lg-4 p-1 my-2">
-        <article class="card">
-          {% if course.image %}
-          <img class="card-img-top" src="" alt="">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ course.title }}</h5>
-            <h6 class="card-subtitle">{{ course.subtitle }}</h6>
-            <p class="card-text">{{ course.creation_date }}</p>  
-          </div>
-        </article>
-      </div>
+      <article class="card">
+        {% if course.image %}
+        <img class="card-image" src="" alt="">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ course.title }}</h5>
+          <h6 class="card-subtitle">{{ course.subtitle }}</h6>
+          <p class="card-text">{{ course.creation_date }}</p>  
+        </div>
+      </article>
     {% endfor %}
   </section>
   
