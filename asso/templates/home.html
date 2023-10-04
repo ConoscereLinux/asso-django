@@ -4,27 +4,7 @@
   <h1 class="text-center">ConoscereLinux A.p.s.</h1>
 
   <section id="courses" class="flex flex-col items-center">
-    <div class="btn-group flex justify-center gap-0 border-default">
-      {% for mode_, text_ in modes.items %}
-      <button class="p-2 {% if mode == mode_ %}text-white bg-blue{% endif %}" 
-              onclick="window.location.href = '{% url 'home' %}?mode={{ mode_ }}'">
-        {{ text_ }}
-      </button>
-      {% endfor %}
-    </div>
-  
-    {% for course in courses %}
-      <article class="card">
-        {% if course.image %}
-        <img class="card-image" src="" alt="">
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">{{ course.title }}</h5>
-          <h6 class="card-subtitle">{{ course.subtitle }}</h6>
-          <p class="card-text">{{ course.creation_date }}</p>  
-        </div>
-      </article>
-    {% endfor %}
+    {% include "_courses.html" %}
   </section>
   
 {% endblock %}

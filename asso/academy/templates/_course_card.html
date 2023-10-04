@@ -1,0 +1,10 @@
+<article class="card">
+  {% if course.image %}
+  <img class="card-image" src="" alt="">
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ course.title }}</h5>
+    <h6 class="card-subtitle">{{ course.subtitle }}</h6>
+    <p class="card-text">{{ course.creation_date }}</p>  
+  </div>
+</article>
