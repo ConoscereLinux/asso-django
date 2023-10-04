@@ -32,11 +32,22 @@ class NavbarItem(OrderedModel):
 
 
 class SocialLink(Described, OrderedModel):
+    DEFAULT_LOGO = "globe"
+    AVAILABLE_LOGOS = [
+        (DEFAULT_LOGO, "Web site (default)"),
+        ("facebook", "Facebook"),
+        ("twitter", "Twitter"),
+        ("x", "X"),
+        ("linkedin", "LinkedIn"),
+        ("youtube", "YouTube"),
+        ("github", "GitHub"),
+        ("instagram", "Instagram"),
+    ]
+
     url = models.URLField()
-    logo = models.SlugField(
+    logo = models.CharField(
+        max_length=24,
+        default=DEFAULT_LOGO,
         verbose_name="Logo Icon",
-        help_text=_(
-            "One of the logo-* icons on https://ionic.io/ionicons "
-            "(facebook, twitter, linkedin, youtube, ...)"
-        ),
+        choices=AVAILABLE_LOGOS,
     )
