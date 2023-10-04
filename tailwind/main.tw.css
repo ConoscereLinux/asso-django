@@ -9,6 +9,7 @@
     ul > li { @apply py-2 px-4; }
     ul > li.active { @apply text-white font-bold bg-blue; }
     
+    .card.border-default,
     .btn.border-default { 
         @apply border-gray-dark border-2 border-solid; 
     }

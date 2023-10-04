@@ -1,10 +1,11 @@
-<article class="card">
-  {% if course.image %}
-  <img class="card-image" src="" alt="">
-  {% endif %}
-  <div class="card-body">
-    <h5 class="card-title">{{ course.title }}</h5>
-    <h6 class="card-subtitle">{{ course.subtitle }}</h6>
-    <p class="card-text">{{ course.creation_date }}</p>  
+<article class="card w-100 border-default">
+  <div class="card-header h-16" 
+       style="
+         background: url({{ course.image.url|default:"https://placehold.co/600x100/333333/eeeeee" }}) center;">
+  </div>
+  <div class="card-body p-4">
+    <h5 class="text-2xl font-bold">{{ course.title }}</h5>
+    <h6 class="text-xl text-gray-dark">{{ course.subtitle }}</h6>
+    <p class="">{{ course.creation_date }}</p>  
   </div>
 </article>
