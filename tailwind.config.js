@@ -10,8 +10,9 @@ module.exports = {
       orange: "#cc6600",
       black: "#000000",
       white: "#FFFFFF",
+      "gray": "#777777",
       "gray-dark": "#333333",
-      "gray-light": "#666666",
+      "gray-light": "#cccccc",
     },
     fontFamily: {
       sans: ['Open Sans', 'sans-serif'],
