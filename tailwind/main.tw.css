@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 { @apply text-2xl; }
+    h2 { @apply text-xl; }
+    
+    ul > li { @apply py-2 px-4; }
+    ul > li.active { @apply text-white font-bold bg-blue; }
+    
+    .card.border-default,
+    .btn.border-default { 
+        @apply border-gray-dark border-2 border-solid; 
+    }
+    .btn-group.border-default {
+        @apply border-gray-dark border-2 border-solid 
+               divide-gray-dark divide-x-2 divide-gray-dark; 
+    }
+    ul.border-default {
+        @apply border-gray-dark border-2 border-solid 
+               divide-gray-dark divide-y-2 divide-gray-dark; 
+    }
+    .border-default-t { @apply border-gray-dark border-t-2 border-solid; }
+    .border-default-b { @apply border-gray-dark border-b-2 border-solid; }
+}

@@ -1,0 +1,11 @@
+- model: academy.Event
+  pk: 1
+  fields:
+    slug: example
+    title: Example Course
+    subtitle: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+    approval_state: null
+    creation_date: "1970-01-01T00:00Z"
+    edit_date: "1970-01-01T00:00Z"
+    start_date: 2030-01-01
+    end_date: 2030-01-02

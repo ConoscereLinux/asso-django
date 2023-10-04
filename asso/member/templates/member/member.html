@@ -5,39 +5,45 @@
 
 {% block content %}
 
-<section id="member-detail" class="">
-  <ul class="list">
-    <li class="active" aria-current="true">{{ member.full_name }}</li>
+<section id="member-detail" 
+         class="w-screen max-w-screen-md 
+                grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+  <ul class="w-100 border-default">
+    <li class="active" aria-current="true">
+      {{ member.full_name }}
+    </li>
     <li>{{ member.user.email }}</li>
     <li>{{ member.phone }}</li>
     <li>{{ member.get_sex_display }}</li>
-  </ul>
-    
-  <ul class="list">
+  </ul>  
+  
+  <ul class="w-100 border-default">
     <li class="active" aria-current="true">{% translate "Dati Anagrafici" %}</li>
     <li>{{ member.cf }}</li>
     <li>
-      <span class="disabled">{% translate "Nato il" %}:</span><br>
+      <span class="text-sm text-gray">{% translate "Nato il" %}:</span><br>
       {{ member.birth_date }}
     </li>
     <li>{{ member.birth_city }} ({{ member.birth_province }})</li>
   </ul>
-    
-  <ul class="list">
-    <li class="active" aria-current="true">{% translate "Documento" %}</li>
+  
+  <ul class="w-100 border-default">
+    <li class="active" aria-current="true">
+      {% translate "Documento" %}
+    </li>
     <li>{{ member.get_document_type_display }}</li>
     <li>
-      <span class="disabled">{% translate "Rilasciato da" %}:</span><br>
+      <span class="text-sm text-gray">{% translate "Rilasciato da" %}:</span><br>
       {{ member.document_grant_from }}
     </li>
     <li>{{ member.document_number }}</li>
     <li>
-      <span class="disabled">{% translate "Scadenza" %}: </span><br>
+      <span class="text-sm text-gray">{% translate "Scadenza" %}: </span><br>
       {{ member.document_expires }}
     </li>
   </ul>
 
-  <ul class="list">
+  <ul class="w-100 border-default">
     <li class="active" aria-current="true">{% translate "Indirizzo di residenza" %}</li>
     <li>{{ member.address_description }} {{ member.address_number }}</li>
     {% if member.address_additional %}
