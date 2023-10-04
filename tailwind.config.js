@@ -5,7 +5,18 @@ module.exports = {
       "asso/*/templates/**/*.{html,js}",
   ],
   theme: {
-    extend: {},
+    colors: {
+      blue: "#5498fe",
+      orange: "#cc6600",
+      black: "#000000",
+      white: "#FFFFFF",
+      "gray-dark": "#333333",
+      "gray-light": "#666666",
+    },
+    fontFamily: {
+      sans: ['Open Sans', 'sans-serif'],
+    },
+    extends: {},
   },
   plugins: [],
 }

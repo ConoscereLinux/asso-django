@@ -3,10 +3,10 @@
 {% block content %}
   <h1 class="text-center">ConoscereLinux A.p.s.</h1>
 
-  <section id="courses" class="flex flex-column items-center">
-    <div class="flex justify-content-center gap-0 border border-solid border-l border-r">
+  <section id="courses" class="flex flex-col items-center">
+    <div class="btn-group flex justify-center gap-0 border-default">
       {% for mode_, text_ in modes.items %}
-      <button class="p-2 border-2 border-l border-r border-black {% if mode == mode_ %}font-bold text-white bg-blue-500{% endif %}" 
+      <button class="p-2 {% if mode == mode_ %}text-white bg-blue{% endif %}" 
               onclick="window.location.href = '{% url 'home' %}?mode={{ mode_ }}'">
         {{ text_ }}
       </button>
