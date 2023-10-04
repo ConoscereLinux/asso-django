@@ -7,6 +7,8 @@
     {% endif %}
   </a>
 
+  <span class="grow"></span>
+
   {% for item in menu_items %}
   <a class="text-base p-4" {% if item.active %}data-active{% endif %} 
      aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
