@@ -39,14 +39,14 @@ class NavbarItem(SlugModel, TitleModel, OrderedModel):
 
 class SocialLink(TitleModel, OrderedModel):
     class SocialIcon(models.TextChoices):
-        globe = "Web site (default)"
-        facebook = "Facebook"
-        twitter = "Twitter"
-        x = "X"
-        linkedin = "LinkedIn"
-        youtube = "YouTube"
-        github = "GitHub"
-        instagram = "Instagram"
+        globe = "globe", _("Web site (default)")
+        facebook = "facebook", "Facebook"
+        twitter = "twitter", "Twitter"
+        x = "x", "x.com"
+        linkedin = "linkedin", "LinkedIn"
+        youtube = "youtube", "YouTube"
+        github = "github", "GitHub"
+        instagram = "instagram", "Instagram"
 
     url = models.URLField()
     show = models.BooleanField(
