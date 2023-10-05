@@ -37,18 +37,18 @@
     order: 0
     title: facebook
     url: https://facebook.com
-    logo: Facebook
+    logo: facebook
 - model: theme.SocialLink
   pk: 2
   fields:
     order: 20
     title: youtube
     url: https://youtube.com
-    logo: YouTube
+    logo: youtube
 - model: theme.SocialLink
   pk: 3
   fields:
     order: 10
     title: twitter
     url: https://twitter.com
-    logo: Twitter
+    logo: twitter
