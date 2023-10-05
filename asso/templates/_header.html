@@ -10,9 +10,10 @@
   <span class="grow"></span>
 
   {% for item in menu_items %}
-  <a class="text-base p-4" {% if item.active %}data-active{% endif %} 
-     aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
+  <a class="text-base p-4" {% if item.show %}data-active{% endif %} 
+     aria-current="page" href="{{ item.url }}">{{ item.display }}</a>
   {% endfor %}
+
   {% if request.user.is_authenticated %}
     <a href="{% url "logout" %}" class="text-base m-2 p-2 border-black border-2 border-solid">
       <i data-feather="user"></i>
