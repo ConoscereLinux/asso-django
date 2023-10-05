@@ -810,6 +810,54 @@ ul > li.active {
   color: rgb(254 254 254 / var(--tw-text-opacity));
 }
 
+.hover\:border-4:hover {
+  border-width: 4px;
+}
+
+.hover\:border-gray-light:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(204 204 204 / var(--tw-border-opacity));
+}
+
+.hover\:border-gray:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(119 119 119 / var(--tw-border-opacity));
+}
+
+.hover\:border-blue:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(84 152 254 / var(--tw-border-opacity));
+}
+
+.hover\:border-blue-dark:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(68 121 205 / var(--tw-border-opacity));
+}
+
+.hover\:border-black:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.hover\:border-orange:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(204 102 0 / var(--tw-border-opacity));
+}
+
+.hover\:bg-orange:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(204 102 0 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-dark:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 121 205 / var(--tw-bg-opacity));
+}
+
+.hover\:font-bold:hover {
+  font-weight: 700;
+}
+
 @media (min-width: 768px) {
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));

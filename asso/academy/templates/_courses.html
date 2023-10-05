@@ -1,7 +1,8 @@
 <div class="btn-group flex justify-center gap-0
             border-default divide-default divide-x-default">
   {% for mode_, text_ in modes.items %}
-  <button class="p-2 {% if mode == mode_ %}text-white bg-blue{% endif %}" 
+  <button class="p-2 hover:bg-orange 
+                 {% if mode == mode_ %}text-white bg-blue hover:bg-blue-dark{% endif %}" 
           onclick="window.location.href = '{% url 'home' %}?mode={{ mode_ }}'">
     {{ text_ }}
   </button>
