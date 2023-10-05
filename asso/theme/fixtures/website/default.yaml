@@ -1,43 +1,50 @@
-- model: website.ThemeConfig
+- model: theme.ThemeConfig
   pk: 1
   fields:
     brand: "Conoscere Linux"
     active: true
-- model: website.NavbarItem
+- model: theme.NavbarItem
   pk: 1
   fields:
-    title: "Privacy"
-    slug: "privacy" 
-    url: "/privacy" 
+    title: "Profile"
+    slug: "profile" 
+    url: "/member/detail/1" 
     active: true
-- model: website.NavbarItem
+- model: theme.NavbarItem
   pk: 2
   fields: 
     title: "External site"
     slug: external_site
     url: "https://example.com" 
     active: true
-- model: website.NavbarItem
+- model: theme.NavbarItem
   pk: 3
   fields:
     title: "Archive"
     slug: "archive"
     url: "?mode=archive"
-- model: website.SocialLink
+- model: theme.NavbarItem
+  pk: 4
+  fields:
+    title: "Privacy"
+    slug: "privacy" 
+    url: "/privacy" 
+    active: true
+- model: theme.SocialLink
   pk: 1
   fields:
     order: 0
     title: facebook
     url: https://facebook.com
     logo: facebook
-- model: website.SocialLink
+- model: theme.SocialLink
   pk: 2
   fields:
     order: 20
     title: youtube
     url: https://youtube.com
     logo: youtube
-- model: website.SocialLink
+- model: theme.SocialLink
   pk: 3
   fields:
     order: 10
