@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "jazzmin",
     "asso.accounts",
     # "asso.core.apps.CoreConfig",
-    # "asso.academy.apps.AcademyConfig",
+    "asso.academy.apps.AcademyConfig",
     # "asso.accountant.apps.AccountantConfig",
     # "asso.member.apps.MemberConfig",
     "asso.theme.apps.ThemeConfig",
