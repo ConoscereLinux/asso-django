@@ -669,6 +669,10 @@ a:hover {
   width: 100vw;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .max-w-prose {
   max-width: 65ch;
 }
@@ -861,6 +865,11 @@ a:hover {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(254 254 254 / var(--tw-text-opacity));
+}
+
+.text-orange {
+  --tw-text-opacity: 1;
+  color: rgb(204 102 0 / var(--tw-text-opacity));
 }
 
 .hover\:bg-blue-dark:hover {

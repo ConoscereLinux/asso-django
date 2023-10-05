@@ -3,18 +3,15 @@
 
 {% block content %}
   
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-  
+    
   {% if next %}
     {% if user.is_authenticated %}
-      <p>{% translate "You don't have access to this content, to proceed please login with an account who has access to this page." %}</p>
+      <p class="m-4">{% translate "You don't have access to this content, to proceed please login with an account who has access to this page." %}</p>
     {% else %}
-      <p>{% translate "Please login to see this page" %}</p>
+      <p class="m-4">{% translate "Please login to see this page" %}</p>
     {% endif %}
   {% endif %}
-  
+
   <form method="post" action="{% url 'login' %}" class="flex flex-col items-center">
     {% csrf_token %}
     <fieldset class="grid grid-cols-2 gap-2 text-left">
@@ -23,6 +20,10 @@
       {{ form.password.label_tag }}
       {{ form.password }}
     </fieldset>
+    
+    {% if form.errors %}
+      <p class="m-4 text-orange">Your username and password didn't match. Please try again.</p>
+    {% endif %}
    
     <input type="submit" value="login" 
            class="font-bold m-4 py-1 px-2 text-white bg-blue hover:bg-blue-dark">
