@@ -36,11 +36,12 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "jazzmin",
-    "asso.core.apps.CoreConfig",
-    "asso.academy.apps.AcademyConfig",
-    "asso.accountant.apps.AccountantConfig",
-    "asso.member.apps.MemberConfig",
-    "asso.theme.apps.ThemeConfig",
+    "asso.accounts",
+    # "asso.core.apps.CoreConfig",
+    # "asso.academy.apps.AcademyConfig",
+    # "asso.accountant.apps.AccountantConfig",
+    # "asso.member.apps.MemberConfig",
+    # "asso.theme.apps.ThemeConfig",
     "asso.landing.apps.LandingConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -75,7 +76,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "asso.theme.context_processors.add_header_and_footer_info",
+                # "asso.theme.context_processors.add_header_and_footer_info",
             ],
         },
     },
@@ -97,7 +98,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-AUTH_USER_MODEL = "core.User"
+AUTH_USER_MODEL = "accounts.User"
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa
@@ -147,8 +148,3 @@ MEDIA_ROOT = config("MEDIA_ROOT", default=".media")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# JAZZMIN_UI_TWEAKS = {
-#     "theme": "cyborg",
-# }
