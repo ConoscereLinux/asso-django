@@ -3,7 +3,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from ..commons.models import ContentModel, TitleModel
+from ..commons.models import ContentModel, SoftDeletableModel, TitleModel
 
 
 class EventCategory(TitleModel):
@@ -25,6 +25,37 @@ class EventCategory(TitleModel):
 #         verbose_name=_("Show"),
 #         help_text=_("Indicates if at this state the Event has to be shown"),
 #     )
+
+
+class EventSession(TitleModel, SoftDeletableModel):
+    """Single session of an Event."""
+
+    event = models.ForeignKey(
+        "Event",
+        on_delete=models.CASCADE,
+        related_name="sessions",
+        null=False,
+        blank=False,
+        help_text=_("The event who generate this session"),
+    )
+
+    start = models.DateTimeField(
+        verbose_name=_("Start datetime"),
+        help_text=_("The start time and date of the session"),
+    )
+
+    end = models.DateTimeField(
+        verbose_name=_("End datetime"),
+        help_text=_("The end time and date of the session"),
+    )
+
+    def save(self, *args, **kwargs):
+        super().save()
+
+        query = EventSession.objects.filter(event=self.event)
+        self.event.start_date = query.order_by("start").first().start
+        self.event.end_date = query.order_by("end").last().end
+        self.event.save()
 
 
 class Event(ContentModel):
@@ -57,10 +88,32 @@ class Event(ContentModel):
         null=True,
         blank=True,
         max_digits=14,
-        decimal_places=4,
+        decimal_places=2,
         default=0.0,
         verbose_name=_("Price"),
         help_text=_("The price to pay for this event (leave blank for free events)"),
+    )
+
+    start_date = models.DateField(
+        default=None,
+        null=True,
+        blank=True,
+        editable=False,
+        verbose_name=_(
+            "The starting date of the first session of this event "
+            "(generated from sessions)"
+        ),
+    )
+
+    end_date = models.DateField(
+        default=None,
+        null=True,
+        blank=True,
+        editable=False,
+        verbose_name=_(
+            "The ending date of the last session of this event "
+            "(generated from sessions)"
+        ),
     )
 
     def __str__(self):
@@ -80,48 +133,6 @@ class Event(ContentModel):
     #     verbose_name=_("Approval State"),
     #     help_text=_("Actual approval state for this event"),
     # )
-
-    # # TODO: add automation to set this value when saving session to min date if null
-    # start_date = models.DateField(
-    #     default=None,
-    #     null=True,
-    #     blank=True,
-    #     help_text=_("Set this value if you dont want to set sessions"),
-    # )
-
-    # # TODO: add automation to set this value when saving session to max date if null
-    # end_date = models.DateField(
-    #     default=None,
-    #     null=True,
-    #     blank=True,
-    #     help_text=_("Set this value if you dont want to set sessions"),
-    # )
-
-
-# class Session(Created, Editable):
-#     """If an Event it is divided in more session, it could be managed here."""
-#
-#     event = models.ForeignKey(
-#         "Event",
-#         on_delete=models.CASCADE,
-#         related_name="event_sessions",
-#         verbose_name=_("Event"),
-#         help_text=_("The Event of witch the Session is referred to"),
-#     )
-#
-#     start = models.DateTimeField(
-#         verbose_name=_("Start date and time"),
-#         help_text=_(
-#             "The start time and date of the session, determine hide state of the event"
-#         ),
-#     )
-#
-#     end = models.DateTimeField(
-#         verbose_name=_("End date and time"),
-#         help_text=_(
-#             "The end time and date of the session, determine hide state of the event"
-#         ),
-#     )
 
 
 # class Enrollment(Created, Editable):

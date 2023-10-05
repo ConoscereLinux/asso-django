@@ -15,6 +15,11 @@ class EventCategoryAdmin(admin.ModelAdmin):
     list_display = ("title", "description")
 
 
+class EventSessionAdmin(admin.StackedInline):
+    model = models.EventSession
+    extra = 0
+
+
 @admin.register(models.Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = (
@@ -26,16 +31,15 @@ class EventAdmin(admin.ModelAdmin):
         "price",
     )
     prepopulated_fields = {"slug": ("title",)}
-    # inlines = [SessionAdmin, EnrollmentAdmin]
+    inlines = [
+        EventSessionAdmin,
+        # EnrollmentAdmin,
+    ]
 
 
 # @admin.register(models.ApprovalState)
 # class ApprovalStateAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
 #     list_display = ("title", "show", "description")
-
-
-# class SessionAdmin(CreatedTabularInline, EditableTabularInline):
-#     model = models.Session
 
 
 # class EnrollmentAdmin(CreatedTabularInline, EditableTabularInline):
