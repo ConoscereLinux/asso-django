@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class WebsiteConfig(AppConfig):
+class ThemeConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "asso.website"
+    name = "asso.theme"
