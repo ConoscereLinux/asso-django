@@ -2,10 +2,10 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.forms import CharField, ModelForm, PasswordInput
 
-from asso.core.models.users import User
+from .models import User
 
 
-class UserCreationForm(ModelForm):
+class UserCreateForm(ModelForm):
     """A form for creating new users."""
 
     password1 = CharField(label="Password", widget=PasswordInput)
@@ -32,7 +32,7 @@ class UserCreationForm(ModelForm):
         return user
 
 
-class UserChangeForm(ModelForm):
+class UserUpdateForm(ModelForm):
     """A form for updating users.
 
     Includes all the fields on the user, but replaces the password field with admin's
