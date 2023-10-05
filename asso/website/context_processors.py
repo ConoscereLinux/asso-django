@@ -1,7 +1,7 @@
 from .models import NavbarItem, SocialLink, ThemeConfig
 
 
-def add_header_info_and_menu_items_to_context(request):
+def add_header_and_footer_info(request):
     """Context Processor for adding menu items and brand info
 
     See https://docs.djangoproject.com/en/4.2/ref/templates/api/#writing-your-own-context-processors

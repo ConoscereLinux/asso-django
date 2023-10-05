@@ -75,7 +75,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "asso.website.views.add_header_info_and_menu_items_to_context",
+                "asso.website.context_processors.add_header_and_footer_info",
             ],
         },
     },
