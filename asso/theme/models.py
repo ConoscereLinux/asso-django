@@ -2,8 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from asso.core.fields import UniqueBooleanField
-from asso.core.models.commons import Described, OrderedModel
+from asso.commons.fields import UniqueBooleanField
+from asso.commons.models import OrderedModel, SlugModel, TitleModel
 
 
 class ThemeConfig(models.Model):
@@ -15,11 +15,17 @@ class ThemeConfig(models.Model):
         ordering = ["-active"]
 
 
-class NavbarItem(OrderedModel):
-    slug = models.SlugField(unique=True)
-    title = models.CharField(max_length=50, blank=True)
-    url = models.CharField(max_length=200, default="")
-    active = models.BooleanField(default=True)
+class NavbarItem(SlugModel, TitleModel, OrderedModel):
+    show = models.BooleanField(
+        default=True,
+        verbose_name=_("Visible"),
+        help_text=_("Set to True to show in navbar"),
+    )
+    url = models.CharField(
+        max_length=200,
+        default="",
+        verbose_name=_("A URL or a relative path"),
+    )
 
     def __str__(self):
         return f"({self.order:02}) {self.title}"
@@ -31,23 +37,26 @@ class NavbarItem(OrderedModel):
         return self.url
 
 
-class SocialLink(Described, OrderedModel):
-    DEFAULT_LOGO = "globe"
-    AVAILABLE_LOGOS = [
-        (DEFAULT_LOGO, "Web site (default)"),
-        ("facebook", "Facebook"),
-        ("twitter", "Twitter"),
-        ("x", "X"),
-        ("linkedin", "LinkedIn"),
-        ("youtube", "YouTube"),
-        ("github", "GitHub"),
-        ("instagram", "Instagram"),
-    ]
+class SocialLink(TitleModel, OrderedModel):
+    class SocialIcon(models.TextChoices):
+        globe = "Web site (default)"
+        facebook = "Facebook"
+        twitter = "Twitter"
+        x = "X"
+        linkedin = "LinkedIn"
+        youtube = "YouTube"
+        github = "GitHub"
+        instagram = "Instagram"
 
     url = models.URLField()
+    show = models.BooleanField(
+        default=True,
+        verbose_name=_("Visible"),
+        help_text=_("Set to True to show in footer"),
+    )
     logo = models.CharField(
         max_length=24,
-        default=DEFAULT_LOGO,
-        verbose_name="Logo Icon",
-        choices=AVAILABLE_LOGOS,
+        default=SocialIcon.globe,
+        verbose_name=_("Logo Icon"),
+        choices=SocialIcon.choices,
     )
