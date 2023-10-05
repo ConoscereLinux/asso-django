@@ -6,9 +6,9 @@
 - model: website.NavbarItem
   pk: 1
   fields:
-    title: "Privacy"
-    slug: "privacy" 
-    url: "/privacy" 
+    title: "Profile"
+    slug: "profile" 
+    url: "/member/detail/1" 
     active: true
 - model: website.NavbarItem
   pk: 2
@@ -23,6 +23,13 @@
     title: "Archive"
     slug: "archive"
     url: "?mode=archive"
+- model: website.NavbarItem
+  pk: 4
+  fields:
+    title: "Privacy"
+    slug: "privacy" 
+    url: "/privacy" 
+    active: true
 - model: website.SocialLink
   pk: 1
   fields:
