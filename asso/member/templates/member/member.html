@@ -5,16 +5,15 @@
 
 {% block content %}
 
-<section id="member-detail" 
-         class="grid grid-cols-2 lg:grid-cols-4 gap-2 p-2">
-  <ul class="border-default divide-default divide-y-default">
+<section id="member-detail" class="grid grid-cols-2 lg:grid-cols-4 gap-2 p-2">
+  <ul class="border divide-y">
     <li class="active" aria-current="true">{{ member.full_name }}</li>
     <li>{{ member.user.email }}</li>
     <li>{{ member.phone }}</li>
     <li>{{ member.get_sex_display }}</li>
   </ul>  
   
-  <ul class="border-default divide-default divide-y-default">
+  <ul class="border divide-y">
     <li class="active" aria-current="true">{% translate "Dati Anagrafici" %}</li>
     <li>{{ member.cf }}</li>
     <li>
@@ -24,7 +23,7 @@
     <li>{{ member.birth_city }} ({{ member.birth_province }})</li>
   </ul>
   
-  <ul class="border-default divide-default divide-y-default">
+  <ul class="border divide-y">
     <li class="active" aria-current="true">{% translate "Documento" %}</li>
     <li>{{ member.get_document_type_display }}</li>
     <li>
@@ -38,7 +37,7 @@
     </li>
   </ul>
 
-  <ul class="border-default divide-default divide-y-default">
+  <ul class="border divide-y">
     <li class="active" aria-current="true">{% translate "Indirizzo di residenza" %}</li>
     <li>{{ member.address_description }} {{ member.address_number }}</li>
     {% if member.address_additional %}

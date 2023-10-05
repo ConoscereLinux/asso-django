@@ -19,8 +19,8 @@ module.exports = {
       sans: ['Open Sans', 'sans-serif'],
     },
     extend: {
-      borderWidth: {'default': '3px'},
-      borderColor: {'default': '#333'},
+      borderWidth: {'DEFAULT': '3px'},
+      borderColor: {'DEFAULT': '#333'},
     },
   },
   plugins: [],
