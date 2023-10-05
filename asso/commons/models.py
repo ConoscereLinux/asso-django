@@ -28,14 +28,13 @@ class TitleModel(models.Model):
         default="",
         blank=True,
         verbose_name=_("Description"),
+        help_text=_("A short description for this content (not visible in views)"),
     )
 
     class Meta:
         abstract = True
 
 
-class Content(SlugModel, TitleModel):
-    """Represent a classic CMS content with slug, title and description."""
 class SoftDeletableModel(models.Model):
     """A Model which can be soft-deleted"""
 
