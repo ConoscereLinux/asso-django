@@ -36,6 +36,34 @@ class TitleModel(models.Model):
 
 class Content(SlugModel, TitleModel):
     """Represent a classic CMS content with slug, title and description."""
+class SoftDeletableModel(models.Model):
+    """A Model which can be soft-deleted"""
+
+    is_removed = models.BooleanField(
+        default=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Is removed?"),
+        help_text=_("Set to True to set as removed or 'soft deleted"),
+    )
+
+    @property
+    def is_available(self) -> bool:
+        return not self.is_removed
+
+    class Meta:
+        abstract = True
+
+
+class ContentModel(SlugModel, TitleModel, SoftDeletableModel):
+    """Represent a classic CMS content with slug, title, etc.
+
+    Available fields:
+        slug: SlugField(unique, required)
+        title: CharField(100, required)
+        description: TextField(optional)
+        is_removed: Boolean(default=False)
+    """
 
     class Meta:
         abstract = True
