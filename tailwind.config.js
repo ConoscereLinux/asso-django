@@ -18,7 +18,10 @@ module.exports = {
     fontFamily: {
       sans: ['Open Sans', 'sans-serif'],
     },
-    extends: {},
+    extend: {
+      borderWidth: {'default': '3px'},
+      borderColor: {'default': '#333'},
+    },
   },
   plugins: [],
 }

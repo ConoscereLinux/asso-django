@@ -6,18 +6,16 @@
 {% block content %}
 
 <section id="member-detail" 
-         class="w-screen max-w-screen-md 
+         class="w-screen max-w-screen-md p-2
                 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-  <ul class="w-100 border-default">
-    <li class="active" aria-current="true">
-      {{ member.full_name }}
-    </li>
+  <ul class="w-100 border-default divide-default divide-y-default">
+    <li class="active" aria-current="true">{{ member.full_name }}</li>
     <li>{{ member.user.email }}</li>
     <li>{{ member.phone }}</li>
     <li>{{ member.get_sex_display }}</li>
   </ul>  
   
-  <ul class="w-100 border-default">
+  <ul class="w-100 border-default divide-default divide-y-default">
     <li class="active" aria-current="true">{% translate "Dati Anagrafici" %}</li>
     <li>{{ member.cf }}</li>
     <li>
@@ -27,10 +25,8 @@
     <li>{{ member.birth_city }} ({{ member.birth_province }})</li>
   </ul>
   
-  <ul class="w-100 border-default">
-    <li class="active" aria-current="true">
-      {% translate "Documento" %}
-    </li>
+  <ul class="w-100 border-default divide-default divide-y-default">
+    <li class="active" aria-current="true">{% translate "Documento" %}</li>
     <li>{{ member.get_document_type_display }}</li>
     <li>
       <span class="text-sm text-gray">{% translate "Rilasciato da" %}:</span><br>
@@ -43,7 +39,7 @@
     </li>
   </ul>
 
-  <ul class="w-100 border-default">
+  <ul class="w-100 border-default divide-default divide-y-default">
     <li class="active" aria-current="true">{% translate "Indirizzo di residenza" %}</li>
     <li>{{ member.address_description }} {{ member.address_number }}</li>
     {% if member.address_additional %}
