@@ -13,7 +13,7 @@
                flex flex-col justify-between items-center">
   
     {% block header %}
-    <header id="navbar" class="sticky top0 bg-blue w-screen border-default-b">
+    <header id="navbar" class="sticky top-0 bg-blue w-screen border-b">
       {% block menu %}{% include "_header.html" %}{% endblock %}  
     </header>
     {% endblock %}
@@ -26,7 +26,7 @@
     {% endblock %}
     
     {% block footer %}
-      <footer id="footer" class="sticky bottom0 bg-blue w-screen border-default-t">
+      <footer id="footer" class="sticky bottom-0 bg-blue w-screen border-t">
         {% block footer_content %}{% include "_footer.html" %}{% endblock %}
       </footer>
     {% endblock %}
