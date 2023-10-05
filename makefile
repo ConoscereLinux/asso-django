@@ -83,8 +83,8 @@ demo:
 db-bootstrap: db-flush migrate db-default superuser
 
 db-default:
-	@$(django) loaddata website/default
-	@$(django) loaddata member/default
+	@$(django) loaddata theme/default
+	@#$(django) loaddata member/default
 
 db-flush:
 	@echo -e $(bold)Deleting all data from database$(sgr0)
