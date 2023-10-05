@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 19:30+0200\n"
+"POT-Creation-Date: 2023-10-05 19:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -592,28 +592,28 @@ msgid "The corresponding Membership"
 msgstr ""
 
 #: asso/member/templates/member/member.html:17
-msgid "Dati Anagrafici"
-msgstr ""
+msgid "Personal Data"
+msgstr "Dati Anagrafici"
 
 #: asso/member/templates/member/member.html:20
-msgid "Nato il"
-msgstr ""
+msgid "Birth date"
+msgstr "Data di nascita"
 
 #: asso/member/templates/member/member.html:27
-msgid "Documento"
-msgstr ""
+msgid "Document"
+msgstr "Documento"
 
 #: asso/member/templates/member/member.html:30
-msgid "Rilasciato da"
-msgstr ""
+msgid "Granted by"
+msgstr "Rilasciato da"
 
 #: asso/member/templates/member/member.html:35
-msgid "Scadenza"
-msgstr ""
+msgid "Expiration date"
+msgstr "Data scadenza documento"
 
 #: asso/member/templates/member/member.html:41
-msgid "Indirizzo di residenza"
-msgstr ""
+msgid "Residence Address"
+msgstr "Indirizzo di residenza"
 
 #: asso/templates/registration/logged_out.html:5
 msgid "Logged out!"
@@ -632,31 +632,3 @@ msgstr ""
 #: asso/templates/registration/login.html:11
 msgid "Please login to see this page"
 msgstr ""
-
-#~ msgid "Master Universitario"
-#~ msgstr "Master Universitario"
-
-#~ msgid "Dottorato di Ricerca"
-#~ msgstr "Dottorato di Ricerca"
-
-#~ msgid "Laurea Magistrale"
-#~ msgstr "Laurea Magistrale"
-
-#~ msgid "Laurea"
-#~ msgstr "Laurea"
-
-#~ msgid "Diploma Maturità"
-#~ msgstr "Diploma Maturità"
-
-#~ msgid "Licenza Media"
-#~ msgstr "Licenza Media"
-
-#~ msgid "Elementari"
-#~ msgstr "Elementari"
-
-#~ msgid ""
-#~ "One of the logo-* icons on https://ionic.io/ionicons (facebook, twitter, "
-#~ "linkedin, youtube, ...)"
-#~ msgstr ""
-#~ "Una delle icone nel formato logo-* su https://ionic.io/ionicons "
-#~ "(facebook, twitter, linkedin, youtube, ...)"
