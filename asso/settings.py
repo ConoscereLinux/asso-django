@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "asso.accountant.apps.AccountantConfig",
     "asso.member.apps.MemberConfig",
     "asso.website.apps.WebsiteConfig",
+    "asso.landing.apps.LandingConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
