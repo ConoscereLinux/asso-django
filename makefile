@@ -75,8 +75,8 @@ superuser:
 	@$(django) createsuperuser --email=info@conoscerelinux.org
 
 demo:
-	@$(django) loaddata member/demo
 	@$(django) loaddata academy/demo
+	@#$(django) loaddata member/demo
 
 
 # Database commands
@@ -84,6 +84,7 @@ db-bootstrap: db-flush migrate db-default superuser
 
 db-default:
 	@$(django) loaddata theme/default
+	@$(django) loaddata academy/default
 	@#$(django) loaddata member/default
 
 db-flush:

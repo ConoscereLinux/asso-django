@@ -1,0 +1,8 @@
+- model: academy.EventCategory
+  pk: 1
+  fields:
+    title: Course
+- model: academy.EventCategory
+  pk: 2
+  fields:
+    title: Laboratory
