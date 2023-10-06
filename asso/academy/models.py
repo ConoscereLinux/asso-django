@@ -1,10 +1,13 @@
 """The Academy section, with teacher event and participation."""
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from ..commons.models import (
     ContentModel,
+    HidableModel,
+    OrderedModel,
     SoftDeletableModel,
     TimeStampModel,
     TitleModel,
@@ -22,14 +25,11 @@ class EventCategory(TitleModel):
         verbose_name_plural = _("Event Categories")
 
 
-# class EventApprovalState(TitleModel):
-#     """Represents the state of approval of an Event."""
-#
-#     show = models.BooleanField(
-#         default=False,
-#         verbose_name=_("Show"),
-#         help_text=_("Indicates if at this state the Event has to be shown"),
-#     )
+class EventApprovalState(TitleModel, HidableModel, OrderedModel):
+    """Represents the state of approval of an Event."""
+
+    class Meta:
+        ordering = ["order", "-show"]
 
 
 class EventSession(TitleModel, SoftDeletableModel, TimeStampModel):
@@ -53,6 +53,12 @@ class EventSession(TitleModel, SoftDeletableModel, TimeStampModel):
         verbose_name=_("End datetime"),
         help_text=_("The end time and date of the session"),
     )
+
+    def clean(self):
+        if self.start > self.end:
+            raise ValidationError(
+                _("End timestamp should be greater than start timestamp")
+            )
 
     def save(self, *args, **kwargs):
         super().save()
@@ -79,6 +85,14 @@ class Event(ContentModel):
         related_name="events",
         verbose_name=_("Category"),
         help_text=_("The event category (course, talk, ...)"),
+    )
+
+    approval_state = models.ForeignKey(
+        EventApprovalState,
+        on_delete=models.PROTECT,
+        related_name="events",
+        verbose_name=_("Approval State"),
+        help_text=_("Actual approval state for this event"),
     )
 
     need_membership = models.BooleanField(
