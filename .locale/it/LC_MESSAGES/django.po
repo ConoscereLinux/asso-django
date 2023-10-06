@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 14:24+0200\n"
+"POT-Creation-Date: 2023-10-06 14:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,10 +278,18 @@ msgid "Set to True to set as removed or 'soft deleted"
 msgstr ""
 
 #: asso/commons/models.py:116
+msgid "Show"
+msgstr ""
+
+#: asso/commons/models.py:117
+msgid "Set to False to hide this content in views"
+msgstr ""
+
+#: asso/commons/models.py:132
 msgid "Order"
 msgstr "Ordine"
 
-#: asso/commons/models.py:117
+#: asso/commons/models.py:133
 msgid "Object ordering value"
 msgstr ""
 
@@ -338,26 +346,14 @@ msgstr "Indirizzo di residenza"
 msgid "Register"
 msgstr ""
 
-#: asso/theme/models.py:21 asso/theme/models.py:54
-msgid "Visible"
-msgstr ""
-
 #: asso/theme/models.py:22
-msgid "Set to True to show in navbar"
-msgstr ""
-
-#: asso/theme/models.py:27
 msgid "A URL or a relative path"
 msgstr ""
 
-#: asso/theme/models.py:42
+#: asso/theme/models.py:37
 msgid "Web site (default)"
 msgstr ""
 
-#: asso/theme/models.py:55
-msgid "Set to True to show in footer"
-msgstr ""
-
-#: asso/theme/models.py:60
+#: asso/theme/models.py:50
 msgid "Logo Icon"
 msgstr ""
