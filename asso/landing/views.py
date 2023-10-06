@@ -20,13 +20,14 @@ class HomePage(generic.TemplateView):
         context["modes"] = self.MODES
 
         today = dt.date.today()
+
         match mode := self.request.GET.get("mode"):
             case "archive":
-                query = Event.objects.filter(end_date__lt=today)
+                query = Event.objects.filter(end_date__lte=today)
             case "current":
-                query = Event.objects.filter(start_date__lt=today, end_date__gt=today)
+                query = Event.objects.filter(start_date__lte=today, end_date__gte=today)
             case "next" | _:
-                query = Event.objects.filter(start_date__gt=today)
+                query = Event.objects.filter(start_date__gte=today)
                 mode = "next"
 
         context["mode"] = mode

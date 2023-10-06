@@ -1,8 +1,9 @@
-"""The member management, from the single one to the MembersRegister."""
+"""Models to handle Members and Memberships"""
 
 import datetime as dt
 
 from codicefiscale import codicefiscale
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
@@ -12,16 +13,13 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
-from asso.core.models.commons import (
-    Common,
-    Created,
-    Editable,
+from asso.commons.models import (
     OrderedModel,
     SlugModel,
+    SoftDeletableModel,
+    TimeStampModel,
     TitleModel,
-    Trashable,
 )
-from asso.core.utils import year_first_day, yearly_duration
 
 from .constants import ITALIAN_PROVINCES
 
@@ -36,7 +34,7 @@ class MemberQualification(SlugModel, TitleModel, OrderedModel):
         return f"{self.title}"
 
 
-class Member(Editable, Created, Trashable):
+class Member(TimeStampModel, SoftDeletableModel):
     """It represents an Association Member"""
 
     user = models.OneToOneField(
@@ -45,6 +43,9 @@ class Member(Editable, Created, Trashable):
         verbose_name=_("User"),
         related_name="member",
     )
+
+    first_name = models.CharField(_("First Name"), max_length=60)
+    last_name = models.CharField(_("Last Name"), max_length=60)
 
     cf = models.CharField(
         _("Codice Fiscale"),
@@ -55,8 +56,9 @@ class Member(Editable, Created, Trashable):
     class Gender(models.TextChoices):
         MALE = "M", _("Male")
         FEMALE = "F", _("Female")
+        OTHER = "O", _("Other")
 
-    sex = models.CharField(_("Gender"), choices=Gender.choices, max_length=1)
+    gender = models.CharField(_("Gender"), max_length=1, choices=Gender.choices)
 
     birth_date = models.DateField(_("Birth Date"))
     # Translators: Comune di nascita (ITA)
@@ -134,12 +136,12 @@ class Member(Editable, Created, Trashable):
         _("Profession"), blank=True, max_length=80, default=""
     )
     qualification = models.ForeignKey(
-        to=MemberQualification,
+        MemberQualification,
         null=True,
         blank=True,
         on_delete=models.PROTECT,
         related_name="members",
-        verbose_name=_("Study Degree"),
+        verbose_name=_("Qualification"),
     )
 
     come_from = models.CharField(
@@ -159,7 +161,11 @@ class Member(Editable, Created, Trashable):
 
     @property
     def full_name(self) -> str:
-        return getattr(self.user, "full_name", None)
+        return f"{self.first_name} {self.last_name}"
+
+    @property
+    def last_membership(self) -> "Membership":
+        return self.memberships.order_by("period__end_date").last()
 
     def get_absolute_url(self):
         return reverse("member", kwargs={"pk": self.pk})
@@ -172,7 +178,59 @@ class Member(Editable, Created, Trashable):
         verbose_name_plural = _("Members")
 
 
-class Membership(Editable, Created, Trashable):
+def default_start_date(year: int = None) -> dt.date:
+    """Return first date of the year (use current year if not specified)"""
+    return dt.date(year=year if year else dt.date.today().year, month=1, day=1)
+
+
+def default_duration(years: int = 1) -> relativedelta:
+    """A relative date delta of some years (one by default)"""
+    return relativedelta(years=years)
+
+
+class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
+    """Range of validity of memberships"""
+
+    card_prefix = models.SlugField(
+        _("Card Prefix"),
+        unique=True,
+        max_length=50,
+        help_text=_("Prefix for the card identifier"),
+    )
+
+    start_date = models.DateField(
+        default=default_start_date,
+        verbose_name=_("Start Date"),
+        help_text=_("Initial day of the Membership period"),
+    )
+
+    duration = RelativeDeltaField(
+        default=default_duration,
+        verbose_name=_("Duration"),
+        help_text=_("Duration of this Period (as ISO8601 format with designators)"),
+    )
+
+    end_date = models.DateField(
+        editable=False,
+        verbose_name=_("End Date"),
+        help_text=_("Final day of the Membership period"),
+    )
+
+    price = MoneyField(
+        max_digits=10,
+        decimal_places=2,
+        default=0.0,
+        default_currency="EUR",
+        verbose_name=_("Price"),
+        help_text=_("The default price to pay for this Period Membership"),
+    )
+
+    def save(self, *args, **kwargs):
+        self.end_date = self.start_date + self.duration
+        super().save(*args, **kwargs)
+
+
+class Membership(TimeStampModel, SoftDeletableModel):
     """The member of a user for a particular period."""
 
     member = models.ForeignKey(
@@ -196,68 +254,36 @@ class Membership(Editable, Created, Trashable):
     )
 
     def __str__(self):
-        return f"{str(self.period)}/{self.card_number}"
+        return f"{str(self.period.card_prefix)}/{self.card_number}"
 
 
-class MembershipPeriod(Common, Trashable):
-    """This represents the applying period of the Membership."""
-
-    start_date = models.DateField(
-        default=year_first_day,
-        verbose_name=_("Start Date"),
-        help_text=_("Initial day of the Membership period"),
-    )
-
-    duration = RelativeDeltaField(
-        default=yearly_duration,
-        verbose_name=_("Duration"),
-        help_text=_("Duration of this Period (as ISO8601 format with designators)"),
-    )
-
-    @property
-    def end_date(self) -> dt.date:
-        return self.start_date + self.duration
-
-    price = MoneyField(
-        max_digits=10,
-        decimal_places=2,
-        default=0.0,
-        default_currency="EUR",
-        verbose_name=_("Price"),
-        help_text=_("The default price to pay for this Period Membership"),
-    )
-
-    def __str__(self):
-        return self.title
+# class MemberRegister(ContentModel):
+#     """Member registration referred to a specific Period"""
+#
+#     period = models.ForeignKey(
+#         "MembershipPeriod",
+#         on_delete=models.CASCADE,
+#         related_name="period_member_registration",
+#         verbose_name=_("Period"),
+#         help_text=_("The Period the Membership Apply"),
+#     )
 
 
-class MemberRegister(Common, Trashable):
-    """Member registration referred to a specific Period"""
-
-    period = models.ForeignKey(
-        "MembershipPeriod",
-        on_delete=models.CASCADE,
-        related_name="period_member_registration",
-        verbose_name=_("Period"),
-        help_text=_("The Period the Membership Apply"),
-    )
-
-
-class RegisterEntry(Editable, Created, Trashable):
-    """It is the single Entry (corresponding to a Membership) of the Register."""
-
-    register = models.ForeignKey(
-        "MemberRegister",
-        on_delete=models.CASCADE,
-        related_name="register_entries",
-        verbose_name=_("Register"),
-        help_text=_("The owner Register"),
-    )
-
-    membership = models.ForeignKey(
-        "Membership",
-        on_delete=models.CASCADE,
-        related_name="membership_register_entries",
-        verbose_name=_("Membership"),
-        help_text=_("The corresponding Membership"),
-    )
+# class RegisterEntry(TimeStampModel, SoftDeletableModel):
+#     """It is the single Entry (corresponding to a Membership) of the Register."""
+#
+#     register = models.ForeignKey(
+#         "MemberRegister",
+#         on_delete=models.CASCADE,
+#         related_name="register_entries",
+#         verbose_name=_("Register"),
+#         help_text=_("The owner Register"),
+#     )
+#
+#     membership = models.ForeignKey(
+#         "Membership",
+#         on_delete=models.CASCADE,
+#         related_name="membership_register_entries",
+#         verbose_name=_("Membership"),
+#         help_text=_("The corresponding Membership"),
+#     )

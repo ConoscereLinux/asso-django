@@ -12,4 +12,4 @@ class MemberDetailView(LoginRequiredMixin, generic.DetailView):
 
 class MemberCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Member
-    fields = ["user", "cf", "sex", "phone"]
+    fields = ["user", "first_name", "last_name", "cf", "gender", "phone"]

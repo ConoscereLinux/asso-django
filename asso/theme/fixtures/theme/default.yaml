@@ -6,30 +6,31 @@
 - model: theme.NavbarItem
   pk: 1
   fields:
-    title: "Profile"
     slug: "profile" 
-    url: "/member/detail/1" 
-    active: true
+    title: "Profile"
+    show: true
+    url: "/member/detail/1"
 - model: theme.NavbarItem
   pk: 2
   fields: 
-    title: "External site"
     slug: external_site
+    title: "External site"
+    show: true
     url: "https://example.com" 
-    active: true
 - model: theme.NavbarItem
   pk: 3
   fields:
-    title: "Archive"
     slug: "archive"
+    title: "Archive"
+    show: false
     url: "?mode=archive"
 - model: theme.NavbarItem
   pk: 4
   fields:
-    title: "Privacy"
     slug: "privacy" 
+    title: "Privacy"
+    show: true
     url: "/privacy" 
-    active: true
 - model: theme.SocialLink
   pk: 1
   fields:

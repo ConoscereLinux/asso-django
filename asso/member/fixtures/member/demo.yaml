@@ -1,27 +1,61 @@
-- model: core.User
-  pk: 2
+- model: member.MembershipPeriod
+  pk: 1
   fields:
-    email: john@doe.com
-    first_name: John
-    last_name: Doe
-    username: john-doe
+    title: "Year 2023"
+    card_prefix: "2023"
+    start_date: 2023-01-01
+    end_date: 2024-01-01
+    created_at: 2023-01-01T00:00:00Z
+    updated_at: 2023-01-01T00:00:00Z
 - model: member.Member
   pk: 1
   fields:
-    creation_date: 1970-01-01T00:00:00Z
-    edit_date: 1970-01-01T00:00:00Z
+    created_at: 1970-01-01T00:00:00Z
+    updated_at: 1970-01-01T00:00:00Z
     user: 2
+    first_name: "John"
+    last_name: "Doe"
     cf: AAAAAAAAAAAAAAAA
-    sex: M
+    gender: M
     birth_date: 1970-01-01
     birth_city: "London"
     birth_province: EE
     phone: +44 000 0000000
     address_description: "Main Road 1"
     address_city: "London"
-    address_postal_code: 00000
+    address_postal_code: 11111
     address_province: EE
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
     document_number: 00000
     document_expires: 2028-01-01
+- model: member.Member
+  pk: 2
+  fields:
+    created_at: 1970-01-01T00:00:00Z
+    updated_at: 1970-01-01T00:00:00Z
+    user: 3
+    first_name: "Johanna"
+    last_name: "Doe"
+    cf: AAAAAAAAAAAAAAAA
+    gender: F
+    birth_date: 1970-01-01
+    birth_city: "London"
+    birth_province: EE
+    phone: +44 000 0000000
+    address_description: "Main Road 1"
+    address_city: "London"
+    address_postal_code: 11111
+    address_province: EE
+    document_type: "carta-identita"
+    document_grant_from: "London Municipality"
+    document_number: 22222
+    document_expires: 2028-01-01
+- model: member.Membership
+  pk: 1
+  fields:
+    member: 1
+    period: 1
+    card_number: 1
+    created_at: 2023-01-02T00:00:00Z
+    updated_at: 2023-01-02T00:00:00Z

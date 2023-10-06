@@ -75,15 +75,17 @@ superuser:
 	@$(django) createsuperuser --email=info@conoscerelinux.org
 
 demo:
-	@$(django) loaddata member/demo
+	@$(django) loaddata accounts/demo
 	@$(django) loaddata academy/demo
+	@$(django) loaddata member/demo
 
 
 # Database commands
 db-bootstrap: db-flush migrate db-default superuser
 
 db-default:
-	@$(django) loaddata website/default
+	@$(django) loaddata theme/default
+	@$(django) loaddata academy/default
 	@$(django) loaddata member/default
 
 db-flush:
@@ -100,7 +102,7 @@ watch:
 .PHONY: messages translations
 
 messages:
-	@$(django) makemessages -l it
+	@$(django) makemessages -l it --no-obsolete
 
 translations: messages
 	@$(django) compilemessages

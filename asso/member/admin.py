@@ -1,12 +1,11 @@
 from django.contrib import admin
 
-from ..core.admin import CreatedAdmin, EditableAdmin, TrashableAdmin
 from . import models
 
 
 @admin.register(models.Membership)
-class MembershipAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ["member", "card_number", "period"]
+class MembershipAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "member", "period", "card_number"]
 
 
 class MembershipInline(admin.StackedInline):
@@ -15,15 +14,29 @@ class MembershipInline(admin.StackedInline):
 
 
 @admin.register(models.Member)
-class MemberAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ["user", "id", "cf", "birth_date"]
-    list_filter = ["sex", "document_type"]
-
-    search_fields = ["user__first_name", "user__last_name", "user__email", "cf"]
-
-    inlines = [MembershipInline]
+class MemberAdmin(admin.ModelAdmin):
+    list_display = [
+        "cf",
+        "user",
+        "first_name",
+        "last_name",
+        "birth_date",
+        "last_membership",
+    ]
+    list_filter = ["gender", "document_type"]
+    search_fields = ["first_name", "last_name", "cf"]
+    inlines = [
+        MembershipInline,
+    ]
 
 
 @admin.register(models.MembershipPeriod)
-class MembershipPeriodAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ["title", "start_date", "end_date", "duration", "description"]
+class MembershipPeriodAdmin(admin.ModelAdmin):
+    list_display = [
+        "title",
+        "start_date",
+        "duration",
+        "end_date",
+        "price",
+        "description",
+    ]
