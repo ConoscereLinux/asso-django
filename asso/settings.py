@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "asso.theme",
     "asso.academy",
     "asso.landing",
-    # "asso.core.apps.CoreConfig",
     # "asso.accountant.apps.AccountantConfig",
     # "asso.member.apps.MemberConfig",
     "django.contrib.admin",
