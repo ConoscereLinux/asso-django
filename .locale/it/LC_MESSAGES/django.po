@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 15:38+0200\n"
+"POT-Creation-Date: 2023-10-06 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: asso/academy/models.py:25
+#: asso/academy/models.py:25 asso/member/models.py:44
 msgid "User"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgstr "Email Utente"
 msgid "Email used for comunication regarding this event"
 msgstr ""
 
-#: asso/academy/models.py:198
+#: asso/academy/models.py:198 asso/member/models.py:80
 #, fuzzy
 #| msgid "Row Number"
 msgid "Phone Number"
@@ -398,11 +398,163 @@ msgstr ""
 msgid "Fiscal Code {value} formally invalid"
 msgstr "Codice Fiscale {value} invalido"
 
-#: asso/member/models.py:170
+#: asso/member/models.py:48
+msgid "First Name"
+msgstr ""
+
+#: asso/member/models.py:49
+msgid "Last Name"
+msgstr ""
+
+#: asso/member/models.py:52
+msgid "Codice Fiscale"
+msgstr ""
+
+#: asso/member/models.py:58
+msgid "Male"
+msgstr ""
+
+#: asso/member/models.py:59
+msgid "Female"
+msgstr ""
+
+#: asso/member/models.py:60
+msgid "Other"
+msgstr ""
+
+#: asso/member/models.py:62
+msgid "Gender"
+msgstr ""
+
+#: asso/member/models.py:64
+#, fuzzy
+#| msgid "Birth date"
+msgid "Birth Date"
+msgstr "Data di nascita"
+
+#: asso/member/models.py:67
+#, fuzzy
+#| msgid "Birth date"
+msgid "Birth City"
+msgstr "Data di nascita"
+
+#: asso/member/models.py:69
+msgid "City/municipality or foreign country where Member is born"
+msgstr ""
+
+#: asso/member/models.py:72
+msgid "Birth Province"
+msgstr ""
+
+#: asso/member/models.py:73
+msgid "Italian Province where Member is born (EE for other countries)"
+msgstr ""
+
+#: asso/member/models.py:82
+msgid "Phone Number, use only digits, +, -, space and parenthesis"
+msgstr ""
+
+#: asso/member/models.py:86
+msgid "Use only plus sign (at start), dashes (-), spaces and parenthesis"
+msgstr ""
+
+#: asso/member/models.py:92
+msgid "Address"
+msgstr ""
+
+#: asso/member/models.py:92
+msgid "Example: Via Roma 42/a"
+msgstr ""
+
+#: asso/member/models.py:94
+msgid "Address City"
+msgstr ""
+
+#: asso/member/models.py:96
+msgid "Postal Code"
+msgstr ""
+
+#: asso/member/models.py:99
+msgid "Italian Postal Code is made of 5 digits"
+msgstr ""
+
+#: asso/member/models.py:103
+msgid "Address Province"
+msgstr ""
+
+#: asso/member/models.py:104
+msgid "Address Province (EE for other countries)"
+msgstr ""
+
+#: asso/member/models.py:111
+msgid "Carta Identità"
+msgstr ""
+
+#: asso/member/models.py:112
+msgid "Passaporto"
+msgstr ""
+
+#: asso/member/models.py:113
+msgid "Patente"
+msgstr ""
+
+#: asso/member/models.py:116
+#, fuzzy
+#| msgid "Document"
+msgid "Document Type"
+msgstr "Documento"
+
+#: asso/member/models.py:119
+msgid "Who has grant the Document"
+msgstr ""
+
+#: asso/member/models.py:121
+msgid "Public Authority who grant you the document"
+msgstr ""
+
+#: asso/member/models.py:123
+msgid "Document Number/Code"
+msgstr ""
+
+#: asso/member/models.py:125
+#, fuzzy
+#| msgid "Expiration date"
+msgid "Document Expiration Date"
+msgstr "Data scadenza documento"
+
+#: asso/member/models.py:129
+msgid "Privacy Page Aknowledgement"
+msgstr ""
+
+#: asso/member/models.py:133
+msgid "Last date Member has read privacy page"
+msgstr ""
+
+#: asso/member/models.py:137
+msgid "Profession"
+msgstr ""
+
+#: asso/member/models.py:145
+msgid "Qualification"
+msgstr ""
+
+#: asso/member/models.py:149
+msgid "How you found us"
+msgstr ""
+
+#: asso/member/models.py:155
+msgid "Interests"
+msgstr ""
+
+#: asso/member/models.py:161
+msgid "Internal Notes"
+msgstr ""
+
+#: asso/member/models.py:174
 msgid "Member"
 msgstr "Socio"
 
-#: asso/member/models.py:171
+#: asso/member/models.py:175
 msgid "Members"
 msgstr "Soci"
 

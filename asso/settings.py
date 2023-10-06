@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "asso.academy",
     "asso.landing",
     # "asso.accountant",
-    # "asso.member",
+    "asso.member",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
