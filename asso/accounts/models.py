@@ -34,19 +34,19 @@ class UserManager(BaseUserManager):
         return self.create_user(username, password, **fields)
 
 
-class UserMail(models.Model):
+class UserEmail(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="emails")
     email = models.EmailField(unique=True, null=False, blank=False)
 
     @staticmethod
     def is_available(email: str):
         """Check if email is available"""
-        return not UserMail.objects.filter(email=email).exists()
+        return not UserEmail.objects.filter(email=email).exists()
 
     @staticmethod
     def is_registered(email, exclude: "User"):
         """Check if email is already registered (excluded given user)"""
-        return UserMail.objects.filter(email=email).exclude(user=exclude).exists()
+        return UserEmail.objects.filter(email=email).exclude(user=exclude).exists()
 
     def __str__(self):
         return f"<{self.user.username}> {self.email}"
@@ -62,7 +62,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     def clean(self):
-        if UserMail.is_registered(self.email, exclude=self):
+        if UserEmail.is_registered(self.email, exclude=self):
             raise ValidationError(
                 _("Email %(email)s is already used by another user"),
                 params={"email": self.email},
@@ -71,5 +71,5 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if UserMail.is_available(self.email):
-            UserMail.objects.create(user=self, email=self.email)
+        if UserEmail.is_available(self.email):
+            UserEmail.objects.create(user=self, email=self.email)

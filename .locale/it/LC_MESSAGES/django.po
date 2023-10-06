@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 19:07+0200\n"
+"POT-Creation-Date: 2023-10-06 19:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,10 +71,8 @@ msgid "The event who generate this session"
 msgstr ""
 
 #: asso/academy/models.py:80
-#, fuzzy
-#| msgid "Start Date"
 msgid "Start datetime"
-msgstr "Data di inizio"
+msgstr "Data e ora di inizio"
 
 #: asso/academy/models.py:81
 msgid "The start time and date of the session"
@@ -156,20 +154,16 @@ msgid "Event related to this enrollment"
 msgstr ""
 
 #: asso/academy/models.py:195
-#, fuzzy
-#| msgid "User Email"
 msgid "Email"
-msgstr "Email Utente"
+msgstr "Email"
 
 #: asso/academy/models.py:195
 msgid "Email used for comunication regarding this event"
 msgstr ""
 
 #: asso/academy/models.py:198 asso/member/models.py:79
-#, fuzzy
-#| msgid "Row Number"
 msgid "Phone Number"
-msgstr "Numero di Riga"
+msgstr "Numero di Telefono"
 
 #: asso/academy/models.py:202
 msgid "Phone number used for comunication regarding this event"
@@ -348,10 +342,8 @@ msgid "A short description for this content (not visible in views)"
 msgstr ""
 
 #: asso/commons/models.py:48
-#, fuzzy
-#| msgid "Granted by"
 msgid "Created at"
-msgstr "Rilasciato da"
+msgstr "Creato da"
 
 #: asso/commons/models.py:62
 msgid "Updated at"
@@ -427,16 +419,12 @@ msgid "Gender"
 msgstr ""
 
 #: asso/member/models.py:63
-#, fuzzy
-#| msgid "Birth date"
 msgid "Birth Date"
 msgstr "Data di nascita"
 
 #: asso/member/models.py:66
-#, fuzzy
-#| msgid "Birth date"
 msgid "Birth City"
-msgstr "Data di nascita"
+msgstr "Città di nascita"
 
 #: asso/member/models.py:68
 msgid "City/municipality or foreign country where Member is born"
@@ -499,10 +487,8 @@ msgid "Patente"
 msgstr ""
 
 #: asso/member/models.py:115
-#, fuzzy
-#| msgid "Document"
 msgid "Document Type"
-msgstr "Documento"
+msgstr "Tipo di Documento"
 
 #: asso/member/models.py:118
 msgid "Who has grant the Document"
@@ -517,8 +503,6 @@ msgid "Document Number/Code"
 msgstr ""
 
 #: asso/member/models.py:124
-#, fuzzy
-#| msgid "Expiration date"
 msgid "Document Expiration Date"
 msgstr "Data scadenza documento"
 
@@ -567,8 +551,6 @@ msgid "Prefix for the card identifier"
 msgstr ""
 
 #: asso/member/models.py:203
-#, fuzzy
-#| msgid "Start Date"
 msgid "Start Date"
 msgstr "Data di inizio"
 
@@ -601,10 +583,8 @@ msgid "Membership Period"
 msgstr ""
 
 #: asso/member/models.py:252
-#, fuzzy
-#| msgid "Row Number"
 msgid "Card Number"
-msgstr "Numero di Riga"
+msgstr "Numero di Tessera"
 
 #: asso/member/models.py:253
 msgid "The unique number to write on the card"

@@ -8,12 +8,12 @@
   fields:
     username: johanna-doe
     email: johanna@doe.com
-- model: accounts.UserMail
+- model: accounts.UserEmail
   pk: 2
   fields:
     user: 2
     email: john@doe.com
-- model: accounts.UserMail
+- model: accounts.UserEmail
   pk: 3
   fields:
     user: 3
