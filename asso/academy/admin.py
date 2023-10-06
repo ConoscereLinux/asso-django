@@ -1,12 +1,6 @@
 from django.contrib import admin
 
-# from ..core.admin import (
-#     CreatedAdmin,
-#     CreatedTabularInline,
-#     EditableAdmin,
-#     EditableTabularInline,
-#     TrashableAdmin,
-# )
+from ..commons.admin import ContentAdmin
 from . import models
 
 
@@ -21,7 +15,7 @@ class EventSessionAdmin(admin.StackedInline):
 
 
 @admin.register(models.Event)
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(ContentAdmin):
     list_display = (
         "title",
         "slug",

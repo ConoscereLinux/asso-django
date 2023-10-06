@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -35,6 +36,33 @@ class TitleModel(models.Model):
         abstract = True
 
 
+class TimeStampModel(models.Model):
+    """A Model who keep track of the user who created it at which time"""
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        related_name="%(app_label)s_%(class)s_created_by",
+        blank=True,
+        null=True,
+        editable=False,
+    )
+
+    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        related_name="%(app_label)s_%(class)s_updated_by",
+        blank=True,
+        null=True,
+        editable=False,
+    )
+
+    class Meta:
+        abstract = True
+
+
 class SoftDeletableModel(models.Model):
     """A Model which can be soft-deleted"""
 
@@ -42,6 +70,7 @@ class SoftDeletableModel(models.Model):
         default=False,
         null=False,
         blank=False,
+        editable=False,
         verbose_name=_("Is removed?"),
         help_text=_("Set to True to set as removed or 'soft deleted"),
     )
@@ -54,7 +83,7 @@ class SoftDeletableModel(models.Model):
         abstract = True
 
 
-class ContentModel(SlugModel, TitleModel, SoftDeletableModel):
+class ContentModel(SlugModel, TitleModel, SoftDeletableModel, TimeStampModel):
     """Represent a classic CMS content with slug, title, etc.
 
     Available fields:
