@@ -29,3 +29,13 @@ test = ["pytest", "pytest-django"]
 
 [tool.isort]
 profile = "black"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "asso.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::django.utils.deprecation.RemovedInDjango50Warning",
+    "ignore::django.utils.deprecation.RemovedInDjango51Warning",
+    "ignore::DeprecationWarning",
+]
