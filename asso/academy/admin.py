@@ -24,6 +24,11 @@ class EventSessionStackedInline(admin.StackedInline):
     extra = 0
 
 
+class EnrollmentTabularInline(admin.TabularInline):
+    model = models.Enrollment
+    extra = 0
+
+
 @admin.register(models.Event)
 class EventAdmin(ContentAdmin):
     list_display = (
@@ -37,9 +42,5 @@ class EventAdmin(ContentAdmin):
     prepopulated_fields = {"slug": ("title",)}
     inlines = [
         EventSessionStackedInline,
-        # EnrollmentAdmin,
+        EnrollmentTabularInline,
     ]
-
-
-# class EnrollmentAdmin(CreatedTabularInline, EditableTabularInline):
-#     model = models.Enrollment

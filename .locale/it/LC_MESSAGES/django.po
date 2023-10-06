@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 15:24+0200\n"
+"POT-Creation-Date: 2023-10-06 15:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,13 +143,37 @@ msgstr ""
 msgid "The Trainers that present the Event"
 msgstr ""
 
-#: asso/academy/models.py:179
+#: asso/academy/models.py:179 asso/academy/models.py:190
 msgid "Event"
 msgstr "Evento"
 
 #: asso/academy/models.py:180
 msgid "Events"
 msgstr "Eventi"
+
+#: asso/academy/models.py:191
+msgid "Event related to this enrollment"
+msgstr ""
+
+#: asso/academy/models.py:195
+#, fuzzy
+#| msgid "User Email"
+msgid "Email"
+msgstr "Email Utente"
+
+#: asso/academy/models.py:195
+msgid "Email used for comunication regarding this event"
+msgstr ""
+
+#: asso/academy/models.py:198
+#, fuzzy
+#| msgid "Row Number"
+msgid "Phone Number"
+msgstr "Numero di Riga"
+
+#: asso/academy/models.py:202
+msgid "Phone number used for comunication regarding this event"
+msgstr ""
 
 #: asso/accountant/models.py:25
 msgid "Parent"

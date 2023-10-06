@@ -180,32 +180,38 @@ class Event(ContentModel):
         verbose_name_plural = _("Events")
 
 
-# class Enrollment(Created, Editable):
-#     """Indicate that User want to attend the Event."""
+class Enrollment(TimeStampModel):
+    """Person enrollment to an event"""
+
+    event = models.ForeignKey(
+        Event,
+        on_delete=models.CASCADE,
+        related_name="enrollments",
+        verbose_name=_("Event"),
+        help_text=_("Event related to this enrollment"),
+    )
+
+    email = models.EmailField(
+        _("Email"), help_text=_("Email used for comunication regarding this event")
+    )
+    phone = models.CharField(
+        _("Phone Number"),
+        max_length=24,
+        blank=True,
+        default="",
+        help_text=_("Phone number used for comunication regarding this event"),
+    )
+
+
+# class MemberEnrollment(Enrollment):
+#     """An enrollment for a registered member"""
 #
-#     event = models.ForeignKey(
-#         "Event",
+#     member = models.ForeignKey(
+#         Member,
 #         on_delete=models.CASCADE,
-#         related_name="event_enrollments",
-#         verbose_name=_("Event"),
-#         help_text=_("The Event of witch the Enrollment is referred to"),
-#     )
-#
-#     attendant = models.ForeignKey(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.CASCADE,
-#         related_name="event_attendants",
-#         verbose_name=_("Attendant"),
-#         help_text=_("The Attendant of witch the Enrollment is referred to"),
-#     )
-#
-#     transaction = models.OneToOneField(
-#         Transaction,
-#         null=True,
-#         on_delete=models.CASCADE,
-#         related_name="transaction_enrollment",
-#         verbose_name=_("Event"),
-#         help_text=_("The Event of witch the Enrollment is referred to"),
+#         related_name="enrollments",
+#         verbose_name=_("Member"),
+#         help_text=_("The member enrolled to this event"),
 #     )
 
 
