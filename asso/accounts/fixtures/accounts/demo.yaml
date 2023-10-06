@@ -1,0 +1,20 @@
+- model: accounts.User
+  pk: 2
+  fields:
+    username: john-doe
+    email: john@doe.com
+- model: accounts.User
+  pk: 3
+  fields:
+    username: johanna-doe
+    email: johanna@doe.com
+- model: accounts.UserEmail
+  pk: 2
+  fields:
+    user: 2
+    email: john@doe.com
+- model: accounts.UserEmail
+  pk: 3
+  fields:
+    user: 3
+    email: johanna@doe.com

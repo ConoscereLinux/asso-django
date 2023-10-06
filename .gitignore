@@ -135,6 +135,8 @@ dmypy.json
 .project
 .pydevproject
 
+# NPM related folders
+node_modules
 
 # Project related folders
 .data

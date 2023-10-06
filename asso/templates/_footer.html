@@ -1,9 +1,8 @@
-<nav id="socials">
-  
+<nav id="socials" class="flex flex-row flex-wrap justify-center items-center">
   {% for social in socials %}
-  <a class="flex-center br-round" href="{{ social.url }}">
+  <a class="flex justify-center items-center text-white w-12 h-12 mx-0 my-1"
+     href="{{ social.url }}">
     <i data-feather="{{ social.logo | lower }}"></i>
   </a>
   {% endfor %}
-  
 </nav>

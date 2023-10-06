@@ -1,0 +1,54 @@
+- model: theme.ThemeConfig
+  pk: 1
+  fields:
+    brand: "Conoscere Linux"
+    active: true
+- model: theme.NavbarItem
+  pk: 1
+  fields:
+    slug: "profile" 
+    title: "Profile"
+    show: true
+    url: "/member/detail/1"
+- model: theme.NavbarItem
+  pk: 2
+  fields: 
+    slug: external_site
+    title: "External site"
+    show: true
+    url: "https://example.com" 
+- model: theme.NavbarItem
+  pk: 3
+  fields:
+    slug: "archive"
+    title: "Archive"
+    show: false
+    url: "?mode=archive"
+- model: theme.NavbarItem
+  pk: 4
+  fields:
+    slug: "privacy" 
+    title: "Privacy"
+    show: true
+    url: "/privacy" 
+- model: theme.SocialLink
+  pk: 1
+  fields:
+    order: 0
+    title: facebook
+    url: https://facebook.com
+    logo: facebook
+- model: theme.SocialLink
+  pk: 2
+  fields:
+    order: 20
+    title: youtube
+    url: https://youtube.com
+    logo: youtube
+- model: theme.SocialLink
+  pk: 3
+  fields:
+    order: 10
+    title: twitter
+    url: https://twitter.com
+    logo: twitter

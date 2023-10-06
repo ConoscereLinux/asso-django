@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% load i18n %}
+
+{% block title %}{{ member.full_name }}{% endblock %}
+
+{% block content %}
+
+<section id="member-detail" class="grid grid-cols-2 lg:grid-cols-4 gap-2 p-2">
+  <ul class="border divide-y">
+    <li class="active" aria-current="true">{{ member.full_name }}</li>
+    <li>{{ member.user.email }}</li>
+    <li>{{ member.phone }}</li>
+    <li>{{ member.get_gender_display }}</li>
+  </ul>  
+  
+  <ul class="border divide-y">
+    <li class="active" aria-current="true">{% translate "Personal Data" %}</li>
+    <li>{{ member.cf }}</li>
+    <li>
+      <span class="text-sm text-gray">{% translate "Birth date" %}:</span><br>
+      {{ member.birth_date }}
+    </li>
+    <li>{{ member.birth_city }} ({{ member.birth_province }})</li>
+  </ul>
+  
+  <ul class="border divide-y">
+    <li class="active" aria-current="true">{% translate "Document" %}</li>
+    <li>{{ member.get_document_type_display }}</li>
+    <li>
+      <span class="text-sm text-gray">{% translate "Granted by" %}:</span><br>
+      {{ member.document_grant_from }}
+    </li>
+    <li>{{ member.document_number }}</li>
+    <li>
+      <span class="text-sm text-gray">{% translate "Expiration date" %}: </span><br>
+      {{ member.document_expires }}
+    </li>
+  </ul>
+
+  <ul class="border divide-y">
+    <li class="active" aria-current="true">{% translate "Residence Address" %}</li>
+    <li>{{ member.address_description }} {{ member.address_number }}</li>
+    {% if member.address_additional %}
+      <li>{{ member.address_additional }}</li>
+    {% endif %}
+    <li>
+      {{ member.address_city }} ({{ member.address_province }}), {{ member.address_postal_code }}
+    </li>
+  </ul>
+</section>
+
+{% endblock %}

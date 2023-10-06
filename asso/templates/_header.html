@@ -1,5 +1,5 @@
-<nav>
-  <a class="link" href="{% url 'home' %}">
+<nav class="flex flex-row flex-wrap justify-center items-center">
+  <a class="font-bold text-lg p-4" href="{% url 'home' %}">
     {% if theme.logo %}
       <img style="max-height: 3rem" src="{{ theme.logo.url }}" alt="Site logo">
     {% else %}
@@ -7,8 +7,21 @@
     {% endif %}
   </a>
 
+  <span class="grow"></span>
+
   {% for item in menu_items %}
-  <a class="link" {% if item.active %}data-active{% endif %} 
+  <a class="text-base p-4" {% if item.show %}data-active{% endif %} 
      aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
   {% endfor %}
+
+  {% if request.user.is_authenticated %}
+    <a href="{% url "logout" %}" class="text-base m-2 p-2 border-black border-2 border-solid">
+      <i data-feather="user"></i>
+    </a>
+  {% else %}
+    <a href="{% url "login" %}" 
+       class="text-base font-bold m-2 py-1 px-2 border border-solid">
+      login
+    </a>
+  {% endif %}
 </nav>

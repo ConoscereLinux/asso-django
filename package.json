@@ -1,0 +1,9 @@
+{
+  "name": "asso-django",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

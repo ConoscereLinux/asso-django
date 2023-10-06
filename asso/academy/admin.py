@@ -1,35 +1,46 @@
 from django.contrib import admin
 
-from ..core.admin import (
-    CreatedAdmin,
-    CreatedTabularInline,
-    EditableAdmin,
-    EditableTabularInline,
-    TrashableAdmin,
-)
+from ..commons.admin import ContentAdmin
 from . import models
 
 
-@admin.register(models.ApprovalState)
-class ApprovalStateAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
+@admin.register(models.Trainer)
+class TrainerAdmin(admin.ModelAdmin):
+    list_display = ("display_name", "user", "biography")
+
+
+@admin.register(models.EventCategory)
+class EventCategoryAdmin(admin.ModelAdmin):
+    list_display = ("title", "description")
+
+
+@admin.register(models.EventApprovalState)
+class EventApprovalStateAdmin(admin.ModelAdmin):
     list_display = ("title", "show", "description")
 
 
-class SessionAdmin(CreatedTabularInline, EditableTabularInline):
-    model = models.Session
+class EventSessionStackedInline(admin.StackedInline):
+    model = models.EventSession
+    extra = 0
 
 
-class EnrollmentAdmin(CreatedTabularInline, EditableTabularInline):
+class EnrollmentTabularInline(admin.TabularInline):
     model = models.Enrollment
+    extra = 0
 
 
 @admin.register(models.Event)
-class EventAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ("title", "slug")
-    inlines = [SessionAdmin, EnrollmentAdmin]
+class EventAdmin(ContentAdmin):
+    list_display = (
+        "title",
+        "slug",
+        "category",
+        "is_removed",
+        "need_membership",
+        "price",
+    )
     prepopulated_fields = {"slug": ("title",)}
-
-
-@admin.register(models.Trainer)
-class TrainerAdmin(CreatedAdmin, EditableAdmin, TrashableAdmin):
-    list_display = ("template_name", "user", "display_name")
+    inlines = [
+        EventSessionStackedInline,
+        EnrollmentTabularInline,
+    ]

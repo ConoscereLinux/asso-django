@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 00:57+0000\n"
+"POT-Creation-Date: 2023-10-06 19:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,621 +18,614 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: asso/academy/models.py:20
-msgid "Show At This State"
+#: asso/academy/models.py:25 asso/member/models.py:43
+msgid "User"
 msgstr ""
 
-#: asso/academy/models.py:21
-msgid "Indicates if at this state the Event has to be shown"
+#: asso/academy/models.py:26
+msgid "Login credentials for Trainer"
 msgstr ""
 
-#: asso/academy/models.py:36 asso/core/models/commons.py:103
-msgid "Title"
-msgstr ""
-
-#: asso/academy/models.py:37
-msgid "Title of the event"
-msgstr ""
-
-#: asso/academy/models.py:43
-msgid "Subtitle"
-msgstr ""
-
-#: asso/academy/models.py:44
-msgid "Subtitle of the event"
-msgstr ""
-
-#: asso/academy/models.py:52
-msgid "Approval State"
-msgstr ""
-
-#: asso/academy/models.py:53
-msgid "It represents the state of approval of the event"
-msgstr ""
-
-#: asso/academy/models.py:58
-msgid "Membership Needed"
-msgstr ""
-
-#: asso/academy/models.py:60
-msgid "Indicate if the membership is needed in order to attend to this event"
-msgstr ""
-
-#: asso/academy/models.py:68 asso/membership/models.py:222
-msgid "Price"
-msgstr ""
-
-#: asso/academy/models.py:69
-msgid "The price to pay in order to attend the Event"
-msgstr ""
-
-#: asso/academy/models.py:75
-msgid "Trainers"
-msgstr ""
-
-#: asso/academy/models.py:76
-msgid "The Trainers that present the Event"
-msgstr ""
-
-#: asso/academy/models.py:84 asso/academy/models.py:92
-msgid "Set this value if you dont want to set sessions"
-msgstr ""
-
-#: asso/academy/models.py:106 asso/academy/models.py:132
-#: asso/academy/models.py:149
-msgid "Event"
-msgstr ""
-
-#: asso/academy/models.py:107
-msgid "The Event of witch the Session is referred to"
-msgstr ""
-
-#: asso/academy/models.py:111
-msgid "Start date and time"
-msgstr ""
-
-#: asso/academy/models.py:113
-msgid ""
-"The start time and date of the session, determine hide state of the event"
-msgstr ""
-
-#: asso/academy/models.py:118
-msgid "End date and time"
-msgstr ""
-
-#: asso/academy/models.py:120
-msgid "The end time and date of the session, determine hide state of the event"
-msgstr ""
-
-#: asso/academy/models.py:133 asso/academy/models.py:150
-msgid "The Event of witch the Enrollment is referred to"
-msgstr ""
-
-#: asso/academy/models.py:140
-msgid "Attendant"
-msgstr ""
-
-#: asso/academy/models.py:141
-msgid "The Attendant of witch the Enrollment is referred to"
-msgstr ""
-
-#: asso/academy/models.py:161
-#, fuzzy
-#| msgid "Profession"
-msgid "Session"
-msgstr "Professione"
-
-#: asso/academy/models.py:162
-msgid "The Session for which the Presence is registered"
-msgstr ""
-
-#: asso/academy/models.py:169
-#, fuzzy
-#| msgid "Elementari"
-msgid "Enrollment"
-msgstr "Elementari"
-
-#: asso/academy/models.py:170
-msgid "The Enrollment of which the Presence is registered"
-msgstr ""
-
-#: asso/academy/models.py:178
+#: asso/academy/models.py:30
 msgid "Displayed name"
 msgstr ""
 
-#: asso/academy/models.py:183
+#: asso/academy/models.py:32
+msgid "The name to display in teacher card"
+msgstr ""
+
+#: asso/academy/models.py:36
 msgid "Biography"
 msgstr ""
 
-#: asso/academy/models.py:184
+#: asso/academy/models.py:39
 msgid "Trainer Biography"
 msgstr ""
 
-#: asso/academy/models.py:192 asso/membership/models.py:34
-msgid "User"
-msgstr "Utente"
-
-#: asso/academy/models.py:193
-msgid "The User the Trainer use for Login"
+#: asso/academy/models.py:46
+msgid "Trainer"
 msgstr ""
 
-#: asso/academy/models.py:206
-msgid "displayed name and user cannot be either unset"
+#: asso/academy/models.py:47 asso/academy/models.py:174
+msgid "Trainers"
 msgstr ""
 
-#: asso/accountant/models.py:27
+#: asso/academy/models.py:54
+msgid "Event Category"
+msgstr "Tipologia di Evento"
+
+#: asso/academy/models.py:55
+msgid "Event Categories"
+msgstr "Tipologie di Evento"
+
+#: asso/academy/models.py:63
+msgid "Event Approval State"
+msgstr "Stato di approvazione dell'evento"
+
+#: asso/academy/models.py:64
+msgid "Event Approval States"
+msgstr "Stati di approvazione dell'evento"
+
+#: asso/academy/models.py:76
+msgid "The event who generate this session"
+msgstr ""
+
+#: asso/academy/models.py:80
+msgid "Start datetime"
+msgstr "Data e ora di inizio"
+
+#: asso/academy/models.py:81
+msgid "The start time and date of the session"
+msgstr ""
+
+#: asso/academy/models.py:85
+msgid "End datetime"
+msgstr ""
+
+#: asso/academy/models.py:86
+msgid "The end time and date of the session"
+msgstr ""
+
+#: asso/academy/models.py:92
+msgid "End timestamp should be greater than start timestamp"
+msgstr ""
+
+#: asso/academy/models.py:111
+msgid "Subtitle"
+msgstr ""
+
+#: asso/academy/models.py:118
+msgid "Category"
+msgstr ""
+
+#: asso/academy/models.py:119
+msgid "The event category (course, talk, ...)"
+msgstr ""
+
+#: asso/academy/models.py:126
+msgid "Approval State"
+msgstr ""
+
+#: asso/academy/models.py:127
+msgid "Actual approval state for this event"
+msgstr ""
+
+#: asso/academy/models.py:132
+msgid "Membership Needed"
+msgstr ""
+
+#: asso/academy/models.py:134
+msgid "Indicate if the membership is needed in order to attend to this event"
+msgstr ""
+
+#: asso/academy/models.py:144 asso/member/models.py:224
+msgid "Price"
+msgstr ""
+
+#: asso/academy/models.py:145
+msgid "The price to pay for this event (leave blank for free events)"
+msgstr ""
+
+#: asso/academy/models.py:154
+msgid ""
+"The starting date of the first session of this event (generated from "
+"sessions)"
+msgstr ""
+
+#: asso/academy/models.py:165
+msgid ""
+"The ending date of the last session of this event (generated from sessions)"
+msgstr ""
+
+#: asso/academy/models.py:175
+msgid "The Trainers that present the Event"
+msgstr ""
+
+#: asso/academy/models.py:179 asso/academy/models.py:190
+msgid "Event"
+msgstr "Evento"
+
+#: asso/academy/models.py:180
+msgid "Events"
+msgstr "Eventi"
+
+#: asso/academy/models.py:191
+msgid "Event related to this enrollment"
+msgstr ""
+
+#: asso/academy/models.py:195
+msgid "Email"
+msgstr "Email"
+
+#: asso/academy/models.py:195
+msgid "Email used for comunication regarding this event"
+msgstr ""
+
+#: asso/academy/models.py:198 asso/member/models.py:79
+msgid "Phone Number"
+msgstr "Numero di Telefono"
+
+#: asso/academy/models.py:202
+msgid "Phone number used for comunication regarding this event"
+msgstr ""
+
+#: asso/accountant/models.py:25
 msgid "Parent"
 msgstr ""
 
-#: asso/accountant/models.py:28
+#: asso/accountant/models.py:26
 msgid "The parent tag of this AnalyticTag"
 msgstr ""
 
-#: asso/accountant/models.py:47
+#: asso/accountant/models.py:43
 msgid "Direction"
 msgstr ""
 
-#: asso/accountant/models.py:48
+#: asso/accountant/models.py:44
 msgid "Indicate the direction of the Invoice"
 msgstr ""
 
-#: asso/accountant/models.py:53 asso/accountant/models.py:59
-#, fuzzy
-#| msgid "Phone Number"
+#: asso/accountant/models.py:49 asso/accountant/models.py:55
 msgid "Invoice Number"
-msgstr "Numero di telefono"
+msgstr "Numero di Ricevuta"
 
-#: asso/accountant/models.py:54 asso/accountant/models.py:60
+#: asso/accountant/models.py:50 asso/accountant/models.py:56
 msgid "The unique number of the Invoice"
 msgstr ""
 
-#: asso/accountant/models.py:65
+#: asso/accountant/models.py:61
 msgid "Printed"
 msgstr ""
 
-#: asso/accountant/models.py:66
+#: asso/accountant/models.py:62
 msgid "Indicate if the Invoice was printed"
 msgstr ""
 
-#: asso/accountant/models.py:71
+#: asso/accountant/models.py:67
 msgid "Sent"
 msgstr ""
 
-#: asso/accountant/models.py:72
+#: asso/accountant/models.py:68
 msgid "Indicate if the Invoice was sent"
 msgstr ""
 
-#: asso/accountant/models.py:93
+#: asso/accountant/models.py:89
 msgid "Invoice"
 msgstr ""
 
-#: asso/accountant/models.py:94
+#: asso/accountant/models.py:90
 msgid "Indicate the Invoice of ownership"
 msgstr ""
 
-#: asso/accountant/models.py:99
-#, fuzzy
-#| msgid "Phone Number"
+#: asso/accountant/models.py:95
 msgid "Row Number"
-msgstr "Numero di telefono"
+msgstr "Numero di Riga"
 
-#: asso/accountant/models.py:100
+#: asso/accountant/models.py:96
 msgid "The Number of the row in the Invoice"
 msgstr ""
 
-#: asso/accountant/models.py:108
+#: asso/accountant/models.py:104
 msgid "Unit Price"
 msgstr ""
 
-#: asso/accountant/models.py:109
+#: asso/accountant/models.py:105
 msgid "The price of the single unit"
 msgstr ""
 
-#: asso/accountant/models.py:116
+#: asso/accountant/models.py:112
 msgid "Quantity"
 msgstr ""
 
-#: asso/accountant/models.py:117
+#: asso/accountant/models.py:113
 msgid "How many items in the current row"
 msgstr ""
 
-#: asso/accountant/models.py:124 asso/accountant/models.py:136
-#: asso/accountant/models.py:148
+#: asso/accountant/models.py:120 asso/accountant/models.py:132
+#: asso/accountant/models.py:144
 msgid "Transaction"
 msgstr ""
 
-#: asso/accountant/models.py:125
+#: asso/accountant/models.py:121
 msgid "Indicate the Transaction of the row"
 msgstr ""
 
-#: asso/accountant/models.py:137
+#: asso/accountant/models.py:133
 msgid "Indicate the Transaction of the Purchase"
 msgstr ""
 
-#: asso/accountant/models.py:149
+#: asso/accountant/models.py:145
 msgid "Indicate the Transaction of the LiberalOffer"
 msgstr ""
 
-#: asso/accountant/models.py:161
+#: asso/accountant/models.py:157
 msgid "Value"
 msgstr ""
 
-#: asso/accountant/models.py:162
+#: asso/accountant/models.py:158
 msgid "The Value of the Transaction"
 msgstr ""
 
-#: asso/accountant/models.py:169
+#: asso/accountant/models.py:165
 msgid "AnalyticTag"
 msgstr ""
 
-#: asso/accountant/models.py:170
+#: asso/accountant/models.py:166
 msgid "The AnalyticTag of this Transaction"
 msgstr ""
 
-#: asso/accountant/models.py:177
+#: asso/accountant/models.py:173
 msgid "Account"
 msgstr ""
 
-#: asso/accountant/models.py:178
+#: asso/accountant/models.py:174
 msgid "The Account of this Transaction"
 msgstr ""
 
-#: asso/accountant/models.py:185
+#: asso/accountant/models.py:181
 msgid "Transaction Date"
 msgstr ""
 
-#: asso/accountant/models.py:186
+#: asso/accountant/models.py:182
 msgid "It is the day of the Transaction"
 msgstr ""
 
-#: asso/core/models/commons.py:15
-msgid "Order"
-msgstr ""
-
-#: asso/core/models/commons.py:16
-msgid "Object ordering value"
-msgstr ""
-
-#: asso/core/models/commons.py:30
-msgid "Creation Date and Time"
-msgstr ""
-
-#: asso/core/models/commons.py:31
-msgid "Date and Time of object's creation"
-msgstr ""
-
-#: asso/core/models/commons.py:40
-msgid "Creation User"
-msgstr ""
-
-#: asso/core/models/commons.py:41
-msgid "The User who has created this object"
-msgstr ""
-
-#: asso/core/models/commons.py:55
-msgid "Last edit Date and Time"
-msgstr ""
-
-#: asso/core/models/commons.py:56
-msgid "Date and Time of object's last edit"
-msgstr ""
-
-#: asso/core/models/commons.py:65
-msgid "Last edit User"
-msgstr ""
-
-#: asso/core/models/commons.py:66
-msgid "The User who last edited this object"
-msgstr ""
-
-#: asso/core/models/commons.py:79
-msgid "Trashed"
-msgstr ""
-
-#: asso/core/models/commons.py:80
-msgid "Is the object trashed"
-msgstr ""
-
-#: asso/core/models/commons.py:92
-msgid "Active"
-msgstr ""
-
-#: asso/core/models/commons.py:93
-msgid "Is the object active"
-msgstr ""
-
-#: asso/core/models/commons.py:107
-msgid "Description"
-msgstr ""
-
-#: asso/core/models/commons.py:108
-msgid "object description"
-msgstr ""
-
-#: asso/core/models/users.py:14
-msgid "The Email must be set"
-msgstr ""
-
-#: asso/core/models/users.py:28
+#: asso/accounts/models.py:31
 msgid "Superuser must have is_staff=True."
 msgstr ""
 
-#: asso/core/models/users.py:30
+#: asso/accounts/models.py:33
 msgid "Superuser must have is_superuser=True."
 msgstr ""
 
-#: asso/core/models/users.py:35
-#, fuzzy
-#| msgid "Address"
-msgid "email address"
-msgstr "Indirizzo"
+#: asso/accounts/models.py:55
+msgid "User Email"
+msgstr "Email Utente"
 
-#: asso/core/models/users.py:38
-msgid "First Name"
+#: asso/accounts/models.py:56
+msgid "User Emails"
+msgstr "Email Utenti"
+
+#: asso/accounts/models.py:67
+#, python-format
+msgid "Email %(email)s is already used by another user"
+msgstr "L'email %(email)s non è disponibile"
+
+#: asso/accounts/templates/registration/logged_out.html:5
+msgid "Logged out!"
 msgstr ""
 
-#: asso/core/models/users.py:43
-msgid "Last Name"
+#: asso/accounts/templates/registration/logged_out.html:6
+msgid "Click here to login again."
 msgstr ""
 
-#: asso/core/models/users.py:50
-msgid "username"
+#: asso/accounts/templates/registration/login.html:7
+msgid ""
+"You don't have access to this content, to proceed please login with an "
+"account who has access to this page."
 msgstr ""
 
-#: asso/core/models/users.py:56
-msgid "Optional, 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+#: asso/accounts/templates/registration/login.html:9
+msgid "Please login to see this page"
 msgstr ""
 
-#: asso/membership/models.py:25
+#: asso/commons/models.py:26
+msgid "Title"
+msgstr "Titolo"
+
+#: asso/commons/models.py:31
+msgid "Description"
+msgstr ""
+
+#: asso/commons/models.py:32
+msgid "A short description for this content (not visible in views)"
+msgstr ""
+
+#: asso/commons/models.py:48
+msgid "Created at"
+msgstr "Creato da"
+
+#: asso/commons/models.py:62
+msgid "Updated at"
+msgstr ""
+
+#: asso/commons/models.py:85
+msgid "Is removed?"
+msgstr ""
+
+#: asso/commons/models.py:86
+msgid "Set to True to set as removed or 'soft deleted"
+msgstr ""
+
+#: asso/commons/models.py:119
+msgid "Show"
+msgstr ""
+
+#: asso/commons/models.py:120
+msgid "Set to False to hide this content in views"
+msgstr ""
+
+#: asso/commons/models.py:135
+msgid "Order"
+msgstr "Ordine"
+
+#: asso/commons/models.py:136
+msgid "Object ordering value"
+msgstr ""
+
+#: asso/landing/views.py:13
+msgid "Prossimi Eventi"
+msgstr ""
+
+#: asso/landing/views.py:14
+msgid "In corso"
+msgstr ""
+
+#: asso/landing/views.py:15
+msgid "Archivio"
+msgstr ""
+
+#: asso/member/models.py:29
 #, python-brace-format
 msgid "Fiscal Code {value} formally invalid"
 msgstr "Codice Fiscale {value} invalido"
 
-#: asso/membership/models.py:39
+#: asso/member/models.py:47
+msgid "First Name"
+msgstr ""
+
+#: asso/member/models.py:48
+msgid "Last Name"
+msgstr ""
+
+#: asso/member/models.py:51
 msgid "Codice Fiscale"
-msgstr "Codice Fiscale"
+msgstr ""
 
-#: asso/membership/models.py:45
+#: asso/member/models.py:57
 msgid "Male"
-msgstr "Maschio"
+msgstr ""
 
-#: asso/membership/models.py:46
+#: asso/member/models.py:58
 msgid "Female"
-msgstr "Femmina"
+msgstr ""
 
-#: asso/membership/models.py:48
+#: asso/member/models.py:59
+msgid "Other"
+msgstr ""
+
+#: asso/member/models.py:61
 msgid "Gender"
-msgstr "Genere"
+msgstr ""
 
-#: asso/membership/models.py:50
+#: asso/member/models.py:63
 msgid "Birth Date"
 msgstr "Data di nascita"
 
-#: asso/membership/models.py:53
+#: asso/member/models.py:66
 msgid "Birth City"
-msgstr "Comune di nascita"
+msgstr "Città di nascita"
 
-#: asso/membership/models.py:55
+#: asso/member/models.py:68
 msgid "City/municipality or foreign country where Member is born"
-msgstr "Comune di nascita (nazione di nascita se nato all'estero)"
+msgstr ""
 
-#: asso/membership/models.py:58
+#: asso/member/models.py:71
 msgid "Birth Province"
-msgstr "Provincia di nascita"
+msgstr ""
 
-#: asso/membership/models.py:59
+#: asso/member/models.py:72
 msgid "Italian Province where Member is born (EE for other countries)"
-msgstr "Provincia di nascita (EE se nato all'estero)"
+msgstr ""
 
-#: asso/membership/models.py:66
-msgid "Phone Number"
-msgstr "Numero di telefono"
-
-#: asso/membership/models.py:68
+#: asso/member/models.py:81
 msgid "Phone Number, use only digits, +, -, space and parenthesis"
-msgstr "Numero di Telefono, usa solo numeri, +, -, spazi e/o parentesi"
+msgstr ""
 
-#: asso/membership/models.py:72
+#: asso/member/models.py:85
 msgid "Use only plus sign (at start), dashes (-), spaces and parenthesis"
-msgstr "Usa solo il simbolo + (all'inizio), trattino (-), spazio e parentesi"
+msgstr ""
 
-#: asso/membership/models.py:78
+#: asso/member/models.py:91
 msgid "Address"
-msgstr "Indirizzo"
+msgstr ""
 
-#: asso/membership/models.py:78
+#: asso/member/models.py:91
 msgid "Example: Via Roma 42/a"
-msgstr "Esempio: Via Roma 42a"
+msgstr ""
 
-#: asso/membership/models.py:80
+#: asso/member/models.py:93
 msgid "Address City"
-msgstr "Indirizzo (Città)"
+msgstr ""
 
-#: asso/membership/models.py:82
+#: asso/member/models.py:95
 msgid "Postal Code"
-msgstr "Codice di Avviamento Postale (CAP)"
+msgstr ""
 
-#: asso/membership/models.py:85
+#: asso/member/models.py:98
 msgid "Italian Postal Code is made of 5 digits"
-msgstr "Il codice CAP è composto esattamente da 5 cifre numeriche"
+msgstr ""
 
-#: asso/membership/models.py:89
+#: asso/member/models.py:102
 msgid "Address Province"
-msgstr "Indirizzo (Provincia)"
+msgstr ""
 
-#: asso/membership/models.py:90
+#: asso/member/models.py:103
 msgid "Address Province (EE for other countries)"
-msgstr "Indirizzo (Provincia) - EE se non in Italia"
+msgstr ""
 
-#: asso/membership/models.py:97
+#: asso/member/models.py:110
 msgid "Carta Identità"
-msgstr "Carta Identità"
+msgstr ""
 
-#: asso/membership/models.py:98
+#: asso/member/models.py:111
 msgid "Passaporto"
-msgstr "Passaporto"
+msgstr ""
 
-#: asso/membership/models.py:99
+#: asso/member/models.py:112
 msgid "Patente"
-msgstr "Patente"
+msgstr ""
 
-#: asso/membership/models.py:102
+#: asso/member/models.py:115
 msgid "Document Type"
 msgstr "Tipo di Documento"
 
-#: asso/membership/models.py:105
+#: asso/member/models.py:118
 msgid "Who has grant the Document"
-msgstr "Docuemnto rilasciato da"
+msgstr ""
 
-#: asso/membership/models.py:107
+#: asso/member/models.py:120
 msgid "Public Authority who grant you the document"
-msgstr "Ente che ha rilasciato il documento"
+msgstr ""
 
-#: asso/membership/models.py:109
+#: asso/member/models.py:122
 msgid "Document Number/Code"
-msgstr "Numero Documento"
+msgstr ""
 
-#: asso/membership/models.py:111
+#: asso/member/models.py:124
 msgid "Document Expiration Date"
 msgstr "Data scadenza documento"
 
-#: asso/membership/models.py:115
+#: asso/member/models.py:128
 msgid "Privacy Page Aknowledgement"
-msgstr "Presa visione della pagina privacy"
+msgstr ""
 
-#: asso/membership/models.py:119
+#: asso/member/models.py:132
 msgid "Last date Member has read privacy page"
-msgstr "Data più recente in cui l'utente ha visionato la pagina privacy"
+msgstr ""
 
-#: asso/membership/models.py:124
-msgid "Master Universitario"
-msgstr "Master Universitario"
-
-#: asso/membership/models.py:125
-msgid "Dottorato di Ricerca"
-msgstr "Dottorato di Ricerca"
-
-#: asso/membership/models.py:126
-msgid "Laurea Magistrale"
-msgstr "Laurea Magistrale"
-
-#: asso/membership/models.py:127
-msgid "Laurea"
-msgstr "Laurea"
-
-#: asso/membership/models.py:128
-msgid "Diploma Maturità"
-msgstr "Diploma Maturità"
-
-#: asso/membership/models.py:129
-msgid "Licenza Media"
-msgstr "Licenza Media"
-
-#: asso/membership/models.py:130
-msgid "Elementari"
-msgstr "Elementari"
-
-#: asso/membership/models.py:133
+#: asso/member/models.py:136
 msgid "Profession"
-msgstr "Professione"
+msgstr ""
 
-#: asso/membership/models.py:136
-msgid "Study Degree"
-msgstr "Titolo di Studio"
+#: asso/member/models.py:144
+msgid "Qualification"
+msgstr ""
 
-#: asso/membership/models.py:145
+#: asso/member/models.py:148
 msgid "How you found us"
-msgstr "Come ci hai trovato?"
+msgstr ""
 
-#: asso/membership/models.py:151
+#: asso/member/models.py:154
 msgid "Interests"
-msgstr "Interessi"
+msgstr ""
 
-#: asso/membership/models.py:157
+#: asso/member/models.py:160
 msgid "Internal Notes"
-msgstr "Note"
+msgstr ""
 
-#: asso/membership/models.py:167 asso/membership/models.py:178
+#: asso/member/models.py:177 asso/member/models.py:240
 msgid "Member"
 msgstr "Socio"
 
-#: asso/membership/models.py:168
+#: asso/member/models.py:178
 msgid "Members"
 msgstr "Soci"
 
-#: asso/membership/models.py:185
-msgid "Membership Period"
-msgstr "Periodo di Tesseramento"
+#: asso/member/models.py:195
+msgid "Card Prefix"
+msgstr ""
 
-#: asso/membership/models.py:190
-msgid "Card Number"
-msgstr "Numero Tessera"
+#: asso/member/models.py:198
+msgid "Prefix for the card identifier"
+msgstr ""
 
-#: asso/membership/models.py:191
-msgid "The unique number to write on the card"
-msgstr "Il codice univoco della tessera"
-
-#: asso/membership/models.py:203
+#: asso/member/models.py:203
 msgid "Start Date"
 msgstr "Data di inizio"
 
-#: asso/membership/models.py:204
+#: asso/member/models.py:204
 msgid "Initial day of the Membership period"
-msgstr "Data in cui inizia il periodo di validità della tessera"
+msgstr ""
 
-#: asso/membership/models.py:209
+#: asso/member/models.py:209
 msgid "Duration"
-msgstr "Durata"
+msgstr ""
 
-#: asso/membership/models.py:210
-#, fuzzy
-#| msgid "Duration of this Period (as ISO8601 format with designators"
+#: asso/member/models.py:210
 msgid "Duration of this Period (as ISO8601 format with designators)"
-msgstr "Durata di questo periodo di tesseramento (come stringa ISO8601)"
+msgstr ""
 
-#: asso/membership/models.py:223
+#: asso/member/models.py:215
+msgid "End Date"
+msgstr ""
+
+#: asso/member/models.py:216
+msgid "Final day of the Membership period"
+msgstr ""
+
+#: asso/member/models.py:225
 msgid "The default price to pay for this Period Membership"
-msgstr "Il costo della tessera per questo periodo"
+msgstr ""
 
-#: asso/membership/models.py:237
-msgid "Period"
-msgstr "Periodo"
+#: asso/member/models.py:247
+msgid "Membership Period"
+msgstr ""
 
-#: asso/membership/models.py:238
-msgid "The Period the Membership Apply"
-msgstr "Il periodo di tesseramento"
+#: asso/member/models.py:252
+msgid "Card Number"
+msgstr "Numero di Tessera"
 
-#: asso/membership/models.py:249
+#: asso/member/models.py:253
+msgid "The unique number to write on the card"
+msgstr ""
+
+#: asso/member/templates/member/member.html:17
+msgid "Personal Data"
+msgstr "Dati Anagrafici"
+
+#: asso/member/templates/member/member.html:20
+msgid "Birth date"
+msgstr "Data di nascita"
+
+#: asso/member/templates/member/member.html:27
+msgid "Document"
+msgstr "Documento"
+
+#: asso/member/templates/member/member.html:30
+msgid "Granted by"
+msgstr "Rilasciato da"
+
+#: asso/member/templates/member/member.html:35
+msgid "Expiration date"
+msgstr "Data scadenza documento"
+
+#: asso/member/templates/member/member.html:41
+msgid "Residence Address"
+msgstr "Indirizzo di residenza"
+
+#: asso/member/templates/member/member_form.html:8
 msgid "Register"
 msgstr ""
 
-#: asso/membership/models.py:250
-msgid "The owner Register"
+#: asso/theme/models.py:22
+msgid "A URL or a relative path"
 msgstr ""
 
-#: asso/membership/models.py:257
-msgid "Membership"
+#: asso/theme/models.py:37
+msgid "Web site (default)"
 msgstr ""
 
-#: asso/membership/models.py:258
-msgid "The corresponding Membership"
-msgstr ""
-
-#: asso/website/models.py:39
-msgid ""
-"One of the logo-* icons on https://ionic.io/ionicons (facebook, twitter, "
-"linkedin, youtube, ...)"
-msgstr "Una delle icone nel formato logo-* su https://ionic.io/ionicons (facebook, twitter, "
-"linkedin, youtube, ...)"
-
-#: asso/website/views.py:27
-msgid "Prossimi Eventi"
-msgstr ""
-
-#: asso/website/views.py:28
-msgid "In corso"
-msgstr ""
-
-#: asso/website/views.py:29
-msgid "Archivio"
+#: asso/theme/models.py:50
+msgid "Logo Icon"
 msgstr ""

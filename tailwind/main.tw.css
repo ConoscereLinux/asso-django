@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 { @apply text-2xl; }
+    h2 { @apply text-xl; }
+    
+    ul > li { @apply py-2 px-4; }
+    ul > li.active { @apply text-white font-bold bg-blue; }
+    
+    input { @apply border border-2; }
+    a { @apply text-gray-dark hover:text-blue; }
+    #navbar a { @apply font-bold text-white hover:text-blue-dark; }
+    #footer a { @apply hover:text-white hover:text-blue-dark; }
+}

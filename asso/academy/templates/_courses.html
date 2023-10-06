@@ -1,0 +1,14 @@
+<div class="btn-group flex justify-center gap-0 border divide-x">
+  {% for mode_, text_ in modes.items %}
+  <button class="font-bold p-2 {% if mode == mode_ %}text-white bg-blue hover:bg-blue-dark{% else %}hover:bg-orange{% endif %}" 
+          onclick="window.location.href = '{% url 'home' %}?mode={{ mode_ }}'">
+    {{ text_ }}
+  </button>
+  {% endfor %}
+</div>
+
+<div class="grid lg:grid-cols-2 gap-2 p-2 w-full">
+{% for course in courses %}
+  {% include "_course_card.html" with course=course %}
+{% endfor %}  
+</div>

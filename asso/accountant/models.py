@@ -8,16 +8,14 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 
-from asso.core.models.commons import Common, Created, Editable, Trashable
+from asso.commons.models import ContentModel, SoftDeletableModel, TimeStampModel
 
 
-class Account(Common, Trashable):
+class Account(ContentModel):
     """Represent a transaction account of the association or for other players."""
 
-    pass
 
-
-class AnalyticTag(Common, Trashable):
+class AnalyticTag(ContentModel):
     """Indicate the type of transaction and is used for analysis"""
 
     parent = models.ForeignKey(
@@ -29,13 +27,11 @@ class AnalyticTag(Common, Trashable):
     )
 
 
-class InvoiceDirection(Common, Trashable):
+class InvoiceDirection(ContentModel):
     """Indicate if the Invoice is for sale or for buy"""
 
-    pass
 
-
-class Invoice(Common, Trashable):
+class Invoice(ContentModel):
     """Represent an invoice"""
 
     # TODO: Invoice Sender and Recipient are not implemented yet
@@ -83,7 +79,7 @@ class Invoice(Common, Trashable):
         ]
 
 
-class InvoiceRow(Common, Trashable):
+class InvoiceRow(ContentModel):
     """Represent the single rows in an invoice"""
 
     invoice = models.ForeignKey(
@@ -126,7 +122,7 @@ class InvoiceRow(Common, Trashable):
     )
 
 
-class Purchase(Common, Trashable):
+class Purchase(ContentModel):
     """Represents the purchase of something."""
 
     transaction = models.OneToOneField(
@@ -138,7 +134,7 @@ class Purchase(Common, Trashable):
     )
 
 
-class LiberalOffer(Common, Trashable):
+class LiberalOffer(ContentModel):
     """Represents the offer of something."""
 
     transaction = models.OneToOneField(
@@ -150,7 +146,7 @@ class LiberalOffer(Common, Trashable):
     )
 
 
-class Transaction(Created, Editable, Trashable):
+class Transaction(TimeStampModel, SoftDeletableModel):
     """Indicate a single transaction between Accounts"""
 
     value = MoneyField(
