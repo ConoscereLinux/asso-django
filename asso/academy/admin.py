@@ -9,7 +9,7 @@ class EventCategoryAdmin(admin.ModelAdmin):
     list_display = ("title", "description")
 
 
-class EventSessionAdmin(admin.StackedInline):
+class EventSessionStackedInline(admin.StackedInline):
     model = models.EventSession
     extra = 0
 
@@ -26,7 +26,7 @@ class EventAdmin(ContentAdmin):
     )
     prepopulated_fields = {"slug": ("title",)}
     inlines = [
-        EventSessionAdmin,
+        EventSessionStackedInline,
         # EnrollmentAdmin,
     ]
 

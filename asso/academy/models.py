@@ -3,7 +3,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from ..commons.models import ContentModel, SoftDeletableModel, TitleModel
+from ..commons.models import (
+    ContentModel,
+    SoftDeletableModel,
+    TimeStampModel,
+    TitleModel,
+)
 
 
 class EventCategory(TitleModel):
@@ -27,7 +32,7 @@ class EventCategory(TitleModel):
 #     )
 
 
-class EventSession(ContentModel):
+class EventSession(TitleModel, SoftDeletableModel, TimeStampModel):
     """Single session of an Event."""
 
     event = models.ForeignKey(
