@@ -1,6 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -38,8 +38,22 @@ class UserMail(models.Model):
     user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="emails")
     email = models.EmailField(unique=True, null=False, blank=False)
 
+    @staticmethod
+    def is_available(email: str):
+        """Check if email is available"""
+        return not UserMail.objects.filter(email=email).exists()
+
+    @staticmethod
+    def is_registered(email, exclude: "User"):
+        """Check if email is already registered (excluded given user)"""
+        return UserMail.objects.filter(email=email).exclude(user=exclude).exists()
+
     def __str__(self):
         return f"<{self.user.username}> {self.email}"
+
+    class Meta:
+        verbose_name = _("User Email")
+        verbose_name_plural = _("User Emails")
 
 
 class User(AbstractUser):
@@ -47,15 +61,15 @@ class User(AbstractUser):
 
     objects = UserManager()
 
+    def clean(self):
+        if UserMail.is_registered(self.email, exclude=self):
+            raise ValidationError(
+                _("Email %(email)s is already used by another user"),
+                params={"email": self.email},
+            )
+
     def save(self, *args, **kwargs):
-        query = UserMail.objects.filter(email=self.email)
-        if self.pk:
-            query = query.exclude(user__id=self.id)
-
-        if query.exists():
-            raise ValueError("email already taken")
-
         super().save(*args, **kwargs)
 
-        if not UserMail.objects.filter(email=self.email).exists():
+        if UserMail.is_available(self.email):
             UserMail.objects.create(user=self, email=self.email)
