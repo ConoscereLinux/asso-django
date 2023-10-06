@@ -14,8 +14,8 @@ from loguru import logger
 from tqdm import tqdm
 
 from asso.academy.models import ApprovalState, Event
+from asso.commons.utils import yearly_duration
 from asso.core.models.users import User
-from asso.core.utils import yearly_duration
 from asso.member.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"

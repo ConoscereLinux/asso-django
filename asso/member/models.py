@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
+from asso.commons.utils import year_first_day, yearly_duration
 from asso.core.models.commons import (
     Common,
     Created,
@@ -21,7 +22,6 @@ from asso.core.models.commons import (
     TitleModel,
     Trashable,
 )
-from asso.core.utils import year_first_day, yearly_duration
 
 from .constants import ITALIAN_PROVINCES
 
