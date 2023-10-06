@@ -1,5 +1,6 @@
 """The Academy section, with teacher event and participation."""
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -12,6 +13,38 @@ from ..commons.models import (
     TimeStampModel,
     TitleModel,
 )
+
+
+class Trainer(TimeStampModel, SoftDeletableModel):
+    """A person who present an event as speaker, teacher, guest, ..."""
+
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        related_name="trainers",
+        verbose_name=_("User"),
+        help_text=_("Login credentials for Trainer"),
+    )
+
+    display_name = models.CharField(
+        _("Displayed name"),
+        max_length=200,
+        help_text=_("The name to display in teacher card"),
+    )
+
+    biography = models.TextField(
+        _("Biography"),
+        default="",
+        blank=True,
+        help_text=_("Trainer Biography"),
+    )
+
+    def __str__(self):
+        return self.display_name
+
+    class Meta:
+        verbose_name = _("Trainer")
+        verbose_name_plural = _("Trainers")
 
 
 class EventCategory(TitleModel):
@@ -27,6 +60,8 @@ class EventApprovalState(TitleModel, HidableModel, OrderedModel):
 
     class Meta:
         ordering = ["order", "-show"]
+        verbose_name = _("Event Approval State")
+        verbose_name_plural = _("Event Approval States")
 
 
 class EventSession(TitleModel, SoftDeletableModel, TimeStampModel):
@@ -132,23 +167,17 @@ class Event(ContentModel):
         ),
     )
 
-    def __str__(self):
-        return f"{self.title}"
+    trainers = models.ManyToManyField(
+        Trainer,
+        blank=True,
+        related_name="events",
+        verbose_name=_("Trainers"),
+        help_text=_("The Trainers that present the Event"),
+    )
 
-    # trainers = models.ManyToManyField(
-    #     "Trainer",
-    #     related_name="trainer_events",
-    #     verbose_name=_("Trainers"),
-    #     help_text=_("The Trainers that present the Event"),
-    # )
-
-    # approval_state = models.ForeignKey(
-    #     EventApprovalState,
-    #     on_delete=models.PROTECT,
-    #     related_name="events",
-    #     verbose_name=_("Approval State"),
-    #     help_text=_("Actual approval state for this event"),
-    # )
+    class Meta:
+        verbose_name = _("Event")
+        verbose_name_plural = _("Events")
 
 
 # class Enrollment(Created, Editable):
@@ -198,41 +227,3 @@ class Event(ContentModel):
 #         verbose_name=_("Enrollment"),
 #         help_text=_("The Enrollment of which the Presence is registered"),
 #     )
-
-
-# class Trainer(Created, Editable, Trashable):
-#     """Represents someone that can present an Event"""
-#
-#     display_name = models.CharField(
-#         _("Displayed name"), max_length=200, blank=True, default=""
-#     )
-#
-#     biography = models.TextField(
-#         blank=True,
-#         verbose_name=_("Biography"),
-#         help_text=_("Trainer Biography"),
-#     )
-#
-#     user = models.OneToOneField(
-#         settings.AUTH_USER_MODEL,
-#         null=True,
-#         blank=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name=_("User"),
-#         help_text=_("The User the Trainer use for Login"),
-#     )
-#
-#     @property
-#     def template_name(self):
-#         return self.user.full_name if not (dn := self.display_name) else dn
-#
-#     class Meta:
-#         constraints = [
-#             models.CheckConstraint(
-#                 check=Q(user__isnull=False) | Q(display_name__length__gt=0),
-#                 name="not_both_null",
-#                 violation_error_message=_(
-#                     "displayed name and user cannot be either unset"
-#                 ),
-#             )
-#         ]

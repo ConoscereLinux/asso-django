@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 14:31+0200\n"
+"POT-Creation-Date: 2023-10-06 15:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,74 +18,138 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: asso/academy/models.py:21
+#: asso/academy/models.py:25
+msgid "User"
+msgstr ""
+
+#: asso/academy/models.py:26
+msgid "Login credentials for Trainer"
+msgstr ""
+
+#: asso/academy/models.py:30
+msgid "Displayed name"
+msgstr ""
+
+#: asso/academy/models.py:32
+msgid "The name to display in teacher card"
+msgstr ""
+
+#: asso/academy/models.py:36
+msgid "Biography"
+msgstr ""
+
+#: asso/academy/models.py:39
+msgid "Trainer Biography"
+msgstr ""
+
+#: asso/academy/models.py:46
+msgid "Trainer"
+msgstr ""
+
+#: asso/academy/models.py:47 asso/academy/models.py:174
+msgid "Trainers"
+msgstr ""
+
+#: asso/academy/models.py:54
 msgid "Event Category"
-msgstr ""
+msgstr "Tipologia di Evento"
 
-#: asso/academy/models.py:22
+#: asso/academy/models.py:55
 msgid "Event Categories"
-msgstr ""
+msgstr "Tipologie di Evento"
 
-#: asso/academy/models.py:44
+#: asso/academy/models.py:63
+msgid "Event Approval State"
+msgstr "Stato di approvazione dell'evento"
+
+#: asso/academy/models.py:64
+msgid "Event Approval States"
+msgstr "Stati di approvazione dell'evento"
+
+#: asso/academy/models.py:76
 msgid "The event who generate this session"
 msgstr ""
 
-#: asso/academy/models.py:48
+#: asso/academy/models.py:80
 #, fuzzy
 #| msgid "Start Date"
 msgid "Start datetime"
 msgstr "Data di inizio"
 
-#: asso/academy/models.py:49
+#: asso/academy/models.py:81
 msgid "The start time and date of the session"
 msgstr ""
 
-#: asso/academy/models.py:53
+#: asso/academy/models.py:85
 msgid "End datetime"
 msgstr ""
 
-#: asso/academy/models.py:54
+#: asso/academy/models.py:86
 msgid "The end time and date of the session"
 msgstr ""
 
-#: asso/academy/models.py:73
+#: asso/academy/models.py:92
+msgid "End timestamp should be greater than start timestamp"
+msgstr ""
+
+#: asso/academy/models.py:111
 msgid "Subtitle"
 msgstr ""
 
-#: asso/academy/models.py:80
+#: asso/academy/models.py:118
 msgid "Category"
 msgstr ""
 
-#: asso/academy/models.py:81
+#: asso/academy/models.py:119
 msgid "The event category (course, talk, ...)"
 msgstr ""
 
-#: asso/academy/models.py:86
+#: asso/academy/models.py:126
+msgid "Approval State"
+msgstr ""
+
+#: asso/academy/models.py:127
+msgid "Actual approval state for this event"
+msgstr ""
+
+#: asso/academy/models.py:132
 msgid "Membership Needed"
 msgstr ""
 
-#: asso/academy/models.py:88
+#: asso/academy/models.py:134
 msgid "Indicate if the membership is needed in order to attend to this event"
 msgstr ""
 
-#: asso/academy/models.py:98
+#: asso/academy/models.py:144
 msgid "Price"
 msgstr ""
 
-#: asso/academy/models.py:99
+#: asso/academy/models.py:145
 msgid "The price to pay for this event (leave blank for free events)"
 msgstr ""
 
-#: asso/academy/models.py:108
+#: asso/academy/models.py:154
 msgid ""
 "The starting date of the first session of this event (generated from "
 "sessions)"
 msgstr ""
 
-#: asso/academy/models.py:119
+#: asso/academy/models.py:165
 msgid ""
 "The ending date of the last session of this event (generated from sessions)"
 msgstr ""
+
+#: asso/academy/models.py:175
+msgid "The Trainers that present the Event"
+msgstr ""
+
+#: asso/academy/models.py:179
+msgid "Event"
+msgstr "Evento"
+
+#: asso/academy/models.py:180
+msgid "Events"
+msgstr "Eventi"
 
 #: asso/accountant/models.py:25
 msgid "Parent"
@@ -259,37 +323,37 @@ msgstr ""
 msgid "A short description for this content (not visible in views)"
 msgstr ""
 
-#: asso/commons/models.py:45
+#: asso/commons/models.py:48
 #, fuzzy
 #| msgid "Granted by"
 msgid "Created at"
 msgstr "Rilasciato da"
 
-#: asso/commons/models.py:59
+#: asso/commons/models.py:62
 msgid "Updated at"
 msgstr ""
 
-#: asso/commons/models.py:82
+#: asso/commons/models.py:85
 msgid "Is removed?"
 msgstr ""
 
-#: asso/commons/models.py:83
+#: asso/commons/models.py:86
 msgid "Set to True to set as removed or 'soft deleted"
 msgstr ""
 
-#: asso/commons/models.py:116
+#: asso/commons/models.py:119
 msgid "Show"
 msgstr ""
 
-#: asso/commons/models.py:117
+#: asso/commons/models.py:120
 msgid "Set to False to hide this content in views"
 msgstr ""
 
-#: asso/commons/models.py:132
+#: asso/commons/models.py:135
 msgid "Order"
 msgstr "Ordine"
 
-#: asso/commons/models.py:133
+#: asso/commons/models.py:136
 msgid "Object ordering value"
 msgstr ""
 
