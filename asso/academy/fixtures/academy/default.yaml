@@ -6,3 +6,13 @@
   pk: 2
   fields:
     title: Laboratory
+- model: academy.EventApprovalState
+  pk: 1
+  fields:
+    title: "Draft"
+    show: False
+- model: academy.EventApprovalState
+  pk: 2
+  fields:
+    title: "Publish"
+    show: True
