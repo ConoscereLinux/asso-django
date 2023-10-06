@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 15:59+0200\n"
+"POT-Creation-Date: 2023-10-06 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: asso/academy/models.py:25 asso/member/models.py:44
+#: asso/academy/models.py:25 asso/member/models.py:43
 msgid "User"
 msgstr ""
 
@@ -120,7 +120,7 @@ msgstr ""
 msgid "Indicate if the membership is needed in order to attend to this event"
 msgstr ""
 
-#: asso/academy/models.py:144
+#: asso/academy/models.py:144 asso/member/models.py:224
 msgid "Price"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgstr "Email Utente"
 msgid "Email used for comunication regarding this event"
 msgstr ""
 
-#: asso/academy/models.py:198 asso/member/models.py:80
+#: asso/academy/models.py:198 asso/member/models.py:79
 #, fuzzy
 #| msgid "Row Number"
 msgid "Phone Number"
@@ -393,170 +393,222 @@ msgstr ""
 msgid "Archivio"
 msgstr ""
 
-#: asso/member/models.py:30
+#: asso/member/models.py:29
 #, python-brace-format
 msgid "Fiscal Code {value} formally invalid"
 msgstr "Codice Fiscale {value} invalido"
 
-#: asso/member/models.py:48
+#: asso/member/models.py:47
 msgid "First Name"
 msgstr ""
 
-#: asso/member/models.py:49
+#: asso/member/models.py:48
 msgid "Last Name"
 msgstr ""
 
-#: asso/member/models.py:52
+#: asso/member/models.py:51
 msgid "Codice Fiscale"
 msgstr ""
 
-#: asso/member/models.py:58
+#: asso/member/models.py:57
 msgid "Male"
 msgstr ""
 
-#: asso/member/models.py:59
+#: asso/member/models.py:58
 msgid "Female"
 msgstr ""
 
-#: asso/member/models.py:60
+#: asso/member/models.py:59
 msgid "Other"
 msgstr ""
 
-#: asso/member/models.py:62
+#: asso/member/models.py:61
 msgid "Gender"
 msgstr ""
 
-#: asso/member/models.py:64
+#: asso/member/models.py:63
 #, fuzzy
 #| msgid "Birth date"
 msgid "Birth Date"
 msgstr "Data di nascita"
 
-#: asso/member/models.py:67
+#: asso/member/models.py:66
 #, fuzzy
 #| msgid "Birth date"
 msgid "Birth City"
 msgstr "Data di nascita"
 
-#: asso/member/models.py:69
+#: asso/member/models.py:68
 msgid "City/municipality or foreign country where Member is born"
 msgstr ""
 
-#: asso/member/models.py:72
+#: asso/member/models.py:71
 msgid "Birth Province"
 msgstr ""
 
-#: asso/member/models.py:73
+#: asso/member/models.py:72
 msgid "Italian Province where Member is born (EE for other countries)"
 msgstr ""
 
-#: asso/member/models.py:82
+#: asso/member/models.py:81
 msgid "Phone Number, use only digits, +, -, space and parenthesis"
 msgstr ""
 
-#: asso/member/models.py:86
+#: asso/member/models.py:85
 msgid "Use only plus sign (at start), dashes (-), spaces and parenthesis"
 msgstr ""
 
-#: asso/member/models.py:92
+#: asso/member/models.py:91
 msgid "Address"
 msgstr ""
 
-#: asso/member/models.py:92
+#: asso/member/models.py:91
 msgid "Example: Via Roma 42/a"
 msgstr ""
 
-#: asso/member/models.py:94
+#: asso/member/models.py:93
 msgid "Address City"
 msgstr ""
 
-#: asso/member/models.py:96
+#: asso/member/models.py:95
 msgid "Postal Code"
 msgstr ""
 
-#: asso/member/models.py:99
+#: asso/member/models.py:98
 msgid "Italian Postal Code is made of 5 digits"
 msgstr ""
 
-#: asso/member/models.py:103
+#: asso/member/models.py:102
 msgid "Address Province"
 msgstr ""
 
-#: asso/member/models.py:104
+#: asso/member/models.py:103
 msgid "Address Province (EE for other countries)"
 msgstr ""
 
-#: asso/member/models.py:111
+#: asso/member/models.py:110
 msgid "Carta Identità"
 msgstr ""
 
-#: asso/member/models.py:112
+#: asso/member/models.py:111
 msgid "Passaporto"
 msgstr ""
 
-#: asso/member/models.py:113
+#: asso/member/models.py:112
 msgid "Patente"
 msgstr ""
 
-#: asso/member/models.py:116
+#: asso/member/models.py:115
 #, fuzzy
 #| msgid "Document"
 msgid "Document Type"
 msgstr "Documento"
 
-#: asso/member/models.py:119
+#: asso/member/models.py:118
 msgid "Who has grant the Document"
 msgstr ""
 
-#: asso/member/models.py:121
+#: asso/member/models.py:120
 msgid "Public Authority who grant you the document"
 msgstr ""
 
-#: asso/member/models.py:123
+#: asso/member/models.py:122
 msgid "Document Number/Code"
 msgstr ""
 
-#: asso/member/models.py:125
+#: asso/member/models.py:124
 #, fuzzy
 #| msgid "Expiration date"
 msgid "Document Expiration Date"
 msgstr "Data scadenza documento"
 
-#: asso/member/models.py:129
+#: asso/member/models.py:128
 msgid "Privacy Page Aknowledgement"
 msgstr ""
 
-#: asso/member/models.py:133
+#: asso/member/models.py:132
 msgid "Last date Member has read privacy page"
 msgstr ""
 
-#: asso/member/models.py:137
+#: asso/member/models.py:136
 msgid "Profession"
 msgstr ""
 
-#: asso/member/models.py:145
+#: asso/member/models.py:144
 msgid "Qualification"
 msgstr ""
 
-#: asso/member/models.py:149
+#: asso/member/models.py:148
 msgid "How you found us"
 msgstr ""
 
-#: asso/member/models.py:155
+#: asso/member/models.py:154
 msgid "Interests"
 msgstr ""
 
-#: asso/member/models.py:161
+#: asso/member/models.py:160
 msgid "Internal Notes"
 msgstr ""
 
-#: asso/member/models.py:174
+#: asso/member/models.py:177 asso/member/models.py:240
 msgid "Member"
 msgstr "Socio"
 
-#: asso/member/models.py:175
+#: asso/member/models.py:178
 msgid "Members"
 msgstr "Soci"
+
+#: asso/member/models.py:195
+msgid "Card Prefix"
+msgstr ""
+
+#: asso/member/models.py:198
+msgid "Prefix for the card identifier"
+msgstr ""
+
+#: asso/member/models.py:203
+#, fuzzy
+#| msgid "Start Date"
+msgid "Start Date"
+msgstr "Data di inizio"
+
+#: asso/member/models.py:204
+msgid "Initial day of the Membership period"
+msgstr ""
+
+#: asso/member/models.py:209
+msgid "Duration"
+msgstr ""
+
+#: asso/member/models.py:210
+msgid "Duration of this Period (as ISO8601 format with designators)"
+msgstr ""
+
+#: asso/member/models.py:215
+msgid "End Date"
+msgstr ""
+
+#: asso/member/models.py:216
+msgid "Final day of the Membership period"
+msgstr ""
+
+#: asso/member/models.py:225
+msgid "The default price to pay for this Period Membership"
+msgstr ""
+
+#: asso/member/models.py:247
+msgid "Membership Period"
+msgstr ""
+
+#: asso/member/models.py:252
+#, fuzzy
+#| msgid "Row Number"
+msgid "Card Number"
+msgstr "Numero di Riga"
+
+#: asso/member/models.py:253
+msgid "The unique number to write on the card"
+msgstr ""
 
 #: asso/member/templates/member/member.html:17
 msgid "Personal Data"
