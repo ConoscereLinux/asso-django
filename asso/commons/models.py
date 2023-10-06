@@ -32,6 +32,9 @@ class TitleModel(models.Model):
         help_text=_("A short description for this content (not visible in views)"),
     )
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         abstract = True
 

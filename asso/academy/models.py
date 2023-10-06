@@ -17,9 +17,6 @@ from ..commons.models import (
 class EventCategory(TitleModel):
     """Represent the kind of event"""
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = _("Event Category")
         verbose_name_plural = _("Event Categories")
