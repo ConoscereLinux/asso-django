@@ -5,6 +5,8 @@
     title: "Example Course #1"
     subtitle: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     category: 1
+    created_at: 1970-01-01T00:00Z
+    updated_at: 1970-01-01T00:00Z
 - model: academy.Event
   pk: 2
   fields:
@@ -12,6 +14,8 @@
     title: "Example Course #2"
     subtitle: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     category: 2
+    created_at: 1970-01-01T00:00Z
+    updated_at: 1970-01-01T00:00Z
 - model: academy.Event
   pk: 3
   fields:
@@ -19,6 +23,8 @@
     title: "Example Course #3"
     subtitle: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     category: 1
+    created_at: 1970-01-01T00:00Z
+    updated_at: 1970-01-01T00:00Z
 - model: academy.EventSession
   pk: 1
   fields:
@@ -26,3 +32,5 @@
     title: "Session #1"
     start: 2023-01-01T00:00Z
     end: 2023-01-01T01:00Z
+    created_at: 1970-01-01T00:00Z
+    updated_at: 1970-01-01T00:00Z

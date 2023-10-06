@@ -39,7 +39,11 @@ class TitleModel(models.Model):
 class TimeStampModel(models.Model):
     """A Model who keep track of the user who created it at which time"""
 
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+        verbose_name=_("Created at"),
+    )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
@@ -49,7 +53,11 @@ class TimeStampModel(models.Model):
         editable=False,
     )
 
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        editable=False,
+        verbose_name=_("Updated at"),
+    )
     updated_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
