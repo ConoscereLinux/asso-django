@@ -5,6 +5,8 @@
     title: "Example Course #1"
     subtitle: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
     category: 1
+    start_date: 2023-01-01
+    end_date: 2023-01-01
     created_at: 1970-01-01T00:00Z
     updated_at: 1970-01-01T00:00Z
 - model: academy.Event
