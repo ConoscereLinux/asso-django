@@ -102,7 +102,7 @@ watch:
 .PHONY: messages translations
 
 messages:
-	@$(django) makemessages -l it
+	@$(django) makemessages -l it --no-obsolete
 
 translations: messages
 	@$(django) compilemessages
