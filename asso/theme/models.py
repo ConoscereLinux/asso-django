@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from asso.commons.fields import UniqueBooleanField
-from asso.commons.models import OrderedModel, SlugModel, TitleModel
+from asso.commons.models import HidableModel, OrderedModel, SlugModel, TitleModel
 
 
 class ThemeConfig(models.Model):
@@ -15,12 +15,7 @@ class ThemeConfig(models.Model):
         ordering = ["-active"]
 
 
-class NavbarItem(SlugModel, TitleModel, OrderedModel):
-    show = models.BooleanField(
-        default=True,
-        verbose_name=_("Visible"),
-        help_text=_("Set to True to show in navbar"),
-    )
+class NavbarItem(SlugModel, TitleModel, OrderedModel, HidableModel):
     url = models.CharField(
         max_length=200,
         default="",
@@ -37,7 +32,7 @@ class NavbarItem(SlugModel, TitleModel, OrderedModel):
         return self.url
 
 
-class SocialLink(TitleModel, OrderedModel):
+class SocialLink(TitleModel, OrderedModel, HidableModel):
     class SocialIcon(models.TextChoices):
         globe = "globe", _("Web site (default)")
         facebook = "facebook", "Facebook"
@@ -49,11 +44,6 @@ class SocialLink(TitleModel, OrderedModel):
         instagram = "instagram", "Instagram"
 
     url = models.URLField()
-    show = models.BooleanField(
-        default=True,
-        verbose_name=_("Visible"),
-        help_text=_("Set to True to show in footer"),
-    )
     logo = models.CharField(
         max_length=24,
         default=SocialIcon.globe,

@@ -106,6 +106,22 @@ class ContentModel(SlugModel, TitleModel, SoftDeletableModel, TimeStampModel):
         ordering = ["slug"]
 
 
+class HidableModel(models.Model):
+    """A model that can be hidden in views and templates"""
+
+    show = models.BooleanField(
+        default=True,
+        null=False,
+        blank=False,
+        verbose_name=_("Show"),
+        help_text=_("Set to False to hide this content in views"),
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ["-show"]
+
+
 class OrderedModel(models.Model):
     """A Model with a field for custom ordering."""
 
