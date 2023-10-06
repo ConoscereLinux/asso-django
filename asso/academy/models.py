@@ -27,7 +27,7 @@ class EventCategory(TitleModel):
 #     )
 
 
-class EventSession(TitleModel, SoftDeletableModel):
+class EventSession(ContentModel):
     """Single session of an Event."""
 
     event = models.ForeignKey(
