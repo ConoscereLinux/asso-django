@@ -26,9 +26,10 @@ class TimeStampAdmin(admin.ModelAdmin):
         Based upon:
         https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model
         """
-        if obj.pk is None:
-            obj.created_by = request.user
-        obj.updated_by = request.user
+        if isinstance(obj, TimeStampModel):
+            if obj.pk is None:
+                obj.created_by = request.user
+            obj.updated_by = request.user
 
         super().save_model(request, obj, form, change)
 
