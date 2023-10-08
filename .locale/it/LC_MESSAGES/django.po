@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-08 20:37+0200\n"
+"POT-Creation-Date: 2023-10-08 22:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Login credentials for Trainer"
 msgstr ""
 
-#: asso/academy/models.py:30 asso/address/models.py:15
+#: asso/academy/models.py:30
 msgid "Displayed name"
 msgstr "Nome visualizzato"
 
@@ -329,17 +329,74 @@ msgstr ""
 msgid "Please login to see this page"
 msgstr ""
 
-#: asso/address/models.py:20
+#: asso/address/models.py:16
+msgid "A two letter code to identify country (based on ISO-3166)"
+msgstr "Codice di due lettere che identifica la nazione (ISO-3166)"
+
+#: asso/address/models.py:22 asso/address/models.py:40
+#: asso/address/models.py:85
+msgid "Country"
+msgstr "Nazione"
+
+#: asso/address/models.py:23
+msgid "Countries"
+msgstr "Nazioni"
+
+#: asso/address/models.py:30
 msgid "Region Code"
 msgstr "Codice Provincia"
 
-#: asso/address/models.py:30
+#: asso/address/models.py:33
+msgid "A two letter code to identify a state, region, province in a country"
+msgstr "Codice di due lettere che identifica la provincia"
+
+#: asso/address/models.py:41
+msgid "The country this Region belongs to"
+msgstr "La Nazione a cui appartiene questa Provincia"
+
+#: asso/address/models.py:46
 msgid "Region"
 msgstr "Provincia"
 
-#: asso/address/models.py:31
+#: asso/address/models.py:47
 msgid "Regions"
 msgstr "Province"
+
+#: asso/address/models.py:57
+msgid "Address line"
+msgstr "Indirizzo"
+
+#: asso/address/models.py:59
+msgid "Example: Via Barchetta 77"
+msgstr "Esempio: Via Barchetta 77"
+
+#: asso/address/models.py:62
+msgid "Additional Address info"
+msgstr "Informazioni aggiuntive indirizzo"
+
+#: asso/address/models.py:65
+msgid "Additional info"
+msgstr "Informazioni aggiuntive"
+
+#: asso/address/models.py:69
+msgid "City"
+msgstr "Città"
+
+#: asso/address/models.py:71
+msgid "Example: Modena"
+msgstr "Esempio: Modena"
+
+#: asso/address/models.py:74 asso/member/models.py:95
+msgid "Postal Code"
+msgstr "CAP"
+
+#: asso/address/models.py:79
+msgid "Region/Province/State"
+msgstr "Provincia"
+
+#: asso/address/models.py:80
+msgid "Region/province/state code (EE for Foreign Country"
+msgstr "Codice Provincia (EE per Paesi Stranieri)"
 
 #: asso/commons/models.py:26
 msgid "Title"
@@ -468,10 +525,6 @@ msgstr ""
 
 #: asso/member/models.py:93
 msgid "Address City"
-msgstr ""
-
-#: asso/member/models.py:95
-msgid "Postal Code"
 msgstr ""
 
 #: asso/member/models.py:98
