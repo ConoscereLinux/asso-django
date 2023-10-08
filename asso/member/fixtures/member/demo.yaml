@@ -7,6 +7,22 @@
     end_date: 2024-01-01
     created_at: 2023-01-01T00:00:00Z
     updated_at: 2023-01-01T00:00:00Z
+- model: member.MemberPermanentAddress
+  pk: 1
+  fields:
+    value: "Main Road 1"
+    city: "London"
+    zip_code: "11111"
+    region: 1
+    country: 1
+- model: member.MemberPermanentAddress
+  pk: 2
+  fields:
+    value: "Main Road 2"
+    city: "London"
+    zip_code: "11111"
+    region: 1
+    country: 1
 - model: member.Member
   pk: 1
   fields:
@@ -17,14 +33,11 @@
     last_name: "Doe"
     cf: AAAAAAAAAAAAAAAA
     gender: M
+    address: 1
     birth_date: 1970-01-01
     birth_city: "London"
-    birth_province: EE
+    birth_province: 1
     phone: +44 000 0000000
-    address_description: "Main Road 1"
-    address_city: "London"
-    address_postal_code: "11111"
-    address_province: EE
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
     document_number: 00000
@@ -39,14 +52,11 @@
     last_name: "Doe"
     cf: AAAAAAAAAAAAAAAA
     gender: F
+    address: 2
     birth_date: 1970-01-01
     birth_city: "London"
-    birth_province: EE
+    birth_province: 1
     phone: +44 000 0000000
-    address_description: "Main Road 1"
-    address_city: "London"
-    address_postal_code: "11111"
-    address_province: EE
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
     document_number: 22222

@@ -62,12 +62,12 @@ class Region(TitleModel, OrderedModel):
 
 
 class AddressBaseModel(models.Model):
-    line = models.CharField(
-        _("Address line"),
+    value = models.CharField(
+        _("Address info"),
         max_length=200,
         help_text=_("Example: Via Barchetta 77"),
     )
-    additional_line = models.CharField(
+    additional = models.CharField(
         _("Additional Address info"),
         blank=True,
         max_length=200,
