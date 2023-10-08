@@ -463,6 +463,26 @@ ul > li.active {
   color: rgb(254 254 254 / var(--tw-text-opacity));
 }
 
+table {
+  table-layout: auto;
+}
+
+table thead {
+  --tw-bg-opacity: 1;
+  background-color: rgb(84 152 254 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(254 254 254 / var(--tw-text-opacity));
+}
+
+table th, table td {
+  border-width: 3px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+}
+
 input {
   border-width: 2px;
 }
@@ -641,6 +661,10 @@ a:hover {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
 }
@@ -699,10 +723,6 @@ a:hover {
 
 .items-center {
   align-items: center;
-}
-
-.justify-start {
-  justify-content: flex-start;
 }
 
 .justify-center {

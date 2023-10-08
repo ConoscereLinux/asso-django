@@ -9,6 +9,10 @@
     ul > li { @apply py-2 px-4; }
     ul > li.active { @apply text-white font-bold bg-blue; }
     
+    table { @apply table-auto; }
+    table thead { @apply bg-blue text-white; }
+    table th, table td { @apply border text-center py-1 px-4; }
+    
     input { @apply border border-2; }
     a { @apply text-gray-dark hover:text-blue; }
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
