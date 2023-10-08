@@ -16,7 +16,7 @@ class MembershipInline(admin.StackedInline):
 @admin.register(models.Member)
 class MemberAdmin(admin.ModelAdmin):
     list_display = [
-        "cf",
+        "social_card",
         "user",
         "first_name",
         "last_name",
@@ -24,7 +24,7 @@ class MemberAdmin(admin.ModelAdmin):
         "last_membership",
     ]
     list_filter = ["gender", "document_type"]
-    search_fields = ["first_name", "last_name", "cf"]
+    search_fields = ["first_name", "last_name", "social_card"]
     inlines = [
         MembershipInline,
     ]

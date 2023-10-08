@@ -24,16 +24,6 @@ from asso.commons.models import (
 )
 
 
-def check_member_cf(value: str):
-    if not codicefiscale.is_valid(value):
-        raise ValidationError(_(f"Fiscal Code {value} formally invalid"))
-
-
-class MemberQualification(SlugModel, TitleModel, OrderedModel):
-    def __str__(self):
-        return f"{self.title}"
-
-
 class MemberPermanentAddress(AddressBaseModel):
     """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
 
@@ -42,20 +32,21 @@ class MemberPermanentAddress(AddressBaseModel):
         verbose_name_plural = _("Member Permanent Addresses")
 
 
-class Member(TimeStampModel, SoftDeletableModel):
-    """It represents an Association Member"""
+class MemberQualification(SlugModel, TitleModel, OrderedModel):
+    def __str__(self):
+        return f"{self.title}"
 
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.PROTECT,
-        verbose_name=_("User"),
-        related_name="member",
-    )
 
+def check_member_cf(value: str):
+    if not codicefiscale.is_valid(value):
+        raise ValidationError(_(f"Fiscal Code {value} formally invalid"))
+
+
+class MemberPersonalData(models.Model):
     first_name = models.CharField(_("First Name"), max_length=60)
     last_name = models.CharField(_("Last Name"), max_length=60)
 
-    cf = models.CharField(
+    social_card = models.CharField(
         _("Social ID"),
         max_length=16,
         validators=[check_member_cf],
@@ -66,7 +57,7 @@ class Member(TimeStampModel, SoftDeletableModel):
     address = models.OneToOneField(
         MemberPermanentAddress,
         on_delete=models.PROTECT,
-        related_name="member",
+        related_name="%(class)s",
         verbose_name=_("Permanent Address"),
     )
 
@@ -81,6 +72,24 @@ class Member(TimeStampModel, SoftDeletableModel):
         on_delete=models.PROTECT,
         verbose_name=_("Birth Province"),
         help_text=_("Region where Member is born (EE for other countries)"),
+    )
+
+    @property
+    def full_name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        abstract = True
+
+
+class Member(TimeStampModel, SoftDeletableModel, MemberPersonalData):
+    """It represents an Association Member"""
+
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        verbose_name=_("User"),
+        related_name="member",
     )
 
     phone = models.CharField(
@@ -149,10 +158,6 @@ class Member(TimeStampModel, SoftDeletableModel):
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
 
     @property
-    def full_name(self) -> str:
-        return f"{self.first_name} {self.last_name}"
-
-    @property
     def last_membership(self) -> "Membership":
         return self.memberships.order_by("period__end_date").last()
 
@@ -160,7 +165,7 @@ class Member(TimeStampModel, SoftDeletableModel):
         return reverse("member", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f"{self.full_name} ({self.cf})"
+        return f"{self.full_name} ({self.social_card})"
 
     class Meta:
         verbose_name = _("Member")
@@ -219,7 +224,7 @@ class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
         super().save(*args, **kwargs)
 
 
-class Membership(TimeStampModel, SoftDeletableModel):
+class Membership(TimeStampModel, SoftDeletableModel, MemberPersonalData):
     """The member of a user for a particular period."""
 
     member = models.ForeignKey(
