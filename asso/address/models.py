@@ -93,5 +93,8 @@ class AddressBaseModel(models.Model):
         help_text=_("Region/province/state code (EE for Foreign Country"),
     )
 
+    def __str__(self):
+        return f"{self.value}, {self.city} ({self.region.code}), {self.zip_code}"
+
     class Meta:
         abstract = True
