@@ -13,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
+from asso.address.models import AddressBaseModel, Region
 from asso.commons.fields import Gender
 from asso.commons.models import (
     OrderedModel,
@@ -21,8 +22,6 @@ from asso.commons.models import (
     TimeStampModel,
     TitleModel,
 )
-
-from .constants import ITALIAN_PROVINCES
 
 
 def check_member_cf(value: str):
