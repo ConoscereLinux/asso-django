@@ -13,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
+from asso.commons.fields import Gender
 from asso.commons.models import (
     OrderedModel,
     SlugModel,
@@ -53,15 +54,9 @@ class Member(TimeStampModel, SoftDeletableModel):
         validators=[check_member_cf],
     )
 
-    class Gender(models.TextChoices):
-        MALE = "M", _("Male")
-        FEMALE = "F", _("Female")
-        OTHER = "O", _("Other")
-
     gender = models.CharField(_("Gender"), max_length=1, choices=Gender.choices)
 
     birth_date = models.DateField(_("Birth Date"))
-    # Translators: Comune di nascita (ITA)
     birth_city = models.CharField(
         _("Birth City"),
         max_length=150,
