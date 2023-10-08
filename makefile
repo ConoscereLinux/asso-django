@@ -72,7 +72,7 @@ secret_key:
 
 superuser:
 	@echo -e $(bold)Creating superuser account 'admin'$(sgr0)
-	@$(django) createsuperuser --email=info@conoscerelinux.org
+	@$(django) createsuperuser --username=admin --email=info@conoscerelinux.org
 
 demo:
 	@echo -e $(bold)Initialize database with demo data$(sgr0)
