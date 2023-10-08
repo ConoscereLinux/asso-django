@@ -4,6 +4,7 @@ import pathlib
 from typing import Type, TypeVar
 from zoneinfo import ZoneInfo
 
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
@@ -13,9 +14,8 @@ from django.utils.text import slugify
 from loguru import logger
 from tqdm import tqdm
 
-from asso.academy.models import ApprovalState, Event
-from asso.commons.utils import yearly_duration
-from asso.core.models.users import User
+from asso.academy.models import Event, EventApprovalState
+from asso.accounts.models import User
 from asso.member.models import Member, Membership, MembershipPeriod
 
 DEFAULT_PATH = settings.BASE_DIR.parent / ".data" / "export.json"
@@ -93,7 +93,7 @@ def run(*args):
             {
                 "title": str(year),
                 "start_date": dt.date(year, 1, 1),
-                "duration": yearly_duration(),
+                "duration": relativedelta(years=1),
                 "price": 10,
             },
             MembershipPeriod,
@@ -136,7 +136,7 @@ def run(*args):
     print("Loading Courses")
     for event in tqdm(data.get("courses", [])):
         approval_state = {"title": event.pop("approval_state")}
-        event["approval_state"] = load_item(approval_state, ApprovalState)
+        event["approval_state"] = load_item(approval_state, EventApprovalState)
 
         event.setdefault("slug", slugify(event.get("title", "")))
         event["creation_date"] = event.pop("creation_date")
