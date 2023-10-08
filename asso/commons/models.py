@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from .fields import UniqueBooleanField
+
 
 class SlugModel(models.Model):
     """A model with a unique required slug field"""
@@ -139,3 +141,13 @@ class OrderedModel(models.Model):
     class Meta:
         abstract = True
         ordering = ["order"]
+
+
+class DefaultModel(models.Model):
+    """A Model which define a default value"""
+
+    default = UniqueBooleanField(default=False)
+
+    class Meta:
+        abstract = True
+        ordering = ["-default"]

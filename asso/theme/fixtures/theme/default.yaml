@@ -2,7 +2,7 @@
   pk: 1
   fields:
     brand: "Conoscere Linux"
-    active: true
+    default: true
 - model: theme.NavbarItem
   pk: 1
   fields:
