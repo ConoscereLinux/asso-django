@@ -148,6 +148,10 @@ class DefaultModel(models.Model):
 
     default = UniqueBooleanField(default=False)
 
+    @classmethod
+    def get_default(cls):
+        return cls.objects.filter(default=True).first()
+
     class Meta:
         abstract = True
         ordering = ["-default"]

@@ -9,5 +9,5 @@ def add_header_and_footer_info(request):
     return {
         "menu_items": NavbarItem.objects.filter(show=True),
         "socials": SocialLink.objects.filter(show=True).all(),
-        "theme": ThemeConfig.objects.filter(active=True).first(),
+        "theme": ThemeConfig.get_default(),
     }
