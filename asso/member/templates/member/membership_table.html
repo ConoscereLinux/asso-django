@@ -2,6 +2,15 @@
 {% load i18n %}
 
 {% block content %}
+  
+  <div class="flex flex-row justify-center border divide-x my-2">
+    {% for period in membership_periods %}
+      <button onclick="window.location.href = '?period={{ period.card_prefix }}'">
+        {{ period.title }}
+      </button>
+    {% endfor %}
+  </div>
+  
   <table class="w-full">
     <thead>
       <tr>

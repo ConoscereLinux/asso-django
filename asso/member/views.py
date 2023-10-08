@@ -20,6 +20,11 @@ class MembershipTable(LoginRequiredMixin, generic.ListView):
     template_name = "member/membership_table.html"
     context_object_name = "memberships"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["membership_periods"] = models.MembershipPeriod.objects.all()
+        return context
+
     def get_queryset(self):
         query = super().get_queryset()
         if period := self.request.GET.get("period"):
