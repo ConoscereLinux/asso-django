@@ -5,9 +5,9 @@ from . import models
 
 
 class MemberDetailView(LoginRequiredMixin, generic.DetailView):
+    model = models.Member
     template_name = "member/member.html"
     context_object_name = "member"
-    model = models.Member
 
 
 class MemberCreateView(LoginRequiredMixin, generic.CreateView):

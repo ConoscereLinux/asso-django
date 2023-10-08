@@ -49,4 +49,24 @@
   </ul>
 </section>
 
+<section class="w-full">
+  <h2>{% translate "Memberships" %}</h2>
+  <table class="w-full">
+    <thead>
+      <tr>
+        <th>{% translate "Card" %}</th>
+        <th>{% translate "Emission date" %}</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      {% for membership in member.memberships.all %}
+      <tr>
+        <td>{{ membership }}</td>
+        <td>{{ membership.created_at | date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
 {% endblock %}
