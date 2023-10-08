@@ -8,6 +8,21 @@ def validate_uppercase(value: str):
     return value.isupper()
 
 
+class Country(TitleModel, OrderedModel):
+    code = models.CharField(
+        _("Country Code (ISO-3166)"),
+        unique=True,
+        max_length=2,
+        help_text=_("A two letter code to identify country (use ISO-3166)"),
+        validators=[validate_uppercase],
+    )
+
+    class Meta:
+        ordering = ["order", "title"]
+        verbose_name = _("Country")
+        verbose_name_plural = _("Countries")
+
+
 class Region(TitleModel, OrderedModel):
     """Represent a state or province in the default country"""
 
@@ -19,8 +34,20 @@ class Region(TitleModel, OrderedModel):
         ),
         validators=[validate_uppercase],
     )
+    country = models.ForeignKey(
+        Country,
+        on_delete=models.CASCADE,
+        verbose_name=_("Country"),
+        help_text=_("This The country this Region belongs to"),
+    )
 
     class Meta:
         ordering = ["order", "title"]
         verbose_name = _("Region")
         verbose_name_plural = _("Regions")
+        constraints = [
+            models.UniqueConstraint(
+                fields=["code", "country"], name="unique_region_code_for_country"
+            )
+        ]
+
