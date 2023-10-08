@@ -92,11 +92,6 @@ class AddressBaseModel(models.Model):
         verbose_name=_("Region/Province/State"),
         help_text=_("Region/province/state code (EE for Foreign Country"),
     )
-    country = models.ForeignKey(
-        Country,
-        on_delete=models.PROTECT,
-        verbose_name=_("Country"),
-    )
 
     class Meta:
         abstract = True
