@@ -435,15 +435,15 @@ video {
 }
 
 h1 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
 h2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
@@ -512,6 +512,30 @@ a:hover {
   color: rgb(254 254 254 / var(--tw-text-opacity));
   --tw-text-opacity: 1;
   color: rgb(68 121 205 / var(--tw-text-opacity));
+}
+
+button, a[type=button] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 254 254 / var(--tw-bg-opacity));
+  padding: 0.5rem;
+  font-weight: 700;
+}
+
+button:hover, a[type=button]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(204 102 0 / var(--tw-bg-opacity));
+}
+
+button.active, a[type=button].active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(84 152 254 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(254 254 254 / var(--tw-text-opacity));
+}
+
+button.active:hover, a[type=button].active:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 121 205 / var(--tw-bg-opacity));
 }
 
 *, ::before, ::after {
@@ -725,6 +749,10 @@ a:hover {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -813,11 +841,6 @@ a:hover {
   padding-bottom: 0.25rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -887,11 +910,6 @@ a:hover {
 .hover\:bg-blue-dark:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(68 121 205 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-orange:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(204 102 0 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {

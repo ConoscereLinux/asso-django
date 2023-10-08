@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-    h1 { @apply text-2xl mt-4 mb-2; }
-    h2 { @apply text-xl mt-2 mb-1; }
+    h1 { @apply text-2xl mt-8 mb-4; }
+    h2 { @apply text-xl mt-4 mb-2; }
     
     ul > li { @apply py-2 px-4; }
     ul > li.active { @apply text-white font-bold bg-blue; }
@@ -17,4 +17,7 @@
     a { @apply text-gray-dark hover:text-blue; }
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
     #footer a { @apply hover:text-white hover:text-blue-dark; }
+    
+    button, a[type=button] { @apply font-bold p-2 bg-white hover:bg-orange; }
+    button.active, a[type=button].active { @apply text-white bg-blue hover:bg-blue-dark; }
 }
