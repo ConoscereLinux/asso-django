@@ -5,4 +5,4 @@ from . import models
 
 @admin.register(models.Region)
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ["name", "code", "order"]
+    list_display = ["title", "code", "order"]
