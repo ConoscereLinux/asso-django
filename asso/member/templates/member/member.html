@@ -4,6 +4,12 @@
 {% block title %}{{ member.full_name }}{% endblock %}
 
 {% block content %}
+  
+<h1>
+  {% blocktranslate with name=member.full_name %}
+    {{ name }} Profile
+  {% endblocktranslate %}
+</h1>
 
 <section id="member-detail" class="w-full grid grid-cols-2 lg:grid-cols-4 gap-2">
   <ul class="border divide-y">
