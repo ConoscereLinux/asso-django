@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -5,7 +6,15 @@ from ..commons.models import OrderedModel, TitleModel
 
 
 def validate_uppercase(value: str):
-    return value.isupper()
+    if not value.isupper():
+        raise ValidationError(_("%(value)s is not uppercase"), params={"value": value})
+
+
+def validate_zip_code(value: str):
+    if not (len(value) == 5 and value.isnumeric()):
+        raise ValidationError(
+            _("%(value)s should be a 5 digit number"), params={"value": value}
+        )
 
 
 class Country(TitleModel, OrderedModel):
@@ -71,7 +80,11 @@ class AddressBaseModel(models.Model):
         help_text=_("Example: Modena"),
     )
 
-    zip_code = models.CharField(_("Postal Code"), max_length=5)
+    zip_code = models.CharField(
+        _("Postal Code"),
+        max_length=5,
+        validators=[validate_zip_code],
+    )
 
     region = models.ForeignKey(
         Region,

@@ -35,6 +35,14 @@ class MemberQualification(SlugModel, TitleModel, OrderedModel):
         return f"{self.title}"
 
 
+class MemberPermanentAddress(AddressBaseModel):
+    """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
+
+    class Meta:
+        verbose_name = _("Member Permanent Address")
+        verbose_name_plural = _("Member Permanent Addresses")
+
+
 class Member(TimeStampModel, SoftDeletableModel):
     """It represents an Association Member"""
 
@@ -56,18 +64,24 @@ class Member(TimeStampModel, SoftDeletableModel):
 
     gender = models.CharField(_("Gender"), max_length=1, choices=Gender.choices)
 
+    address = models.OneToOneField(
+        MemberPermanentAddress,
+        on_delete=models.PROTECT,
+        related_name="member",
+        verbose_name=_("Permanent Address"),
+    )
+
     birth_date = models.DateField(_("Birth Date"))
     birth_city = models.CharField(
         _("Birth City"),
         max_length=150,
         help_text=_("City/municipality or foreign country where Member is born"),
     )
-    birth_province = models.CharField(
-        _("Birth Province"),
-        help_text=_("Italian Province where Member is born (EE for other countries)"),
-        choices=ITALIAN_PROVINCES,
-        max_length=2,
-        default="MO",
+    birth_province = models.ForeignKey(
+        Region,
+        on_delete=models.PROTECT,
+        verbose_name=_("Birth Province"),
+        help_text=_("Region where Member is born (EE for other countries)"),
     )
 
     phone = models.CharField(
@@ -80,25 +94,6 @@ class Member(TimeStampModel, SoftDeletableModel):
                 _("Use only plus sign (at start), dashes (-), spaces and parenthesis"),
             )
         ],
-    )
-
-    address_description = models.CharField(
-        _("Address"), max_length=200, help_text=_("Example: Via Roma 42/a")
-    )
-    address_city = models.CharField(_("Address City"), max_length=100)
-    address_postal_code = models.CharField(
-        _("Postal Code"),
-        max_length=5,
-        validators=[
-            RegexValidator(r"[0-9]{5}", _("Italian Postal Code is made of 5 digits"))
-        ],
-    )
-    address_province = models.CharField(
-        _("Address Province"),
-        help_text=_("Address Province (EE for other countries)"),
-        choices=ITALIAN_PROVINCES,
-        max_length=2,
-        default="MO",
     )
 
     class DocumentType(models.TextChoices):
