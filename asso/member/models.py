@@ -56,7 +56,7 @@ class Member(TimeStampModel, SoftDeletableModel):
     last_name = models.CharField(_("Last Name"), max_length=60)
 
     cf = models.CharField(
-        _("Codice Fiscale"),
+        _("Social ID"),
         max_length=16,
         validators=[check_member_cf],
     )
@@ -104,7 +104,7 @@ class Member(TimeStampModel, SoftDeletableModel):
         _("Document Type"), choices=DocumentType.choices, max_length=16
     )
     document_grant_from = models.CharField(
-        _("Who has grant the Document"),
+        _("Who grant the Document"),
         max_length=100,
         help_text=_("Public Authority who grant you the document"),
     )
@@ -190,7 +190,7 @@ class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
     start_date = models.DateField(
         default=default_start_date,
         verbose_name=_("Start Date"),
-        help_text=_("Initial day of the Membership period"),
+        help_text=_("First day for the Membership period"),
     )
 
     duration = RelativeDeltaField(
@@ -202,7 +202,7 @@ class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
     end_date = models.DateField(
         editable=False,
         verbose_name=_("End Date"),
-        help_text=_("Final day of the Membership period"),
+        help_text=_("Last day for the Membership period"),
     )
 
     price = MoneyField(
