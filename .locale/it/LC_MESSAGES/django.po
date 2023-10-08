@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-08 02:41+0200\n"
+"POT-Creation-Date: 2023-10-08 20:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,13 @@ msgstr ""
 msgid "Login credentials for Trainer"
 msgstr ""
 
-#: asso/academy/models.py:30
+#: asso/academy/models.py:30 asso/address/models.py:15
 msgid "Displayed name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #: asso/academy/models.py:32
 msgid "The name to display in teacher card"
-msgstr ""
+msgstr "Nome visualizzato nella scheda docente"
 
 #: asso/academy/models.py:36
 msgid "Biography"
@@ -328,6 +328,18 @@ msgstr ""
 #: asso/accounts/templates/registration/login.html:9
 msgid "Please login to see this page"
 msgstr ""
+
+#: asso/address/models.py:20
+msgid "Region Code"
+msgstr "Codice Provincia"
+
+#: asso/address/models.py:30
+msgid "Region"
+msgstr "Provincia"
+
+#: asso/address/models.py:31
+msgid "Regions"
+msgstr "Province"
 
 #: asso/commons/models.py:26
 msgid "Title"

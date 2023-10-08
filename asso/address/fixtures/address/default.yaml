@@ -1,0 +1,6 @@
+- fields:
+    code: EE
+    name: Foreign State
+    order: 999
+  model: address.Region
+  pk: 108
