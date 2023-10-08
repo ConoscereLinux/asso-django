@@ -25,7 +25,11 @@
       {% for membership in memberships %}
       <tr>
         <td>{{ membership }}</td>
-        <td>{{ membership.member.full_name }}</td>
+        <td>
+          <a href="{{ membership.member.get_absolute_url }}">
+            {{ membership.member.full_name }}    
+          </a>
+        </td>
         <td>{{ membership.member.cf }}</td>
         <td>{{ membership.created_at | date }}</td>
       </tr>

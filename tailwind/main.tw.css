@@ -14,7 +14,7 @@
     table th, table td { @apply border text-center py-1 px-4; }
     
     input { @apply border border-2; }
-    a { @apply text-gray-dark hover:text-blue; }
+    a { @apply text-blue-dark hover:text-blue; }
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
     #footer a { @apply hover:text-white hover:text-blue-dark; }
     

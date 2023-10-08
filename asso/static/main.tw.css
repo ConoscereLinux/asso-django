@@ -489,7 +489,7 @@ input {
 
 a {
   --tw-text-opacity: 1;
-  color: rgb(51 51 51 / var(--tw-text-opacity));
+  color: rgb(68 121 205 / var(--tw-text-opacity));
 }
 
 a:hover {
@@ -759,10 +759,6 @@ button.active:hover, a[type=button].active:hover {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.gap-0 {
-  gap: 0px;
 }
 
 .gap-2 {
