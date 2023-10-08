@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <table class="w-full">
+    <thead>
+      <tr>
+        <th>{% translate "Card" %}</th>
+        <th>{% translate "Member" %}</th>
+        <th>{% translate "Social ID" %}</th>
+        <th>{% translate "Emission date" %}</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      {% for membership in memberships %}
+      <tr>
+        <td>{{ membership }}</td>
+        <td>{{ membership.member.full_name }}</td>
+        <td>{{ membership.member.cf }}</td>
+        <td>{{ membership.created_at | date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
