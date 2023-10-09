@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 01:55+0200\n"
+"POT-Creation-Date: 2023-10-09 02:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -397,7 +397,7 @@ msgstr "Città"
 msgid "Example: Modena"
 msgstr "Esempio: Modena"
 
-#: asso/address/models.py:84
+#: asso/address/models.py:84 asso/member/templates/member/member.html:54
 msgid "Postal Code"
 msgstr "CAP"
 
@@ -645,19 +645,19 @@ msgstr "Numero Tessera"
 msgid "The unique number to write on the card"
 msgstr "Il numero univoco assegnato a questa tessera"
 
-#: asso/member/models.py:278 asso/member/models.py:282
+#: asso/member/models.py:246 asso/member/models.py:250
 msgid "Member Permanent Address"
 msgstr "Indirizzo di Residenza"
 
-#: asso/member/models.py:283
+#: asso/member/models.py:251
 msgid "Member Permanent Addresses"
 msgstr "Indirizzi di Residenza"
 
-#: asso/member/models.py:293 asso/member/models.py:297
+#: asso/member/models.py:261 asso/member/models.py:265
 msgid "Membership Permanent Address"
 msgstr "Indirizzo di Residenza per tesseramento"
 
-#: asso/member/models.py:298
+#: asso/member/models.py:266
 msgid "Membership Permanent Addresses"
 msgstr "Indirizzi di Residenza per tesseramento"
 
@@ -690,16 +690,16 @@ msgstr "Data scadenza documento"
 msgid "Residence Address"
 msgstr "Indirizzo di residenza"
 
-#: asso/member/templates/member/member.html:57
+#: asso/member/templates/member/member.html:61
 msgid "Memberships"
 msgstr "Tessere"
 
-#: asso/member/templates/member/member.html:61
+#: asso/member/templates/member/member.html:65
 #: asso/member/templates/member/membership_table.html:17
 msgid "Card"
 msgstr "Tessera"
 
-#: asso/member/templates/member/member.html:62
+#: asso/member/templates/member/member.html:66
 #: asso/member/templates/member/membership_table.html:20
 msgid "Emission date"
 msgstr "Data emissione"

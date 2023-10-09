@@ -43,12 +43,16 @@
 
   <ul class="border divide-y">
     <li class="active" aria-current="true">{% translate "Residence Address" %}</li>
-    <li>{{ member.address_description }} {{ member.address_number }}</li>
-    {% if member.address_additional %}
-      <li>{{ member.address_additional }}</li>
+    <li>{{ member.address.value }}</li>
+    {% if member.address.additional %}
+      <li>{{ member.address.additional }}</li>
     {% endif %}
     <li>
-      {{ member.address_city }} ({{ member.address_province }}), {{ member.address_postal_code }}
+      {{ member.address.city }} ({{ member.address.region.code }})
+    </li>
+    <li>
+      <span class="text-sm text-gray">{% translate "Postal Code" %}:</span>
+      {{ member.address.zip_code }}
     </li>
   </ul>
 </section>

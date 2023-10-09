@@ -242,7 +242,7 @@ class MemberPermanentAddress(AddressBaseModel):
     member = models.OneToOneField(
         Member,
         on_delete=models.CASCADE,
-        related_name="member",
+        related_name="address",
         verbose_name=_("Member Permanent Address"),
     )
 
@@ -257,7 +257,7 @@ class MembershipPermanentAddress(AddressBaseModel):
     membership = models.OneToOneField(
         Membership,
         on_delete=models.CASCADE,
-        related_name="membership",
+        related_name="address",
         verbose_name=_("Membership Permanent Address"),
     )
 
