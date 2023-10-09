@@ -24,14 +24,6 @@ from asso.commons.models import (
 )
 
 
-class MemberPermanentAddress(AddressBaseModel):
-    """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
-
-    class Meta:
-        verbose_name = _("Member Permanent Address")
-        verbose_name_plural = _("Member Permanent Addresses")
-
-
 class MemberQualification(SlugModel, TitleModel, OrderedModel):
     def __str__(self):
         return f"{self.title}"
@@ -53,13 +45,6 @@ class MemberPersonalData(models.Model):
     )
 
     gender = models.CharField(_("Gender"), max_length=1, choices=Gender.choices)
-
-    address = models.OneToOneField(
-        MemberPermanentAddress,
-        on_delete=models.PROTECT,
-        related_name="%(class)s",
-        verbose_name=_("Permanent Address"),
-    )
 
     birth_date = models.DateField(_("Birth Date"))
     birth_city = models.CharField(
@@ -249,6 +234,36 @@ class Membership(TimeStampModel, SoftDeletableModel, MemberPersonalData):
 
     def __str__(self):
         return f"{str(self.period.card_prefix)}/{self.card_number}"
+
+
+class MemberPermanentAddress(AddressBaseModel):
+    """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
+
+    member = models.OneToOneField(
+        Member,
+        on_delete=models.CASCADE,
+        related_name="member",
+        verbose_name=_("Member Permanent Address"),
+    )
+
+    class Meta:
+        verbose_name = _("Member Permanent Address")
+        verbose_name_plural = _("Member Permanent Addresses")
+
+
+class MembershipPermanentAddress(AddressBaseModel):
+    """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
+
+    membership = models.OneToOneField(
+        Membership,
+        on_delete=models.CASCADE,
+        related_name="membership",
+        verbose_name=_("Membership Permanent Address"),
+    )
+
+    class Meta:
+        verbose_name = _("Membership Permanent Address")
+        verbose_name_plural = _("Membership Permanent Addresses")
 
 
 # class MemberRegister(ContentModel):

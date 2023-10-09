@@ -7,30 +7,6 @@
     end_date: 2024-01-01
     created_at: 2023-01-01T00:00:00Z
     updated_at: 2023-01-01T00:00:00Z
-- model: member.MemberPermanentAddress
-  pk: 1
-  fields:
-    value: "Main Road 1"
-    city: "London"
-    zip_code: "11111"
-    region: 1
-    country: 1
-- model: member.MemberPermanentAddress
-  pk: 2
-  fields:
-    value: "Main Road 2"
-    city: "London"
-    zip_code: "11111"
-    region: 1
-    country: 1
-- model: member.MemberPermanentAddress
-  pk: 3
-  fields:
-    value: "Old Road 112"
-    city: "London"
-    zip_code: "11111"
-    region: 1
-    country: 1
 - model: member.Member
   pk: 1
   fields:
@@ -41,7 +17,6 @@
     last_name: "Doe"
     social_card: AAAAAAAAAAAAAAAA
     gender: M
-    address: 1
     birth_date: 1970-01-01
     birth_city: "London"
     birth_province: 1
@@ -60,7 +35,6 @@
     last_name: "Doe"
     social_card: AAAAAAAAAAAAAAAA
     gender: F
-    address: 2
     birth_date: 1970-01-01
     birth_city: "London"
     birth_province: 1
@@ -81,7 +55,30 @@
     last_name: "Doe"
     social_card: AAAAAAAAAAAAAAAA
     gender: M
-    address: 3
     birth_date: 1970-01-01
     birth_city: "London"
     birth_province: 1
+- model: member.MemberPermanentAddress
+  pk: 1
+  fields:
+    city: "London"
+    member: 1
+    region: 1
+    value: "Main Road 1"
+    zip_code: "11111"
+- model: member.MemberPermanentAddress
+  pk: 2
+  fields:
+    city: "London"
+    member: 2
+    value: "Main Road 2"
+    region: 1
+    zip_code: "11111"
+- model: member.MembershipPermanentAddress
+  pk: 3
+  fields:
+    city: "London"
+    membership: 1
+    region: 1
+    value: "Old Road 112"
+    zip_code: "11111"
