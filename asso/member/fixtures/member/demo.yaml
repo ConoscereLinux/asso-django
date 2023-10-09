@@ -23,7 +23,7 @@
     phone: +44 000 0000000
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
-    document_number: 00000
+    document_number: AB0000CD
     document_expires: 2028-01-01
 - model: member.Member
   pk: 2
@@ -41,7 +41,7 @@
     phone: +44 000 0000000
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
-    document_number: 22222
+    document_number: AB0000CE
     document_expires: 2028-01-01
 - model: member.Membership
   pk: 1
