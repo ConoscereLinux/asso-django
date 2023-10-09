@@ -1,4 +1,5 @@
-from django.db.models import BooleanField
+from django.db.models import BooleanField, TextChoices
+from django.utils.translation import gettext_lazy as _
 
 
 class UniqueBooleanField(BooleanField):
@@ -19,3 +20,9 @@ class UniqueBooleanField(BooleanField):
             objects.update(**{self.attname: False})
 
         return value
+
+
+class Gender(TextChoices):
+    MALE = "M", _("Male")
+    FEMALE = "F", _("Female")
+    OTHER = "O", _("Other")

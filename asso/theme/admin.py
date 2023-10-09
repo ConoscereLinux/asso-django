@@ -5,7 +5,7 @@ from . import models
 
 @admin.register(models.ThemeConfig)
 class ThemeConfigAdmin(admin.ModelAdmin):
-    list_display = ("brand", "logo", "active")
+    list_display = ("brand", "logo", "default")
 
 
 @admin.register(models.NavbarItem)

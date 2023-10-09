@@ -15,16 +15,12 @@
     user: 2
     first_name: "John"
     last_name: "Doe"
-    cf: AAAAAAAAAAAAAAAA
+    social_card: AAAAAAAAAAAAAAAA
     gender: M
     birth_date: 1970-01-01
     birth_city: "London"
-    birth_province: EE
+    birth_province: 1
     phone: +44 000 0000000
-    address_description: "Main Road 1"
-    address_city: "London"
-    address_postal_code: 11111
-    address_province: EE
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
     document_number: 00000
@@ -37,16 +33,12 @@
     user: 3
     first_name: "Johanna"
     last_name: "Doe"
-    cf: AAAAAAAAAAAAAAAA
+    social_card: AAAAAAAAAAAAAAAA
     gender: F
     birth_date: 1970-01-01
     birth_city: "London"
-    birth_province: EE
+    birth_province: 1
     phone: +44 000 0000000
-    address_description: "Main Road 1"
-    address_city: "London"
-    address_postal_code: 11111
-    address_province: EE
     document_type: "carta-identita"
     document_grant_from: "London Municipality"
     document_number: 22222
@@ -59,3 +51,34 @@
     card_number: 1
     created_at: 2023-01-02T00:00:00Z
     updated_at: 2023-01-02T00:00:00Z
+    first_name: "John"
+    last_name: "Doe"
+    social_card: AAAAAAAAAAAAAAAA
+    gender: M
+    birth_date: 1970-01-01
+    birth_city: "London"
+    birth_province: 1
+- model: member.MemberPermanentAddress
+  pk: 1
+  fields:
+    city: "London"
+    member: 1
+    region: 1
+    value: "Main Road 1"
+    zip_code: "11111"
+- model: member.MemberPermanentAddress
+  pk: 2
+  fields:
+    city: "London"
+    member: 2
+    value: "Main Road 2"
+    region: 1
+    zip_code: "11111"
+- model: member.MembershipPermanentAddress
+  pk: 3
+  fields:
+    city: "London"
+    membership: 1
+    region: 1
+    value: "Old Road 112"
+    zip_code: "11111"
