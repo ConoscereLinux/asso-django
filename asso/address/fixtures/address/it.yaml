@@ -1,0 +1,648 @@
+- model: address.Country
+  pk: 2
+  fields:
+    order: -1
+    code: IT
+    title: Italia
+- fields:
+    code: AG
+    country: 2
+    title: Agrigento
+  model: address.Region
+  pk: 2
+- fields:
+    code: AL
+    country: 2
+    title: Alessandria
+  model: address.Region
+  pk: 3
+- fields:
+    code: AN
+    country: 2
+    title: Ancona
+  model: address.Region
+  pk: 4
+- fields:
+    code: AO
+    country: 2
+    title: Aosta
+  model: address.Region
+  pk: 5
+- fields:
+    code: AR
+    country: 2
+    title: Arezzo
+  model: address.Region
+  pk: 6
+- fields:
+    code: AP
+    country: 2
+    title: Ascoli Piceno
+  model: address.Region
+  pk: 7
+- fields:
+    code: AT
+    country: 2
+    title: Asti
+  model: address.Region
+  pk: 8
+- fields:
+    code: AV
+    country: 2
+    title: Avellino
+  model: address.Region
+  pk: 9
+- fields:
+    code: BA
+    country: 2
+    title: Bari
+  model: address.Region
+  pk: 10
+- fields:
+    code: BL
+    country: 2
+    title: Belluno
+  model: address.Region
+  pk: 11
+- fields:
+    code: BN
+    country: 2
+    title: Benevento
+  model: address.Region
+  pk: 12
+- fields:
+    code: BG
+    country: 2
+    title: Bergamo
+  model: address.Region
+  pk: 13
+- fields:
+    code: BI
+    country: 2
+    title: Biella
+  model: address.Region
+  pk: 14
+- fields:
+    code: BO
+    country: 2
+    title: Bologna
+  model: address.Region
+  pk: 15
+- fields:
+    code: BZ
+    country: 2
+    title: Bolzano
+  model: address.Region
+  pk: 16
+- fields:
+    code: BS
+    country: 2
+    title: Brescia
+  model: address.Region
+  pk: 17
+- fields:
+    code: BR
+    country: 2
+    title: Brindisi
+  model: address.Region
+  pk: 18
+- fields:
+    code: CA
+    country: 2
+    title: Cagliari
+  model: address.Region
+  pk: 19
+- fields:
+    code: CL
+    country: 2
+    title: Caltanissetta
+  model: address.Region
+  pk: 20
+- fields:
+    code: CB
+    country: 2
+    title: Campobasso
+  model: address.Region
+  pk: 21
+- fields:
+    code: CE
+    country: 2
+    title: Caserta
+  model: address.Region
+  pk: 22
+- fields:
+    code: CT
+    country: 2
+    title: Catania
+  model: address.Region
+  pk: 23
+- fields:
+    code: CZ
+    country: 2
+    title: Catanzaro
+  model: address.Region
+  pk: 24
+- fields:
+    code: CH
+    country: 2
+    title: Chieti
+  model: address.Region
+  pk: 25
+- fields:
+    code: CO
+    country: 2
+    title: Como
+  model: address.Region
+  pk: 26
+- fields:
+    code: CS
+    country: 2
+    title: Cosenza
+  model: address.Region
+  pk: 27
+- fields:
+    code: CR
+    country: 2
+    title: Cremona
+  model: address.Region
+  pk: 28
+- fields:
+    code: KR
+    country: 2
+    title: Crotone
+  model: address.Region
+  pk: 29
+- fields:
+    code: CN
+    country: 2
+    title: Cuneo
+  model: address.Region
+  pk: 30
+- fields:
+    code: EN
+    country: 2
+    title: Enna
+  model: address.Region
+  pk: 31
+- fields:
+    code: FM
+    country: 2
+    title: Fermo
+  model: address.Region
+  pk: 32
+- fields:
+    code: FE
+    country: 2
+    title: Ferrara
+  model: address.Region
+  pk: 33
+- fields:
+    code: FI
+    country: 2
+    title: Firenze
+  model: address.Region
+  pk: 34
+- fields:
+    code: FG
+    country: 2
+    title: Foggia
+  model: address.Region
+  pk: 35
+- fields:
+    code: FO
+    country: 2
+    title: Forli'
+  model: address.Region
+  pk: 36
+- fields:
+    code: FC
+    country: 2
+    title: Forli' Cesena
+  model: address.Region
+  pk: 37
+- fields:
+    code: FR
+    country: 2
+    title: Frosinone
+  model: address.Region
+  pk: 38
+- fields:
+    code: GE
+    country: 2
+    title: Genova
+  model: address.Region
+  pk: 39
+- fields:
+    code: GO
+    country: 2
+    title: Gorizia
+  model: address.Region
+  pk: 40
+- fields:
+    code: GR
+    country: 2
+    title: Grosseto
+  model: address.Region
+  pk: 41
+- fields:
+    code: IM
+    country: 2
+    title: Imperia
+  model: address.Region
+  pk: 42
+- fields:
+    code: IS
+    country: 2
+    title: Isernia
+  model: address.Region
+  pk: 43
+- fields:
+    code: SP
+    country: 2
+    title: La Spezia
+  model: address.Region
+  pk: 44
+- fields:
+    code: AQ
+    country: 2
+    title: L'Aquila
+  model: address.Region
+  pk: 45
+- fields:
+    code: LT
+    country: 2
+    title: Latina
+  model: address.Region
+  pk: 46
+- fields:
+    code: LE
+    country: 2
+    title: Lecce
+  model: address.Region
+  pk: 47
+- fields:
+    code: LC
+    country: 2
+    title: Lecco
+  model: address.Region
+  pk: 48
+- fields:
+    code: LI
+    country: 2
+    title: Livorno
+  model: address.Region
+  pk: 49
+- fields:
+    code: LO
+    country: 2
+    title: Lodi
+  model: address.Region
+  pk: 50
+- fields:
+    code: LU
+    country: 2
+    title: Lucca
+  model: address.Region
+  pk: 51
+- fields:
+    code: MC
+    country: 2
+    title: Macerata
+  model: address.Region
+  pk: 52
+- fields:
+    code: MN
+    country: 2
+    title: Mantova
+  model: address.Region
+  pk: 53
+- fields:
+    code: MS
+    country: 2
+    title: Massa Carrara
+  model: address.Region
+  pk: 54
+- fields:
+    code: MT
+    country: 2
+    title: Matera
+  model: address.Region
+  pk: 55
+- fields:
+    code: ME
+    country: 2
+    title: Messina
+  model: address.Region
+  pk: 56
+- fields:
+    code: MI
+    country: 2
+    title: Milano
+  model: address.Region
+  pk: 57
+- fields:
+    code: MO
+    country: 2
+    title: Modena
+  model: address.Region
+  pk: 58
+- fields:
+    code: MB
+    country: 2
+    title: Monza-Brianza
+  model: address.Region
+  pk: 59
+- fields:
+    code: NA
+    country: 2
+    title: Napoli
+  model: address.Region
+  pk: 60
+- fields:
+    code: 'NO'
+    country: 2
+    title: Novara
+  model: address.Region
+  pk: 61
+- fields:
+    code: NU
+    country: 2
+    title: Nuoro
+  model: address.Region
+  pk: 62
+- fields:
+    code: OR
+    country: 2
+    title: Oristano
+  model: address.Region
+  pk: 63
+- fields:
+    code: PD
+    country: 2
+    title: Padova
+  model: address.Region
+  pk: 64
+- fields:
+    code: PA
+    country: 2
+    title: Palermo
+  model: address.Region
+  pk: 65
+- fields:
+    code: PR
+    country: 2
+    title: Parma
+  model: address.Region
+  pk: 66
+- fields:
+    code: PV
+    country: 2
+    title: Pavia
+  model: address.Region
+  pk: 67
+- fields:
+    code: PG
+    country: 2
+    title: Perugia
+  model: address.Region
+  pk: 68
+- fields:
+    code: PS
+    country: 2
+    title: Pesaro
+  model: address.Region
+  pk: 69
+- fields:
+    code: PU
+    country: 2
+    title: Pesaro Urbino
+  model: address.Region
+  pk: 70
+- fields:
+    code: PE
+    country: 2
+    title: Pescara
+  model: address.Region
+  pk: 71
+- fields:
+    code: PC
+    country: 2
+    title: Piacenza
+  model: address.Region
+  pk: 72
+- fields:
+    code: PI
+    country: 2
+    title: Pisa
+  model: address.Region
+  pk: 73
+- fields:
+    code: PT
+    country: 2
+    title: Pistoia
+  model: address.Region
+  pk: 74
+- fields:
+    code: PN
+    country: 2
+    title: Pordenone
+  model: address.Region
+  pk: 75
+- fields:
+    code: PZ
+    country: 2
+    title: Potenza
+  model: address.Region
+  pk: 76
+- fields:
+    code: PO
+    country: 2
+    title: Prato
+  model: address.Region
+  pk: 77
+- fields:
+    code: RG
+    country: 2
+    title: Ragusa
+  model: address.Region
+  pk: 78
+- fields:
+    code: RA
+    country: 2
+    title: Ravenna
+  model: address.Region
+  pk: 79
+- fields:
+    code: RC
+    country: 2
+    title: Reggio Calabria
+  model: address.Region
+  pk: 80
+- fields:
+    code: RE
+    country: 2
+    title: Reggio Emilia
+  model: address.Region
+  pk: 81
+- fields:
+    code: RI
+    country: 2
+    title: Rieti
+  model: address.Region
+  pk: 82
+- fields:
+    code: RN
+    country: 2
+    title: Rimini
+  model: address.Region
+  pk: 83
+- fields:
+    code: RM
+    country: 2
+    title: Roma
+  model: address.Region
+  pk: 84
+- fields:
+    code: RO
+    country: 2
+    title: Rovigo
+  model: address.Region
+  pk: 85
+- fields:
+    code: SA
+    country: 2
+    title: Salerno
+  model: address.Region
+  pk: 86
+- fields:
+    code: SS
+    country: 2
+    title: Sassari
+  model: address.Region
+  pk: 87
+- fields:
+    code: SV
+    country: 2
+    title: Savona
+  model: address.Region
+  pk: 88
+- fields:
+    code: SI
+    country: 2
+    title: Siena
+  model: address.Region
+  pk: 89
+- fields:
+    code: SR
+    country: 2
+    title: Siracusa
+  model: address.Region
+  pk: 90
+- fields:
+    code: SO
+    country: 2
+    title: Sondrio
+  model: address.Region
+  pk: 91
+- fields:
+    code: TA
+    country: 2
+    title: Taranto
+  model: address.Region
+  pk: 92
+- fields:
+    code: TE
+    country: 2
+    title: Teramo
+  model: address.Region
+  pk: 93
+- fields:
+    code: TR
+    country: 2
+    title: Terni
+  model: address.Region
+  pk: 94
+- fields:
+    code: TO
+    country: 2
+    title: Torino
+  model: address.Region
+  pk: 95
+- fields:
+    code: TP
+    country: 2
+    title: Trapani
+  model: address.Region
+  pk: 96
+- fields:
+    code: TN
+    country: 2
+    title: Trento
+  model: address.Region
+  pk: 97
+- fields:
+    code: TV
+    country: 2
+    title: Treviso
+  model: address.Region
+  pk: 98
+- fields:
+    code: TS
+    country: 2
+    title: Trieste
+  model: address.Region
+  pk: 99
+- fields:
+    code: UD
+    country: 2
+    title: Udine
+  model: address.Region
+  pk: 100
+- fields:
+    code: VA
+    country: 2
+    title: Varese
+  model: address.Region
+  pk: 101
+- fields:
+    code: VE
+    country: 2
+    title: Venezia
+  model: address.Region
+  pk: 102
+- fields:
+    code: VB
+    country: 2
+    title: Verbania
+  model: address.Region
+  pk: 103
+- fields:
+    code: VC
+    country: 2
+    title: Vercelli
+  model: address.Region
+  pk: 104
+- fields:
+    code: VR
+    country: 2
+    title: Verona
+  model: address.Region
+  pk: 105
+- fields:
+    code: VV
+    country: 2
+    title: Vibo Valentia
+  model: address.Region
+  pk: 106
+- fields:
+    code: VI
+    country: 2
+    title: Vicenza
+  model: address.Region
+  pk: 107
+- fields:
+    code: VT
+    country: 2
+    title: Viterbo
+  model: address.Region
+  pk: 108

@@ -3,14 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-    h1 { @apply text-2xl; }
-    h2 { @apply text-xl; }
+    h1 { @apply text-2xl mt-8 mb-4; }
+    h2 { @apply text-xl mt-4 mb-2; }
     
     ul > li { @apply py-2 px-4; }
     ul > li.active { @apply text-white font-bold bg-blue; }
     
+    table { @apply table-auto; }
+    table thead { @apply bg-blue text-white; }
+    table th, table td { @apply border text-center py-1 px-4; }
+    
     input { @apply border border-2; }
-    a { @apply text-gray-dark hover:text-blue; }
+    a { @apply text-blue-dark hover:text-blue; }
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
     #footer a { @apply hover:text-white hover:text-blue-dark; }
+    
+    button, a[type=button] { @apply font-bold p-2 bg-white hover:bg-orange; }
+    button.active, a[type=button].active { @apply text-white bg-blue hover:bg-blue-dark; }
 }

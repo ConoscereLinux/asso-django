@@ -13,6 +13,8 @@ from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from relativedeltafield import RelativeDeltaField
 
+from asso.address.models import AddressBaseModel, Region
+from asso.commons.fields import Gender
 from asso.commons.models import (
     OrderedModel,
     SlugModel,
@@ -21,7 +23,10 @@ from asso.commons.models import (
     TitleModel,
 )
 
-from .constants import ITALIAN_PROVINCES
+
+class MemberQualification(SlugModel, TitleModel, OrderedModel):
+    def __str__(self):
+        return f"{self.title}"
 
 
 def check_member_cf(value: str):
@@ -29,12 +34,40 @@ def check_member_cf(value: str):
         raise ValidationError(_(f"Fiscal Code {value} formally invalid"))
 
 
-class MemberQualification(SlugModel, TitleModel, OrderedModel):
-    def __str__(self):
-        return f"{self.title}"
+class MemberPersonalData(models.Model):
+    first_name = models.CharField(_("First Name"), max_length=60)
+    last_name = models.CharField(_("Last Name"), max_length=60)
+
+    social_card = models.CharField(
+        _("Social ID"),
+        max_length=16,
+        validators=[check_member_cf],
+    )
+
+    gender = models.CharField(_("Gender"), max_length=1, choices=Gender.choices)
+
+    birth_date = models.DateField(_("Birth Date"))
+    birth_city = models.CharField(
+        _("Birth City"),
+        max_length=150,
+        help_text=_("City/municipality or foreign country where Member is born"),
+    )
+    birth_province = models.ForeignKey(
+        Region,
+        on_delete=models.PROTECT,
+        verbose_name=_("Birth Province"),
+        help_text=_("Region where Member is born (EE for other countries)"),
+    )
+
+    @property
+    def full_name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        abstract = True
 
 
-class Member(TimeStampModel, SoftDeletableModel):
+class Member(TimeStampModel, SoftDeletableModel, MemberPersonalData):
     """It represents an Association Member"""
 
     user = models.OneToOneField(
@@ -42,37 +75,6 @@ class Member(TimeStampModel, SoftDeletableModel):
         on_delete=models.PROTECT,
         verbose_name=_("User"),
         related_name="member",
-    )
-
-    first_name = models.CharField(_("First Name"), max_length=60)
-    last_name = models.CharField(_("Last Name"), max_length=60)
-
-    cf = models.CharField(
-        _("Codice Fiscale"),
-        max_length=16,
-        validators=[check_member_cf],
-    )
-
-    class Gender(models.TextChoices):
-        MALE = "M", _("Male")
-        FEMALE = "F", _("Female")
-        OTHER = "O", _("Other")
-
-    gender = models.CharField(_("Gender"), max_length=1, choices=Gender.choices)
-
-    birth_date = models.DateField(_("Birth Date"))
-    # Translators: Comune di nascita (ITA)
-    birth_city = models.CharField(
-        _("Birth City"),
-        max_length=150,
-        help_text=_("City/municipality or foreign country where Member is born"),
-    )
-    birth_province = models.CharField(
-        _("Birth Province"),
-        help_text=_("Italian Province where Member is born (EE for other countries)"),
-        choices=ITALIAN_PROVINCES,
-        max_length=2,
-        default="MO",
     )
 
     phone = models.CharField(
@@ -87,25 +89,6 @@ class Member(TimeStampModel, SoftDeletableModel):
         ],
     )
 
-    address_description = models.CharField(
-        _("Address"), max_length=200, help_text=_("Example: Via Roma 42/a")
-    )
-    address_city = models.CharField(_("Address City"), max_length=100)
-    address_postal_code = models.CharField(
-        _("Postal Code"),
-        max_length=5,
-        validators=[
-            RegexValidator(r"[0-9]{5}", _("Italian Postal Code is made of 5 digits"))
-        ],
-    )
-    address_province = models.CharField(
-        _("Address Province"),
-        help_text=_("Address Province (EE for other countries)"),
-        choices=ITALIAN_PROVINCES,
-        max_length=2,
-        default="MO",
-    )
-
     class DocumentType(models.TextChoices):
         CARTA_IDENTITA = "carta-identita", _("Carta Identità")
         PASSAPORTO = "passaporto", _("Passaporto")
@@ -115,7 +98,7 @@ class Member(TimeStampModel, SoftDeletableModel):
         _("Document Type"), choices=DocumentType.choices, max_length=16
     )
     document_grant_from = models.CharField(
-        _("Who has grant the Document"),
+        _("Who grant the Document"),
         max_length=100,
         help_text=_("Public Authority who grant you the document"),
     )
@@ -160,10 +143,6 @@ class Member(TimeStampModel, SoftDeletableModel):
     notes = models.TextField(_("Internal Notes"), default="", blank=True)
 
     @property
-    def full_name(self) -> str:
-        return f"{self.first_name} {self.last_name}"
-
-    @property
     def last_membership(self) -> "Membership":
         return self.memberships.order_by("period__end_date").last()
 
@@ -171,7 +150,7 @@ class Member(TimeStampModel, SoftDeletableModel):
         return reverse("member", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f"{self.full_name} ({self.cf})"
+        return f"{self.full_name} ({self.social_card})"
 
     class Meta:
         verbose_name = _("Member")
@@ -201,7 +180,7 @@ class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
     start_date = models.DateField(
         default=default_start_date,
         verbose_name=_("Start Date"),
-        help_text=_("Initial day of the Membership period"),
+        help_text=_("First day for the Membership period"),
     )
 
     duration = RelativeDeltaField(
@@ -213,7 +192,7 @@ class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
     end_date = models.DateField(
         editable=False,
         verbose_name=_("End Date"),
-        help_text=_("Final day of the Membership period"),
+        help_text=_("Last day for the Membership period"),
     )
 
     price = MoneyField(
@@ -230,7 +209,7 @@ class MembershipPeriod(TitleModel, TimeStampModel, SoftDeletableModel):
         super().save(*args, **kwargs)
 
 
-class Membership(TimeStampModel, SoftDeletableModel):
+class Membership(TimeStampModel, SoftDeletableModel, MemberPersonalData):
     """The member of a user for a particular period."""
 
     member = models.ForeignKey(
@@ -255,6 +234,36 @@ class Membership(TimeStampModel, SoftDeletableModel):
 
     def __str__(self):
         return f"{str(self.period.card_prefix)}/{self.card_number}"
+
+
+class MemberPermanentAddress(AddressBaseModel):
+    """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
+
+    member = models.OneToOneField(
+        Member,
+        on_delete=models.CASCADE,
+        related_name="address",
+        verbose_name=_("Member Permanent Address"),
+    )
+
+    class Meta:
+        verbose_name = _("Member Permanent Address")
+        verbose_name_plural = _("Member Permanent Addresses")
+
+
+class MembershipPermanentAddress(AddressBaseModel):
+    """A Permanent address where the Member lives (ita: Indirizzo di Residenza)"""
+
+    membership = models.OneToOneField(
+        Membership,
+        on_delete=models.CASCADE,
+        related_name="address",
+        verbose_name=_("Membership Permanent Address"),
+    )
+
+    class Meta:
+        verbose_name = _("Membership Permanent Address")
+        verbose_name_plural = _("Membership Permanent Addresses")
 
 
 # class MemberRegister(ContentModel):

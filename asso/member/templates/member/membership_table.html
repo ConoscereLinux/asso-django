@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% load i18n %}
+
+{% block content %}
+  
+  <div class="flex flex-row justify-center border divide-x my-2">
+    {% for period in membership_periods %}
+      <button onclick="window.location.href = '?period={{ period.card_prefix }}'">
+        {{ period.title }}
+      </button>
+    {% endfor %}
+  </div>
+  
+  <table class="w-full">
+    <thead>
+      <tr>
+        <th>{% translate "Card" %}</th>
+        <th>{% translate "Member" %}</th>
+        <th>{% translate "Social ID" %}</th>
+        <th>{% translate "Emission date" %}</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      {% for membership in memberships %}
+      <tr>
+        <td>{{ membership }}</td>
+        <td>
+          <a href="{{ membership.member.get_absolute_url }}">
+            {{ membership.member.full_name }}    
+          </a>
+        </td>
+        <td>{{ membership.member.social_card }}</td>
+        <td>{{ membership.created_at | date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

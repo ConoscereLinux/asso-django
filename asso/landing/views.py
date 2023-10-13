@@ -7,7 +7,7 @@ from asso.academy.models import Event
 
 
 class HomePage(generic.TemplateView):
-    template_name = "home.html"
+    template_name = "landing/home.html"
 
     MODES = {
         "next": _("Prossimi Eventi"),

@@ -2,17 +2,18 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from asso.commons.fields import UniqueBooleanField
-from asso.commons.models import HidableModel, OrderedModel, SlugModel, TitleModel
+from asso.commons.models import (
+    DefaultModel,
+    HidableModel,
+    OrderedModel,
+    SlugModel,
+    TitleModel,
+)
 
 
-class ThemeConfig(models.Model):
+class ThemeConfig(DefaultModel):
     brand = models.CharField(max_length=100)
     logo = models.ImageField(upload_to="logos", null=True, blank=True)
-    active = UniqueBooleanField(default=False, null=False)
-
-    class Meta:
-        ordering = ["-active"]
 
 
 class NavbarItem(SlugModel, TitleModel, OrderedModel, HidableModel):
