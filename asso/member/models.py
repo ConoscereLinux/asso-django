@@ -63,6 +63,34 @@ class MemberPersonalData(models.Model):
     def full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
+    def check_social_card(self):
+        return codicefiscale.is_valid(self.social_card)
+
+    def check_first_name(self):
+        decoded = codicefiscale.decode_raw(self.social_card)
+        return codicefiscale.encode_firstname(self.first_name) == decoded["firstname"]
+
+    def check_last_name(self):
+        decoded = codicefiscale.decode_raw(self.social_card)
+        return codicefiscale.encode_lastname(self.last_name) == decoded["lastname"]
+
+    def check_birth_date(self):
+        bd = codicefiscale.decode_raw(self.social_card)["birthdate"]
+        res = False
+        if self.gender != Gender.FEMALE:
+            res |= codicefiscale.encode_birthdate(str(self.birth_date), "M") == bd
+        if self.gender != Gender.MALE:
+            res |= codicefiscale.encode_birthdate(str(self.birth_date), "F") == bd
+        return res
+
+    def check_personal_data(self):
+        return (
+            self.check_social_card()
+            and self.check_first_name()
+            and self.check_last_name()
+            and self.check_birth_date()
+        )
+
     class Meta:
         abstract = True
 
