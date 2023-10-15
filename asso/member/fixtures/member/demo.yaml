@@ -15,10 +15,10 @@
     user: 2
     first_name: "John"
     last_name: "Doe"
-    social_card: AAAAAAAAAAAAAAAA
+    social_card: DOEJHN70A01Z114S
     gender: M
     birth_date: 1970-01-01
-    birth_city: "London"
+    birth_city: "United Kingdom"
     birth_province: 1
     phone: +44 000 0000000
     document_type: "carta-identita"
@@ -33,10 +33,10 @@
     user: 3
     first_name: "Johanna"
     last_name: "Doe"
-    social_card: AAAAAAAAAAAAAAAA
+    social_card: DOEJNN70A41Z114Z
     gender: F
     birth_date: 1970-01-01
-    birth_city: "London"
+    birth_city: "United Kingdom"
     birth_province: 1
     phone: +44 000 0000000
     document_type: "carta-identita"
@@ -53,10 +53,10 @@
     updated_at: 2023-01-02T00:00:00Z
     first_name: "John"
     last_name: "Doe"
-    social_card: AAAAAAAAAAAAAAAA
+    social_card: DOEJHN70A01Z114S
     gender: M
     birth_date: 1970-01-01
-    birth_city: "London"
+    birth_city: "United Kingdom"
     birth_province: 1
 - model: member.MemberPermanentAddress
   pk: 1
