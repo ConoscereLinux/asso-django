@@ -202,6 +202,9 @@ class Enrollment(TimeStampModel):
         help_text=_("Phone number used for comunication regarding this event"),
     )
 
+    def __str__(self):
+        return f"{self.event} | {self.email}"
+
 
 # class MemberEnrollment(Enrollment):
 #     """An enrollment for a registered member"""
