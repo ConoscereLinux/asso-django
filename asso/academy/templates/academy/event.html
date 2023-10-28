@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% load i18n %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ event.title }}</h1>
+  
+  <p>{{ event.start_date }} | {{ event.end_date }}</p>
+  
+  <h2 class="m-2">Member subscribed</h2>
+  <table>
+    <tr>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    {% for enrollment in event.enrollments.all %}
+    <tr>
+      <td>{{ enrollment.email }}</td>
+      <td>{{ enrollment.phone }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+{% endblock %}
