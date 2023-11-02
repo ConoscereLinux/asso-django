@@ -31,6 +31,6 @@ class HomePage(generic.TemplateView):
                 mode = "next"
 
         context["mode"] = mode
-        context["courses"] = query.order_by("-start_date")[:10]
+        context["events"] = query.order_by("-start_date")[:10]
 
         return context

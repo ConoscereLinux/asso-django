@@ -6,7 +6,7 @@ from . import models
 class EventList(generic.ListView):
     model = models.Event
     template_name = "academy/events.html"
-    context_object_name = "courses"
+    context_object_name = "events"
 
 
 class EventDetailView(generic.DetailView):
