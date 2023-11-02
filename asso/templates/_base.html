@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ theme.brand }}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static "main.tw.css" %}">
+  
+    {% include "_stylesheet.html" %}
+    {% block stylesheet %}{% endblock %}
   </head>
 
   <body class="font-sans text-black min-h-screen
@@ -31,9 +34,7 @@
       </footer>
     {% endblock %}
     
-    {% block scripts %}
-      {% include "_scripts.html" %}
-      {% block custom_scritps %}{% endblock %}
-    {% endblock %}
+    {% include "_scripts.html" %}
+    {% block scripts %}{% endblock %}
   </body>
 </html>
