@@ -1,9 +1,9 @@
-<div class="flex justify-center border divide-x">
-  {% for mode_, text_ in modes.items %}
-  <button class="{% if mode == mode_ %}active{% endif %}" 
-          onclick="window.location.href = '{% url 'home' %}?mode={{ mode_ }}'">
-    {{ text_ }}
-  </button>
+<div class="flex justify-center border m-2 divide-x" x-data="{ mode: '{{ event_query }}' }">
+  {% for mode, text in event_queries %}
+  <a type="button" href="{% url 'home' %}?mode={{ mode }}" 
+     class="" :class="{'active': mode == '{{ mode }}'}" >
+    {{ text }}
+  </a>
   {% endfor %}
 </div>
 
