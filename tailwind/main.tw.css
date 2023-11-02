@@ -18,6 +18,10 @@
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
     #footer a { @apply hover:text-white hover:text-blue-dark; }
     
-    button, a[type=button] { @apply font-bold p-2 bg-white hover:bg-orange; }
-    button.active, a[type=button].active { @apply text-white bg-blue hover:bg-blue-dark; }
+    button, a[type=button] { 
+        @apply font-bold p-2 text-black bg-white hover:text-white hover:bg-orange; 
+    }
+    button.active, a[type=button].active { 
+        @apply text-white bg-blue hover:bg-blue-dark; 
+    }
 }
