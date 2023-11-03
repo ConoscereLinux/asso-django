@@ -46,9 +46,17 @@ class EventDetail(generic.DetailView):
 
 class EventCreate(generic.CreateView):
     model = Event
-    fields = ["title", "subtitle"]
+    fields = [
+        "title",
+        "subtitle",
+        "category",
+        "approval_state",
+        "need_membership",
+        "price",
+        "trainers",
+    ]
 
 
 class EventUpdate(generic.UpdateView):
     model = Event
-    fields = ["slug", "title", "subtitle"]
+    fields = ["slug", *EventCreate.fields]
