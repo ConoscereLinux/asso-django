@@ -3,23 +3,56 @@
 
 {% block title %}{{ event.title }}{% endblock %}
 
+
 {% block content %}
-  <h1>{{ event.title }}</h1>
   
-  <p>{{ event.start_date }} | {{ event.end_date }}</p>
+  <section id="event-title" class="w-full text-center">
+    {% block event-title %}
+      <h1>{{ event.title }}</h1>
+      {% if event.subtitle %}<h2>{{ event.subtitle }}</h2>{% endif %}      
+    {% endblock %}
+  </section>
   
-  <h2 class="m-2">Member subscribed</h2>
-  <table>
-    <tr>
-      <th>Email</th>
-      <th>Phone</th>
-    </tr>
-    {% for enrollment in event.enrollments.all %}
-    <tr>
-      <td>{{ enrollment.email }}</td>
-      <td>{{ enrollment.phone }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+  <section id="event-info" class="flex flex-row justify-around w-1/2 bg-gray">
+    {% block event-info %}
+      <div class="font-bold text-white p-2">{{ event.category.title }}</div>
+      <div class="font-bold text-white p-2">
+        {{ event.start_date }} 
+        {% if event.start_date != event.end_date %} | {{ event.end_date }}{% endif %}
+      </div>
+    {% endblock %}
+  </section>
+  
+  <section id="event-content"></section>
+  <section id="event-faq"></section>
+  
+  {% if event.trainers %}
+  <section id="event-trainer" class="w-1/2">
+    <h3>{% translate "Trainers" %}</h3>
+    <div class="grid grid-cols-2 w-full">
+      {% for trainer in event.trainers.all %}
+        <div class="outline p-2">{{ trainer.display_name }}</div>
+      {% endfor %}  
+    </div>
+  </section>
+  {% endif %}
+  
+  {% if request.user.is_staff %}
+  <section id="event-enrollments" class="w-1/2">
+    <h3>Member subscribed</h3>
+    <table class="w-full">
+      <tr>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+      {% for enrollment in event.enrollments.all %}
+      <tr>
+        <td>{{ enrollment.email }}</td>
+        <td>{{ enrollment.phone }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+  {% endif %}
   
 {% endblock %}

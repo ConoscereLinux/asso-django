@@ -448,6 +448,13 @@ h2 {
   line-height: 1.75rem;
 }
 
+h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 ul > li {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -717,6 +724,10 @@ button.active:hover, a[type=button].active:hover {
   min-height: 100vh;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-12 {
   width: 3rem;
 }
@@ -743,6 +754,10 @@ button.active:hover, a[type=button].active:hover {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -773,8 +788,16 @@ button.active:hover, a[type=button].active:hover {
   justify-content: space-between;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .divide-x > :not([hidden]) ~ :not([hidden]) {
@@ -817,6 +840,11 @@ button.active:hover, a[type=button].active:hover {
 .bg-blue {
   --tw-bg-opacity: 1;
   background-color: rgb(84 152 254 / var(--tw-bg-opacity));
+}
+
+.bg-gray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(119 119 119 / var(--tw-bg-opacity));
 }
 
 .bg-cover {
@@ -913,6 +941,10 @@ button.active:hover, a[type=button].active:hover {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(254 254 254 / var(--tw-text-opacity));
+}
+
+.outline {
+  outline-style: solid;
 }
 
 .hover\:bg-blue-dark:hover {
