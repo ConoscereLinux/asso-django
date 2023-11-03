@@ -38,7 +38,7 @@ class EventList(EventListMixin, generic.ListView):
     context_object_name = "events"
 
 
-class EventDetailView(generic.DetailView):
+class EventDetail(generic.DetailView):
     model = Event
     template_name = "academy/event.html"
     context_object_name = "event"
