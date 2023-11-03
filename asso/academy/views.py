@@ -42,3 +42,13 @@ class EventDetail(generic.DetailView):
     model = Event
     template_name = "academy/event.html"
     context_object_name = "event"
+
+
+class EventCreate(generic.CreateView):
+    model = Event
+    fields = ["title", "subtitle"]
+
+
+class EventUpdate(generic.UpdateView):
+    model = Event
+    fields = ["slug", "title", "subtitle"]
