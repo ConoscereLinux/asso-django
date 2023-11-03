@@ -435,24 +435,27 @@ video {
 }
 
 h1 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
 }
 
 h2 {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
 }
 
 h3 {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
+  font-weight: 700;
 }
 
 ul > li {
@@ -724,12 +727,16 @@ button.active:hover, a[type=button].active:hover {
   min-height: 100vh;
 }
 
-.w-1\/2 {
-  width: 50%;
+.w-1\/4 {
+  width: 25%;
 }
 
 .w-12 {
   width: 3rem;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
 }
 
 .w-4 {
@@ -754,10 +761,6 @@ button.active:hover, a[type=button].active:hover {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -786,10 +789,6 @@ button.active:hover, a[type=button].active:hover {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.justify-around {
-  justify-content: space-around;
 }
 
 .gap-2 {
@@ -842,9 +841,9 @@ button.active:hover, a[type=button].active:hover {
   background-color: rgb(84 152 254 / var(--tw-bg-opacity));
 }
 
-.bg-gray {
+.bg-orange {
   --tw-bg-opacity: 1;
-  background-color: rgb(119 119 119 / var(--tw-bg-opacity));
+  background-color: rgb(204 102 0 / var(--tw-bg-opacity));
 }
 
 .bg-cover {
@@ -865,6 +864,10 @@ button.active:hover, a[type=button].active:hover {
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .px-2 {
@@ -941,10 +944,6 @@ button.active:hover, a[type=button].active:hover {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(254 254 254 / var(--tw-text-opacity));
-}
-
-.outline {
-  outline-style: solid;
 }
 
 .hover\:bg-blue-dark:hover {

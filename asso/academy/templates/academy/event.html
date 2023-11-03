@@ -5,42 +5,53 @@
 
 
 {% block content %}
-  
-  <section id="event-title" class="w-full text-center">
-    {% block event-title %}
-      <h1>{{ event.title }}</h1>
-      {% if event.subtitle %}<h2>{{ event.subtitle }}</h2>{% endif %}      
-    {% endblock %}
-  </section>
-  
-  <section id="event-info" class="flex flex-row justify-around w-1/2 bg-gray">
+  <section id="event-info" class="flex flex-row justify-center w-full gap-4 text-center">
     {% block event-info %}
-      <div class="font-bold text-white p-2">{{ event.category.title }}</div>
-      <div class="font-bold text-white p-2">
+      <div class="w-1/4 border font-bold bg-orange text-white p-1">
+        {{ event.category.title }}
+      </div>
+      <div class="w-1/4 border font-bold bg-orange text-white p-1">
         {{ event.start_date }} 
         {% if event.start_date != event.end_date %} | {{ event.end_date }}{% endif %}
       </div>
     {% endblock %}
   </section>
   
-  <section id="event-content"></section>
-  <section id="event-faq"></section>
+  <section id="event-title" class="w-full text-center border">
+    {% block event-title %}
+      <h1>{{ event.title }}</h1>
+      {% if event.subtitle %}<h2>{{ event.subtitle }}</h2>{% endif %}      
+    {% endblock %}
+  </section>
+  
+  <section id="event-content" class="w-full border p-1">
+    {{ event.content | safe }}
+  </section>
+  <section id="event-faq" class="w-full">
+    <h3 class="bg-orange text-white text-center border p-1">
+      {% translate "Frequently Asked Questions" %}
+    </h3>
+  </section>
   
   {% if event.trainers %}
-  <section id="event-trainer" class="w-1/2">
-    <h3>{% translate "Trainers" %}</h3>
+  <section id="event-trainer" class="w-full">
+    <h3 class="bg-orange text-white border text-center p-1">
+      {% translate "Trainers" %}
+    </h3>
     <div class="grid grid-cols-2 w-full">
       {% for trainer in event.trainers.all %}
-        <div class="outline p-2">{{ trainer.display_name }}</div>
+        <div class="border p-1">{{ trainer.display_name }}</div>
       {% endfor %}  
     </div>
   </section>
   {% endif %}
   
   {% if request.user.is_staff %}
-  <section id="event-enrollments" class="w-1/2">
-    <h3>Member subscribed</h3>
-    <table class="w-full">
+  <section id="event-enrollments" class="w-full flex flex-col items-center">
+    <h3 class="bg-orange text-white text-center border w-full p-1">
+      {% translate "Member subscribed" %}
+    </h3>
+    <table class="w-2/3">
       <tr>
         <th>Email</th>
         <th>Phone</th>
