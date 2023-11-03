@@ -1,5 +1,6 @@
 """The Academy section, with teacher event and participation."""
 
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -111,6 +112,8 @@ class Event(ContentModel):
         blank=True,
         verbose_name=_("Subtitle"),
     )
+
+    content = RichTextField(default="")
 
     category = models.ForeignKey(
         EventCategory,
