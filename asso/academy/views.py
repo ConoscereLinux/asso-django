@@ -3,7 +3,7 @@ import datetime as dt
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
-from .models import Event
+from . import forms, models
 
 
 class EventListMixin(generic.base.ContextMixin, generic.View):
@@ -19,11 +19,13 @@ class EventListMixin(generic.base.ContextMixin, generic.View):
         today = dt.date.today()
         match mode := self.request.GET.get("mode"):
             case "archive":
-                query = Event.objects.filter(end_date__lte=today)
+                query = models.Event.objects.filter(end_date__lte=today)
             case "ongoing":
-                query = Event.objects.filter(start_date__lte=today, end_date__gte=today)
+                query = models.Event.objects.filter(
+                    start_date__lte=today, end_date__gte=today
+                )
             case "next" | _:
-                query = Event.objects.filter(start_date__gte=today)
+                query = models.Event.objects.filter(start_date__gte=today)
                 mode = "next"
 
         context["event_query"] = mode
@@ -33,19 +35,19 @@ class EventListMixin(generic.base.ContextMixin, generic.View):
 
 
 class EventList(EventListMixin, generic.ListView):
-    model = Event
+    model = models.Event
     template_name = "academy/events.html"
     context_object_name = "events"
 
 
 class EventDetail(generic.DetailView):
-    model = Event
+    model = models.Event
     template_name = "academy/event.html"
     context_object_name = "event"
 
 
 class EventCreate(generic.CreateView):
-    model = Event
+    model = models.Event
     fields = [
         "title",
         "subtitle",
@@ -58,5 +60,5 @@ class EventCreate(generic.CreateView):
 
 
 class EventUpdate(generic.UpdateView):
-    model = Event
+    model = models.Event
     fields = ["slug", *EventCreate.fields]
