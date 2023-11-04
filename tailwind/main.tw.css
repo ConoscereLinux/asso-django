@@ -14,7 +14,9 @@
     table thead { @apply bg-blue text-white; }
     table th, table td { @apply border text-center py-1 px-4; }
     
-    input { @apply border border-2; }
+    input { @apply border border-2 w-full; }
+    form ul.errorlist > li { @apply text-orange p-0; }
+    
     a { @apply text-blue-dark hover:text-blue; }
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
     #footer a { @apply hover:text-white hover:text-blue-dark; }

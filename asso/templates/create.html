@@ -4,15 +4,24 @@
   
   <h1 class="my-2">{% block title %}{% endblock %}</h1>
   
-  <form action="" method="post" class="text-center">
+  <form action="" method="post" class="text-center w-full md:w-1/2">
     {% csrf_token %}
-    <fieldset class="grid grid-cols-2 gap-2 text-left">
+    {% block pre-fields %}{% endblock %}
+    <fieldset class="grid grid-cols-1 md:grid-cols-2 gap-2
+                     text-left w-full">
       {% for field in form %}
-        {{ field.errors }}
         {{ field.label_tag }}
-        {{ field }}
+        <div>
+          {{ field }}
+          <ul>
+            {% for error in field.errors %}
+            <li class="text-orange text-sm p-0">{{ error|escape }}</li>
+            {% endfor %}
+          </ul>
+        </div>        
       {% endfor %}  
     </fieldset>
+    {% block post-fields %}{% endblock %}
     <input type="submit" value="Submit" class="btn bg-blue m-2 p-2 border-default">
   </form>
   
