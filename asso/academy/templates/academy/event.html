@@ -24,6 +24,12 @@
     {% endblock %}
   </section>
   
+  <section id="event-enroll" class="w-full text-center">
+    <a href="{% url "enroll" slug=event.slug %}" type="button" class="border">
+      {% translate "Enroll" %}
+    </a>
+  </section>
+  
   <section id="event-content" class="w-full border p-1">
     {{ event.content | safe }}
   </section>

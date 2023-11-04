@@ -59,6 +59,11 @@ class EventCreate(generic.CreateView):
     ]
 
 
+class EventEnroll(generic.CreateView):
+    model = models.Enrollment
+    fields = ["email", "phone"]
+
+
 class EventUpdate(generic.UpdateView):
     model = models.Event
     fields = ["slug", *EventCreate.fields]
