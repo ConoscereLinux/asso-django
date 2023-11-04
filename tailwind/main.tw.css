@@ -25,4 +25,11 @@
     button.active, a[type=button].active { 
         @apply text-white bg-blue hover:bg-blue-dark; 
     }
+    
+    #event-content { @apply text-center; }
+    #event-content h6, #event-content h5, #event-content h4 { 
+        @apply my-2 font-bold;
+    }
+    #event-content img { @apply mx-auto; }
+    #event-content p { @apply my-1;}
 }

@@ -552,6 +552,26 @@ button.active:hover, a[type=button].active:hover {
   background-color: rgb(68 121 205 / var(--tw-bg-opacity));
 }
 
+#event-content {
+  text-align: center;
+}
+
+#event-content h6, #event-content h5, #event-content h4 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+#event-content img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#event-content p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -858,16 +878,16 @@ button.active:hover, a[type=button].active:hover {
   background-repeat: no-repeat;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-1 {
-  padding: 0.25rem;
 }
 
 .px-2 {
