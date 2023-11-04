@@ -1,5 +1,6 @@
 import datetime as dt
 
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
@@ -59,11 +60,19 @@ class EventCreate(generic.CreateView):
     ]
 
 
-class EventEnroll(generic.CreateView):
-    model = models.Enrollment
-    fields = ["email", "phone"]
-
-
 class EventUpdate(generic.UpdateView):
     model = models.Event
     fields = ["slug", *EventCreate.fields]
+
+
+class EventEnroll(generic.CreateView):
+    template_name = "academy/event_enrollment.html"
+    model = models.Enrollment
+    form_class = forms.EnrollForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["initial"]["event"] = get_object_or_404(
+            models.Event, slug=self.kwargs["slug"]
+        )
+        return kwargs

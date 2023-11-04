@@ -209,6 +209,9 @@ class Enrollment(TimeStampModel):
         help_text=_("Phone number used for comunication regarding this event"),
     )
 
+    def get_absolute_url(self):
+        return reverse("event", kwargs={"slug": self.event.slug})
+
     def __str__(self):
         return f"{self.event} | {self.email}"
 
