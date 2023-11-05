@@ -1,20 +1,11 @@
-{% extends "_base.html" %}
+{% extends "create.html" %}
 
 {% load i18n %}
 
-{% block title %}{{ member.full_name }}{% endblock %}
-
-{% block content %}
-  <h1 class="my-2">{% translate "Register" %}</h1>
-  <form action="" method="post" class="text-center">
-    {% csrf_token %}
-    <fieldset class="grid grid-cols-2 gap-2 text-left">
-      {% for field in form %}
-        {{ field.errors }}
-        {{ field.label_tag }}
-        {{ field }}
-      {% endfor %}  
-    </fieldset>
-    <input type="submit" value="Submit" class="btn bg-blue m-2 p-2 border-default">
-  </form>
+{% block title %}
+  {% if member.title %}
+    {% translate "Edit:" %} {{ member.full_name }}
+  {% else %}
+    {% translate "Register" %}
+  {% endif %}
 {% endblock %}

@@ -1,0 +1,14 @@
+<div class="flex justify-center border m-2 divide-x" x-data="{ mode: '{{ event_query }}' }">
+  {% for mode, text in event_queries %}
+  <a type="button" href="{% url 'home' %}?mode={{ mode }}" 
+     class="" :class="{'active': mode == '{{ mode }}'}" >
+    {{ text }}
+  </a>
+  {% endfor %}
+</div>
+
+<div class="grid lg:grid-cols-2 gap-2 p-2 w-full">
+{% for event in events %}
+  {% include "academy/_event_card.html" with event=event %}
+{% endfor %}  
+</div>

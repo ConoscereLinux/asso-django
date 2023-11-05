@@ -1,0 +1,10 @@
+{% extends "create.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% if event.title %}
+    {% translate "Edit: " %} {{ event.title }}
+  {% else %}
+    {% translate "Create Event" %}
+  {% endif %}
+{% endblock %}

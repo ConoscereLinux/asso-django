@@ -10,6 +10,7 @@ version = "0.2.0"
 requires-python = ">=3.10"
 dependencies = [
     "django~=4.2",
+    "django-ckeditor",
     "django-extensions",
     "django-jazzmin",
     "django-money",

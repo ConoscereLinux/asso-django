@@ -7,20 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ theme.brand }}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static "main.tw.css" %}">
+  
+    {% include "_stylesheet.html" %}
+    {% block stylesheet %}{% endblock %}
   </head>
 
   <body class="font-sans text-black min-h-screen
                flex flex-col justify-between items-center">
   
     {% block header %}
-    <header id="navbar" class="sticky top-0 bg-blue w-screen border-b">
+    <header id="navbar" class="sticky z-50 top-0 bg-blue w-screen border-b">
       {% block menu %}{% include "_header.html" %}{% endblock %}  
     </header>
     {% endblock %}
     
     
     {% block main %}
-    <main id="main" class="grow flex flex-col justify-start items-center w-screen max-w-screen-lg">
+    <main id="main" class="grow w-screen max-w-screen-lg p-4
+                           flex flex-col justify-start items-center gap-4">
       {% block content %}{% endblock %}
     </main>
     {% endblock %}
@@ -31,9 +35,7 @@
       </footer>
     {% endblock %}
     
-    {% block scripts %}
-      {% include "_scripts.html" %}
-      {% block custom_scritps %}{% endblock %}
-    {% endblock %}
+    {% include "_scripts.html" %}
+    {% block scripts %}{% endblock %}
   </body>
 </html>

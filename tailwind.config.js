@@ -21,6 +21,10 @@ module.exports = {
     extend: {
       borderWidth: {'DEFAULT': '3px'},
       borderColor: {'DEFAULT': '#333'},
+      gridTemplateColumns: {
+        '1-2/3': '1fr 2fr',
+        '1-3/4': '1fr 3fr',
+      }
     },
   },
   plugins: [],

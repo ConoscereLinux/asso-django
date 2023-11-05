@@ -6,24 +6,30 @@
 #
 asgiref==3.7.2
     # via django
-babel==2.13.0
+babel==2.13.1
     # via py-moneyed
-black==23.9.1
+black==23.10.1
     # via asso-django (pyproject.toml)
 click==8.1.7
     # via black
-django==4.2.6
+django==4.2.7
     # via
     #   asso-django (pyproject.toml)
+    #   django-ckeditor
     #   django-extensions
     #   django-jazzmin
+    #   django-js-asset
     #   django-money
     #   django-relativedelta
+django-ckeditor==6.7.0
+    # via asso-django (pyproject.toml)
 django-extensions==3.2.3
     # via asso-django (pyproject.toml)
 django-jazzmin==2.6.0
     # via asso-django (pyproject.toml)
-django-money==3.3.0
+django-js-asset==2.1.0
+    # via django-ckeditor
+django-money==3.4.0
     # via asso-django (pyproject.toml)
 django-relativedelta==2.0.0
     # via asso-django (pyproject.toml)
@@ -41,7 +47,7 @@ packaging==23.2
     #   pytest
 pathspec==0.11.2
     # via black
-pillow==10.0.1
+pillow==10.1.0
     # via asso-django (pyproject.toml)
 platformdirs==3.11.0
     # via black
@@ -49,11 +55,11 @@ pluggy==1.3.0
     # via pytest
 py-moneyed==3.0
     # via django-money
-pytest==7.4.2
+pytest==7.4.3
     # via
     #   asso-django (pyproject.toml)
     #   pytest-django
-pytest-django==4.5.2
+pytest-django==4.6.0
     # via asso-django (pyproject.toml)
 python-codicefiscale==0.8.2
     # via asso-django (pyproject.toml)
@@ -64,7 +70,7 @@ python-dateutil==2.8.2
     #   python-codicefiscale
 python-decouple==3.8
     # via asso-django (pyproject.toml)
-python-fsutil==0.10.0
+python-fsutil==0.11.0
     # via python-codicefiscale
 python-slugify==8.0.1
     # via python-codicefiscale

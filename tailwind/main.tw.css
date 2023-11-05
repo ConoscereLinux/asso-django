@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-    h1 { @apply text-2xl mt-8 mb-4; }
-    h2 { @apply text-xl mt-4 mb-2; }
+    h1 { @apply font-bold text-3xl mt-4 mb-4; }
+    h2 { @apply font-bold text-2xl mt-2 mb-2; }
+    h3 { @apply font-bold text-xl mt-1 mb-1; }
     
     ul > li { @apply py-2 px-4; }
     ul > li.active { @apply text-white font-bold bg-blue; }
@@ -13,11 +14,25 @@
     table thead { @apply bg-blue text-white; }
     table th, table td { @apply border text-center py-1 px-4; }
     
-    input { @apply border border-2; }
+    input, textarea, select, .django-ckeditor-widget { 
+        @apply border border-2 p-1 w-full; }
+    form ul.errorlist > li { @apply text-orange p-0; }
+    
     a { @apply text-blue-dark hover:text-blue; }
     #navbar a { @apply font-bold text-white hover:text-blue-dark; }
     #footer a { @apply hover:text-white hover:text-blue-dark; }
     
-    button, a[type=button] { @apply font-bold p-2 bg-white hover:bg-orange; }
-    button.active, a[type=button].active { @apply text-white bg-blue hover:bg-blue-dark; }
+    button, a[type=button] { 
+        @apply font-bold p-2 text-black bg-white hover:text-white hover:bg-orange; 
+    }
+    button.active, a[type=button].active { 
+        @apply text-white bg-blue hover:bg-blue-dark; 
+    }
+    
+    #event-content { @apply text-center; }
+    #event-content h6, #event-content h5, #event-content h4 { 
+        @apply my-2 font-bold;
+    }
+    #event-content img { @apply mx-auto; }
+    #event-content p { @apply my-1;}
 }
