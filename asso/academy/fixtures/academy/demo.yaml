@@ -39,3 +39,17 @@
     end: 2023-01-01T01:00Z
     created_at: 1970-01-01T00:00Z
     updated_at: 1970-01-01T00:00Z
+- model: academy.Enrollment
+  pk: 1
+  fields:
+    event: 1
+    email: john@doe.com
+    created_at: 1970-01-01T00:00Z
+    updated_at: 1970-01-01T00:00Z
+- model: academy.Enrollment
+  pk: 2
+  fields:
+   event: 1
+   email: johanna@doe.com
+   created_at: 1970-01-01T00:00Z
+   updated_at: 1970-01-01T00:00Z  

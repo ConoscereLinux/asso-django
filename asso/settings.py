@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "jazzmin",
+    "ckeditor",
     "asso.accounts",
     "asso.theme",
     "asso.academy",

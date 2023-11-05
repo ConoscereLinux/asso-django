@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+  <h1 class="my-2">{% block title %}{% endblock %}</h1>
+  
+  <form action="" method="post" class="text-center w-full">
+    {% csrf_token %}
+    {{ form.media }}
+    {% block pre-fields %}{% endblock %}
+    <fieldset class="grid gap-2 grid-cols-1 md:grid-cols-4 lg:grid-cols-4 
+                     text-left w-full">
+      {% for field in form %}
+        {% if field.is_hidden %}
+          {{ field.as_hidden }}
+        {% else %}
+          <div class="">{{ field.label_tag }}</div>
+          <div class="md:col-span-3 lg:col-span-3">
+            {{ field }}
+            {% for error in field.errors %}
+            <p class="text-orange text-sm p-0">{{ error|escape }}</p>
+            {% endfor %}
+          </div> 
+        {% endif %}
+      {% endfor %}  
+    </fieldset>
+    {% block post-fields %}{% endblock %}
+    <input type="submit" value="Submit" class="btn bg-blue m-2 p-2 border-default">
+  </form>
+  
+{% endblock %}
