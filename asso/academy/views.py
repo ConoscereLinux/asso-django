@@ -1,5 +1,6 @@
 import datetime as dt
 
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -47,22 +48,16 @@ class EventDetail(generic.DetailView):
     context_object_name = "event"
 
 
-class EventCreate(generic.CreateView):
+class EventCreate(PermissionRequiredMixin, generic.CreateView):
+    permission_required = "academy.add_event"
     model = models.Event
-    fields = [
-        "title",
-        "subtitle",
-        "category",
-        "approval_state",
-        "need_membership",
-        "price",
-        "trainers",
-    ]
+    fields = "__all__"
 
 
-class EventUpdate(generic.UpdateView):
+class EventUpdate(PermissionRequiredMixin, generic.UpdateView):
+    permission_required = "academy.update_event"
     model = models.Event
-    fields = ["slug", *EventCreate.fields]
+    fields = "__all__"
 
 
 class EventEnroll(generic.CreateView):
@@ -72,7 +67,13 @@ class EventEnroll(generic.CreateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
+
         kwargs["initial"]["event"] = get_object_or_404(
             models.Event, slug=self.kwargs["slug"]
         )
+        if hasattr(self.request.user, "email"):
+            kwargs["initial"]["email"] = self.request.user.email
+        if hasattr(self.request.user, "member"):
+            kwargs["initial"]["phone"] = self.request.user.member.phone
+
         return kwargs
